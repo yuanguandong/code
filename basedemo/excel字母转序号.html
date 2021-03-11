@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>节流器</title>
+</head>
+
+<body>
+  <button id="button"></button>
+  97-122
+</body>
+<script>
+  function stringToIndex(str) {
+    var charArr = str.toLowerCase().split("")
+    var numArr = []
+    charArr.map((item, i) => {
+      var charcode;
+      charcode = item.charCodeAt(0);
+      charcode = charcode - 97
+      // charcode = String.fromCharCode(charcode)
+      numArr.push(charcode)
+    })
+    console.log('numArr',numArr)
+    var result
+    result = 26*(numArr.length-1)
+    numArr.map((num,i)=>{
+      result += parseInt(num)
+    })
+    return result
+  }
+
+  console.log('res',stringToIndex('AF'))
+</script>
+
+</html>

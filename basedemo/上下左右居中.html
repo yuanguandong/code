@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .green {
+      width: 200px;
+      height: 200px;
+      background: green
+    }
+
+    .red {
+      width: 100px;
+      height: 100px;
+      background: red
+    }
+
+    .parent {
+      position: relative;
+
+    }
+
+    .child {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .parent1 {
+      position: relative;
+
+    }
+
+    .child1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -50px;
+      margin-top: -50px;
+    }
+
+    .parent2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .child2 {}
+
+    .parent3 {
+      display: grid;
+    }
+
+    .child3 {
+      align-self: center;
+      justify-self: center;
+    }
+
+    .parent4 {
+      position: relative;
+
+    }
+
+    .child4 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="green parent">
+    <div class="red child"></div>
+  </div>
+
+  <div class="green parent1">
+    <div class="red child1"></div>
+  </div>
+
+  <div class="green parent2">
+    <div class="red child2"></div>
+  </div>
+
+  <div class="green parent3">
+    <div class="red child3"></div>
+  </div>
+
+  <div class="green parent4">
+    <div class="red child4"></div>
+  </div>
+
+  <script>
+    var b = 10;
+    (function b() {
+      b = 20
+      console.log(b)
+    })()
+  </script>
+</body>
+
+</html>

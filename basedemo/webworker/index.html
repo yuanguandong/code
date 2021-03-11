@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+</head>
+
+<body onload="init()">
+  <div id="result"></div>
+  <div id="results"></div>
+  <a class="a" href="javascript:fn()">点我继续执行主线程任务</a>
+  <a class="a" href="javascript:close()">关闭子线程</a>
+  <a class="a" href="javascript:sendTo()">发送消息</a>
+  <a class="a" href="javascript:sendObject()">发送对象</a>
+</body>
+<script>
+  function init() {
+    // js文件必须是网络资源
+    window.worker = new Worker('worker.js');
+
+    // 监听worker线程返回的结果，event 参数中有 data 属性，就是子线程中返回的结果数据
+    window.worker.onmessage = function (event) {
+      // 把子线程返回的结果添加到 div 上
+      document.getElementById("result").innerHTML += event.data + "<br/>";
+    };
+  }
+
+  function sendTo() {
+    // 向worker线程传递消息
+    window.worker.postMessage('Hello Worker')
+  }
+  // 主线程的任务
+  function fn() {
+    var i = 0
+    setInterval(() => {
+      i++
+      $('#results').html(i)
+    }, 1000);
+  }
+
+  function close() {
+    debugger
+    window.worker.terminate();
+  }
+
+
+  var uInt8Array = new Uint8Array(1024 * 1024 * 32); // 32MB
+  for (var i = 0; i < uInt8Array.length; ++i) {
+    uInt8Array[i] = i;
+  }
+
+  console.log(uInt8Array.length); // 传递前长度:33554432
+
+  var object = {
+    a: 1,
+    b: 2
+  }
+
+  function sendObject() {
+    debugger
+    window.worker.postMessage(object, [object])
+    console.log(uInt8Array.length); // 传递后长度:0
+  }
+</script>
+
+</html>

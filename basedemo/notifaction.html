@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>111</title>
+</head>
+<body>
+    <button onclick="notifyMe()">Notify me!</button>
+</body>
+<script type="text/javascript">
+    
+    
+    // Notification.requestPermission(prem => {
+    //   prem == "granted" // 同意
+    //   prem == "denied" // 拒绝
+    // })
+
+    // let permission = Notification.permission;
+
+    // if (permission == "granted") {
+    //   const notice = new Notification("前端宇宙情报局", {
+    //       body: "这20个不常用的Web API真的有用吗?，别问，问就是有用🈶",
+    //       icon: "我的掘金头像",
+    //       data: {
+    //         url: "https://www.baidu.com"
+    //       }
+    //     });
+
+    //     // 点击回调
+    //     notice.onclick = () => {
+    //       window.open(notice.data.url); // 当用户点击通知时，在浏览器打开百度网站
+    //     }
+    // } else if (permission == "denied") {
+    //   // 不同意，发不了咯
+    // } else {
+    //   // 其他状态，可以重新发送授权提示
+    //   Notification.requestPermission();
+    // }
+
+
+    function notifyMe() {
+  // 先检查浏览器是否支持
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
+
+  // 检查用户是否同意接受通知
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    var notification = new Notification("Hi there!");
+  }
+
+  // 否则我们需要向用户获取权限
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      // 如果用户同意，就可以向他们发送通知
+      if (permission === "granted") {
+        var notification = new Notification("Hi there!");
+      }
+    });
+  }
+
+  
+  // 最后，如果执行到这里，说明用户已经拒绝对相关通知进行授权
+  // 出于尊重，我们不应该再打扰他们了
+}
+</script>
+</html>

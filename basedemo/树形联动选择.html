@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>树形控件上下级级联状态选中例子!</title>
+</head>
+<script type="text/javascript">
+  // 生成树
+  function builderTree() {
+
+    var level0 = "level" + 0;
+    var rootDiv = createNode(level0, "Root", 0);
+
+    for (i = 1; i <= 3; i++) {
+
+      var level1 = "level1" + i;
+      var level1Div = createNode(level1, "level1", 1);
+      rootDiv.appendChild(level1Div);
+
+      for (j = 1; j <= 2; j++) {
+        var level2 = level1 + "2" + j;
+        var level2Div = createNode(level2, "level2", 1);
+        level1Div.appendChild(level2Div);
+
+
+        for (a = 1; a <= 2; a++) {
+          var level3 = level2 + "3" + a;
+          var level3Div = createNode(level3, "level3", 1);
+          level2Div.appendChild(level3Div);
+        }
+
+      }
+    }
+
+    var treeRootNode = document.getElementById("treePanel");
+    treeRootNode.appendChild(rootDiv);
+  }
+
+  // 生成节点
+  function createNode(dataContext, label, level) {
+    var div = document.createElement("div");
+    div.id = dataContext;
+    div.style.marginLeft = (level * 30) + "px";
+
+    var checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.setAttribute("checked", "checked");
+    checkbox.onclick = onclicked;
+
+    var span = document.createElement("span");
+    span.innerText = label;
+
+    div.appendChild(checkbox);
+    div.appendChild(span);
+
+    return div;
+  }
+
+  function onclicked(sender) {
+    var checkbox = sender.srcElement; // div/input[type=checkbox]
+    var currentElement = checkbox.parentElement; // 当前选中的元素
+
+    // 获取所有下级节点，执行当前节点的操作
+    findChildNodesAndSetCheckedState(currentElement, checkbox.checked);
+
+    // 获取同级别的节点列表，若选中状态一致，则修改父级节点。重复此操作递归至顶层。
+    findParentNodesAndSetCheckedState(currentElement, checkbox.checked);
+
+    // 如果取消选中当前节点，则递归上级并赋值非选中状态
+    if (checkbox.checked == false) {
+      findParentNodeSetIndeterminate(currentElement);
+    }
+  }
+
+
+  // 递归子节点设置选中状态
+  function findChildNodesAndSetCheckedState(node, isChecked) {
+
+    for (var i = 0; i < node.childNodes.length; i++) {
+      var ele = node.childNodes[i];
+
+      // 设置状态
+      if (ele.nodeName == "INPUT") {
+        // 如果状态不一致就修改
+        if (ele.checked != isChecked) {
+          ele.checked = isChecked;
+        }
+      }
+
+      // 继续递归
+      if (ele.nodeName == "DIV") {
+        findChildNodesAndSetCheckedState(ele, isChecked);
+      }
+    }
+
+  }
+
+  // 递归父级节点设置选中状态
+  function findParentNodesAndSetCheckedState(node, isChecked) {
+    if (node != null) {
+      var parentNode = node.parentElement;
+
+      // 修改当前节点中 checkbox 状态
+      for (var i = 0; i < node.childNodes.length; i++) {
+        var ele = node.childNodes[i];
+
+        // 设置状态
+        if (ele.nodeName == "INPUT") {
+          // 如果状态不一致就修改
+          if (ele.checked != isChecked) {
+            ele.checked = isChecked;
+          }
+        }
+      }
+
+      // 验证是否一致
+      if (parentNode != null && parentNode.childNodes != null) {
+        var state = null;
+
+        for (var i = 0; i < parentNode.childNodes.length; i++) {
+          var ele = parentNode.childNodes[i];
+
+          if (ele.nodeName == "DIV") {
+            for (var j = 0; j < ele.childNodes.length; j++) {
+              var childEle = ele.childNodes[j];
+              if (childEle.nodeName == "INPUT") {
+                if (state == null) {
+                  state = childEle.checked;
+                } else {
+                  // 如果当前同级节点列表有不同的选择就退出递归
+                  if (state != childEle.checked) {
+                    return;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      findParentNodesAndSetCheckedState(parentNode, isChecked);
+    }
+  }
+
+  // 递归上级并赋值非选中状态
+  function findParentNodeSetIndeterminate(node) {
+    if (node != null) {
+      var parentNode = node.parentElement;
+
+      // 修改当前节点中 checkbox 状态
+      for (var i = 0; i < node.childNodes.length; i++) {
+        var ele = node.childNodes[i];
+
+        // 设置状态
+        if (ele.nodeName == "INPUT") {
+          // 如果状态不一致就修改
+          if (ele.checked == true) {
+            ele.checked = false;
+          }
+        }
+      }
+
+      findParentNodeSetIndeterminate(parentNode);
+    }
+  }
+</script>
+
+<body onload="builderTree();">
+  <div id="treePanel"></div>
+</body>
+
+</html>

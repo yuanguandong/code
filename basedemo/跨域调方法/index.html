@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <a id="a" return false;" href="javascript:void(0)">打开b页面</a>
+  <script>
+    const buildFeaturelist = (feature) => {
+      return (
+        'location=' +
+        feature.location +
+        ',menubar=' +
+        feature.menubar +
+        ',resizable=' +
+        feature.resizable +
+        ',scrollbars=' +
+        feature.scrollbars +
+        ',status=' +
+        feature.status +
+        ',titlebar=' +
+        feature.titlebar +
+        ',toolbar=' +
+        feature.toolbar +
+        (feature.height < 100 ? '' : ',height=' + feature.height) +
+        (feature.width < 100 ? '' : ',width=' + feature.width)
+      );
+    };
+    /**
+     *打开新窗口
+     *
+     * @param {string} pathname
+     * @param {string} searchParamsStr
+     */
+    const openWindow = (pathname, searchParamsStr) => {
+      let strWindowFeatures = buildFeaturelist({
+        titlebar: 'no',
+        top: 20,
+        left: 20,
+        width: 0,
+        height: 0,
+        menubar: 'no',
+        toolbar: 'no',
+        location: 'no',
+        resizable: 'yes',
+        scrollbars: 'yes',
+        status: 'no',
+      });
+      window.open(
+        '/' + pathname.substr(1) + '?full=true' + (searchParamsStr ? '&' + searchParamsStr : ''),
+        '_blank',
+        strWindowFeatures,
+        false,
+      );
+    };
+
+    document.getElementById('a').addEventListener('click',()=>{
+      openWindow('/index2.html')
+    })
+
+    try {
+      document.domain = 'http://localhost:5000'
+    } catch (e) {
+      console.log(e)
+    }
+
+    function test() {
+      alert('处理完成');
+    }
+  </script>
+
+</body>
+
+</html>

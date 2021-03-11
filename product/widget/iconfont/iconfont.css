@@ -1,0 +1,51 @@
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1460528288'); /* IE9*/
+  src: url('iconfont.eot?t=1460528288#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1460528288') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1460528288') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1460528288#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-download:before { content: "\e61d"; }
+.icon-yujiaxue:before { content: "\e613"; }
+.icon-shu:before { content: "\e61f"; }
+.icon-shanchu:before { content: "\e61a"; }
+.icon-yujiaxue1:before { content: "\e614"; }
+.icon-shuaxin:before { content: "\e617"; }
+.icon-yujiaxue2:before { content: "\e615"; }
+.icon-bingbao:before { content: "\e616"; }
+.icon-duigou01:before { content: "\e620"; }
+.icon-yingguoguoqi:before { content: "\e618"; }
+.icon-zhongguoguoqi:before { content: "\e619"; }
+.icon-duigou:before { content: "\e621"; }
+.icon-wu:before { content: "\e600"; }
+.icon-xiaoxue:before { content: "\e601"; }
+.icon-dropcloud:before { content: "\e602"; }
+.icon-eclipse2:before { content: "\e603"; }
+.icon-xiaoyu:before { content: "\e604"; }
+.icon-dayu:before { content: "\e605"; }
+.icon-mai:before { content: "\e606"; }
+.icon-baoyu:before { content: "\e607"; }
+.icon-zhenyu:before { content: "\e608"; }
+.icon-duoyun:before { content: "\e609"; }
+.icon-zhongyu:before { content: "\e60a"; }
+.icon-mostlycloudy1:before { content: "\e60b"; }
+.icon-yin:before { content: "\e60c"; }
+.icon-baoxue:before { content: "\e60d"; }
+.icon-leizhenyu:before { content: "\e60e"; }
+.icon-daxue:before { content: "\e60f"; }
+.icon-qing:before { content: "\e610"; }
+.icon-thunderstorm:before { content: "\e611"; }
+.icon-tornado1:before { content: "\e612"; }
+.icon-new:before { content: "\e61b"; }
+.icon-shu1:before { content: "\e61e"; }
+.icon-xiugai:before { content: "\e61c"; }

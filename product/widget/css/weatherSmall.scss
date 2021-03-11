@@ -1,0 +1,13 @@
+@import 'style.scss';
+
+.weatherSmall{width:520px; height:120px; padding:20px;}
+
+.weatherSmall .text{width:60%; height:80px;  float:left; position:relative;}
+.weatherSmall .text .left{float:left; padding:8px 0;}
+.weatherSmall .text .left .wek{font-size:32px; color:#696969;}
+.weatherSmall .text .left .range{font-size:12px; color:#696969; float:right;}
+.weatherSmall .text .right{display:block; width:105px; position:absolute; right:0px; font-size:64px; color:#696969;}
+
+.weatherSmall .icon{width:40%; height:80px;  float:right; position:relative;border-left:1px solid #edebe9; }
+.weatherSmall .icon i{color:#f00!important; font-size:80px; position:absolute; left:50%; margin-left:-40px;}
+

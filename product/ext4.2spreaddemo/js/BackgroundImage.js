@@ -1,0 +1,1 @@
+sheet.options.sheetAreaOffset= {left : 2, top : 2};

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #full {
+      height: 1200px;
+      background-color: #f22;
+    }
+
+    #container {
+      height: 200px;
+      background-color: #22f;
+      overflow: scroll;
+    }
+
+    .other {
+      height: 500px;
+    }
+
+    #test {
+      height: 100px;
+      background-color: #3f3;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div id="full"></div> -->
+  <div id="container">
+    <div class="other"></div>
+    <div id="test"></div>
+    <div class="other"></div>
+
+  </div>
+  <script>
+    var io = new IntersectionObserver((entries) => {
+      console.log('entries: ', entries[0].intersectionRatio);
+    }, {
+      threshold: [0],
+      root: document.getElementById('container'),
+      rootMargin: "100px 0px 100px 0px"
+    })
+    io.observe(document.getElementById('test'));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="open" data-qtip="aaa" title="fdsaf">打开窗口</button>
+</body>
+
+<script>
+  window.GLOBAL_CONFIG = {}
+  GLOBAL_CONFIG = GLOBAL_CONFIG || {};
+  GLOBAL_CONFIG.currentMainNavigationArea = GLOBAL_CONFIG.currentMainNavigationArea || "";
+  GLOBAL_CONFIG.pool = GLOBAL_CONFIG.pool || "germany";
+  GLOBAL_CONFIG.language = GLOBAL_CONFIG.language || "none";
+  GLOBAL_CONFIG.region = GLOBAL_CONFIG.region || "";
+  GLOBAL_CONFIG.loadPsyma = GLOBAL_CONFIG.loadPsyma || "";
+  GLOBAL_CONFIG.home = GLOBAL_CONFIG.home || !1;
+  GLOBAL_CONFIG.isLocal = GLOBAL_CONFIG.isLocal || !1;
+  GLOBAL_CONFIG.dealersearch = GLOBAL_CONFIG.dealersearch || {};
+  GLOBAL_CONFIG.dealersearch.porschedealerLocatorURL = GLOBAL_CONFIG.dealersearch.porschedealerLocatorURL ||
+    "http://porschedealer.com/dealer/usLocator/?zip=[[###ZIP###]]&page=search";
+  GLOBAL_CONFIG.popup = GLOBAL_CONFIG.popup || {};
+  GLOBAL_CONFIG.popup.CC = GLOBAL_CONFIG.popup.CC || {
+    height: 680,
+    width: 980,
+    targetWindow: "ccmodelstart"
+  };
+  GLOBAL_CONFIG.popup.MC = GLOBAL_CONFIG.popup.MC || {
+    height: 680,
+    width: 980,
+    targetWindow: "modelcompare"
+  };
+  GLOBAL_CONFIG.bpgImage = GLOBAL_CONFIG.bpgImage || {
+    workerUrl: "/redesign-scripts/vendor/bpgdecoder.min2.js"
+  };
+  GLOBAL_CONFIG.debugLogging = !0;
+  // GLOBAL_CONFIG.vieport = parseInt($("html").css("content").replace(/["']/g, ""));
+
+
+
+  POPUP = {
+    OPEN: this.OPEN || function (n) {
+      var t = this.windowParams();
+      n.indexOf("+") > -1 && (n = n.replace(/\+/g, "%2B"));
+      t.urlTarget = this.htmlDecode(n);
+      this.openPopup(t)
+    },
+    CC_Overview: this.CC_Overview || function (n) {
+      if (n.indexOf("http://") === 0) {
+        this.CC(n);
+        return
+      }
+      var t = this.windowParams();
+      t.urlTarget = n;
+      t.targetWindow = GLOBAL_CONFIG.popup.CC.targetWindow;
+      debugger
+      t.toolbar = 0;
+      t.menubar = 0;
+      this.openPopup(t)
+    },
+    CC: this.CC || function (n) {
+      var t = this.windowParams();
+      t.urlTarget = this.addCCParams(n);
+      t.targetWindow = GLOBAL_CONFIG.popup.CC.targetWindow;
+      debugger
+      t.toolbar = 0;
+      t.menubar = 0;
+      this.openPopup(t)
+    },
+    MC: this.MC || function (n) {
+      var t = this.windowParams();
+      t.urlTarget = this.addCCParams(n);
+      t.targetWindow = GLOBAL_CONFIG.popup.MC.targetWindow;
+      debugger
+      t.height = GLOBAL_CONFIG.popup.MC.height;
+      t.width = GLOBAL_CONFIG.popup.MC.width;
+      t.replace = !0;
+      this.openPopup(t)
+    },
+    openPopup: this.openPopup || function (n) {
+      var t, i;
+      if (typeof n === undefined || typeof n.urlTarget === undefined || n.urlTarget.indexOf("http") !== 0 && n
+        .urlTarget.indexOf("/") !== 0)
+        return !1;
+      t = n.targetWindow;
+      typeof name !== undefined && window.name === t && (t = "_self");
+      debugger
+      i = window.open(n.urlTarget, t, this.buildFeaturelist(n), n.replace);
+      try {
+        i.name = n.targetWindow
+      } catch (r) {}
+      return i
+    },
+    windowParams: function () {
+      return {
+        urlTarget: "",
+        targetWindow: "_blank",
+        height: 0,
+        width: 0,
+        replace: !1,
+        location: "1",
+        menubar: "1",
+        resizable: "1",
+        scrollbars: "1",
+        status: "1",
+        titlebar: "1",
+        toolbar: "1"
+      }
+    },
+    buildFeaturelist: function (n) {
+      return "location=" + n.location + ",menubar=" + n.menubar + ",resizable=" + n.resizable + ",scrollbars=" + n
+        .scrollbars + ",status=" + n.status + ",titlebar=" + n.titlebar + ",toolbar=" + n.toolbar + (n.height <
+          100 ? "" : ",height=" + n.height) + (n.width < 100 ? "" : ",width=" + n.width)
+    },
+    buildRandomParam: function () {
+      return "rt=" + Math.round((new Date).getTime() / 1e3)
+    },
+    addCCParams: this.addCCParams || function (n) {
+      return n = this.appendParam(n, "screen=" + screen.width + "x" + screen.height),
+        this.appendParam(n, this.buildRandomParam())
+    },
+    appendParam: function (n, t) {
+      return n.split("?")[0] + "?" + t + "&" + n.split("?")[1]
+    },
+    htmlDecode: function (n) {
+      var t = $("<textarea><\/textarea>");
+      return t.html(n),
+        t.text()
+    },
+    appStoreLinkJunction: function (n) {
+      var t = navigator.userAgent.toLowerCase();
+      window.location.href = t.indexOf("android") > -1 ? n.android : t.indexOf("iphone") > -1 ? n.ios : n.desktop
+    }
+  }
+
+
+  var btn = document.getElementById('open')
+  btn.addEventListener('click', function () {
+    POPUP.CC_Overview('http://baidu.com')
+  })
+</script>
+
+</html>

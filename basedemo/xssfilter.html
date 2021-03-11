@@ -1,0 +1,27 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script src="https://cdn.rawgit.com/yahoo/xss-filters/master/dist/xss-filters.js"></script>
+<script>
+var firstname = '[rm]"><img src=1 onerror=alert(`被xss`)>[/rm])"'
+
+document.write('<h1> Hello, ' + xssFilters.inHTMLData(firstname) + '!</h1>')
+
+// document.write('<h1> Hello, ' + firstname + '!</h1>')
+
+
+
+
+</script>
+</html>
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>111</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <button onclick="notifyMe()">Notify me!</button>
+</body>
+<script type="text/javascript">
+  // var allPromse = []
+  // for (var i = 0; i < 5; i++) {
+  //   allPromse.push(new Promise((res, rej) => {
+  //     setTimeout(() => {
+  //       document.getElementById('app').innerHTML = i
+  //       res(i)
+  //     }, 1000)
+  //   }))
+  // }
+
+  // Promise.resolve().then(function (res) {
+  //   document.getElementById('app').innerHTML = 1
+  //   setTimeout(()=>{
+  //     return 1
+  //   },1000)
+
+  // }).then(function (res) {
+  //   document.getElementById('app').innerHTML = 2
+  //   setTimeout(()=>{
+  //     return 2
+  //   },1000)
+  // }).then(function (res) {
+  //   document.getElementById('app').innerHTML = 3
+  //   setTimeout(()=>{
+  //     return 3
+  //   },1000)
+  // }).then(function (res) {
+  //   document.getElementById('app').innerHTML = 4
+
+  // });
+
+  // Promise.all(allPromse).then(res => {
+  //   // debugger
+  //   console.log(res)
+
+  // })
+  // for (var j = 0; j < allPromse.length; j++) {
+  //   allPromse[j].then(allPromse[j + 1])
+  // }
+
+
+  class PromiseQueue {
+    constructor(options = {}) {
+      this.concurrency = options.concurrency || 1;
+      this._current = 0;
+      this._list = [];
+    }
+
+    add(promiseFn) {
+      this._list.push(promiseFn);
+      this.loadNext();
+    }
+
+    loadNext() {
+      if (this._list.length === 0 || this.concurrency === this._current) return;
+
+      this._current++;
+      const fn = this._list.shift();
+      const promise = fn();
+      promise.then(this.onLoaded.bind(this)).catch(this.onLoaded.bind(this));
+    }
+
+    onLoaded() {
+      this._current--;
+      this.loadNext();
+    }
+  }
+
+  functionQueue = [
+    function () {
+      var a = 1
+      document.getElementById('app').innerHTML = a
+      return a
+    },
+    function (a) {
+      a++
+      document.getElementById('app').innerHTML = a
+      return a
+    },
+    function (a) {
+      a++
+      document.getElementById('app').innerHTML = a
+      return a
+    },
+    function (a) {
+      a++
+      document.getElementById('app').innerHTML = a
+      return a
+    },
+    function (a) {
+      a++
+      document.getElementById('app').innerHTML = a
+      return a
+    }
+  ]
+
+  const q = new PromiseQueue();
+  functionQueue.forEach(function (v) {
+    q.add(function () {
+      return new Promise(function (resolve) {
+        setTimeout(function () {
+          resolve(v());
+        }, 100);
+      })
+    });
+  });
+</script>
+
+</html>

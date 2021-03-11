@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="blackblur.css">
+  <!-- <link rel="stylesheet" href="blackblurimage.css"> -->
+  <!-- <link rel="stylesheet" href="img.css"> -->
+
+  <title>Document</title>
+  <style>
+    body,
+    html {
+      padding:0; margin:0;
+      width: 100%;
+      height: 100%;
+      background-image: url(./1.png);
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+    }
+    #sidebar{
+          width:300px;
+          height:100%;
+          overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <section id="sidebar" data-pos="right" class="openedOnce">
+    <header>
+      <h1 class="hidden"><strong>166</strong> <span class="hidden">书签</span></h1><a class="search"></a><a
+        class="sort"></a><a class="menu"></a>
+      <div class="searchBox"><input type="text" placeholder="Search bookmark"><a href="#" class="searchClose"></a></div>
+    </header>
+    <div id="bookmarkBox" class="scrollBox active">
+      <ul>
+        <li><a class="dir opened"><span class="icon" data-hideonfalse="showDirectoryIcons"
+              style="display: block;"></span><span class="label" data-num="1">目录</span></a>
+          <ul>
+            <li><a class="dir"><span class="icon" data-hideonfalse="showDirectoryIcons"
+                  style="display: block;"></span><span class="label" data-num="1">目录</span></a></li>
+            <li><a class="dir opened"><span class="icon" data-hideonfalse="showDirectoryIcons"
+                  style="display: block;"></span><span class="label" data-num="2">目录</span></a>
+              <ul>
+                <li><a class="link"><span class="icon" data-color="6" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="1">书签</span></a></li>
+                <li><a class="link hover"><span class="icon" data-color="9" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="2">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="1" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="3">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="4" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="4">书签</span></a></li>
+                <li><a class="dir opened"><span class="icon" data-hideonfalse="showDirectoryIcons"
+                      style="display: block;"></span><span class="label" data-num="1">目录</span></a>
+                  <ul>
+                    <li><a class="link"><span class="icon" data-color="9" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="1">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="6" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="2">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="6" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="3">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="7" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="4">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="2" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="5">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="3" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="6">书签</span></a></li>
+                  </ul>
+                </li>
+                <li><a class="dir"><span class="icon" data-hideonfalse="showDirectoryIcons"
+                      style="display: block;"></span><span class="label" data-num="2">目录</span><span
+                      class="drag"></span></a></li>
+              </ul>
+            </li>
+            <li><a class="dir opened"><span class="icon" data-hideonfalse="showDirectoryIcons"
+                  style="display: block;"></span><span class="label" data-num="3">目录</span></a>
+              <ul>
+                <li><a class="link"><span class="icon" data-color="2" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="1">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="9" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="2">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="10" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="3">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="6" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="4">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="4" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="5">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="10" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="6">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="8" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="7">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="1" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="8">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="3" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="9">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="3" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="10">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="4" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="11">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="7" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="12">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="4" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="13">书签</span></a></li>
+                <li><a class="dir opened"><span class="icon" data-hideonfalse="showDirectoryIcons"
+                      style="display: block;"></span><span class="label" data-num="1">目录</span></a>
+                  <ul>
+                    <li><a class="link"><span class="icon" data-color="9" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="1">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="6" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="2">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="6" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="3">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="7" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="4">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="2" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="5">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="3" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="6">书签</span></a></li>
+                  </ul>
+                </li>
+                <li><a class="link"><span class="icon" data-color="4" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="14">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="7" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="15">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="3" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="16">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="5" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="17">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="1" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="18">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="3" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="19">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="4" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="20">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="2" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="21">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="9" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="22">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="9" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="23">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="7" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="24">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="8" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="25">书签</span></a></li>
+                <li><a class="link"><span class="icon" data-color="1" data-hideonfalse="showBookmarkIcons"
+                      style="display: block;"></span><span class="label" data-num="26">书签</span></a></li>
+                <li><a class="dir opened"><span class="icon" data-hideonfalse="showDirectoryIcons"
+                      style="display: block;"></span><span class="label" data-num="2">目录</span></a>
+                  <ul>
+                    <li><a class="link"><span class="icon" data-color="9" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="1">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="6" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="2">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="6" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="3">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="7" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="4">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="2" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="5">书签</span></a></li>
+                    <li><a class="link"><span class="icon" data-color="3" data-hideonfalse="showBookmarkIcons"
+                          style="display: block;"></span><span class="label" data-num="6">书签</span></a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a class="dir"><span class="icon" data-hideonfalse="showDirectoryIcons" style="display: block;"></span><span
+              class="label" data-num="3">目录</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+
+</html>

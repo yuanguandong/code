@@ -1,0 +1,65 @@
+section#sidebar {
+	background: transparent;
+	overflow: hidden;
+	position: relative;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+	&:before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: calc(100% + 50px);
+		top: 0;
+		left: 0;
+
+		background-color: #000;
+		background-image: url("http://data.favori.cc/car.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		// opacity: 0.5;
+		background-size: cover;
+		-webkit-backdrop-filter: blur(5px);
+		backdrop-filter: blur(5px);
+	}
+
+	&:after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: calc(100% + 50px);
+		top: 0;
+		left: 0;
+		// -webkit-backdrop-filter: blur(5px);
+		// backdrop-filter: blur(5px);
+		// background-color: #000;
+		// background-image: url("http://data.favori.cc/car.jpg");
+		// background-position: center center;
+		// background-repeat: no-repeat;
+		// opacity: 0.5;
+		background: rgba(0, 0, 0, 0.7) // background-size: cover;
+	}
+
+	header {
+		z-index: 1;
+		color: white;
+		position: relative;
+		margin: 0;
+		background: transparent;
+	}
+
+	#bookmarkBox {
+		z-index: 1;
+		color: white;
+		position: relative;
+
+		ul {
+			color: white;
+
+			li {
+				overflow: hidden;
+				border-radius: 5px;
+				color: white;
+			}
+		}
+	}
+}

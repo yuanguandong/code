@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="shortcut icon" href="favicon.png">
+	<link rel="stylesheet" href="css/reset.css" />
+
+	<link rel="stylesheet" href="css/animate.css" />
+	<style>
+		body{padding:200px; width:100vw; height:100vh; background: #000;}
+		*{color:#fff;font-size:24px;}
+		.tip{position:absolute; top:-100px; left:0;position:relative;background:rgba(255,0,0,0.8); width:300px; height:200px; text-align:center; line-height:180%;font-size:16px; border-radius:10px;padding:30px;cursor:pointer;}
+		span{width: 0px;
+	        height: 0px;
+	        border: 10px;
+	        border-style: solid;
+	        border-color: #f00 transparent transparent transparent;
+	        position: absolute;
+	        bottom: -20px;
+	        left: 50%;
+	        transform: translateX(-50%);
+	    }
+	    button{border-radius:5px; margin:0 10px;padding:10px;font-size:14px; background:#fff; color:#000; border:none; outline: none;}
+	    .tiptarget{position:relative;}
+	    .test{height:50px;}
+	</style>
+</head>
+<body>
+
+
+
+	<!-- 前提：已知一个目标div -->
+	<div class="test" onclick="action()">目标div提示信息动画,2秒后执行<button>操作按钮</button></div>
+	
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+<script src="js/jquery.js"></script>
+
+
+<script>
+
+	//前提：获取当前element构造成jquery对象
+	var target = $('.test');
+	var tipTargetClass = 'tipTargetClass' + new Date().getTime();
+	target.addClass(tipTargetClass);
+	var text = 'Hello!我是软件向导：点击透明层提示信息可触发目标DIV的方法action，因为它包含在目标DIV内，并且动画位置可以相对于目标DIV来做';
+	var tip = $('<div class="tip slideInRight animated"><span></span>'+text+'</div>');
+	var strtmp = '.'+tipTargetClass;
+	
+	
+	setTimeout(function(){
+		$(strtmp).append(tip);
+		playAudio(text);
+	},2000);
+
+	$(tip).on('click',function(){
+		$(this).remove();
+	});
+	
+	function action(){
+		alert('可以操作action');
+	}
+	function playAudio(text){
+	    text = encodeURI(text);
+	    $('body').append(`<audio autoplay="autoplay">
+							<source src="http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text=${text}" type="audio/mpeg">
+						  </audio>`);
+	}
+	
+</script>
+
+
+</html>

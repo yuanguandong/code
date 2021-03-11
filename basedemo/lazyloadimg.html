@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    img {
+      display: block;
+      width: 100%;
+      height: 500px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cardList">
+    <img data-src="./images/1.jpg" alt="" />
+    <img data-src="./images/2.jpg" alt="" />
+    <img data-src="./images/3.jpg" alt="" />
+    <img data-src="./images/4.jpg" alt="" />
+    <img data-src="./images/5.jpg" alt="" />
+    <img data-src="./images/6.jpg" alt="" />
+    <img data-src="./images/7.jpg" alt="" />
+    <img data-src="./images/8.jpg" alt="" />
+    <img data-src="./images/9.jpg" alt="" />
+    <img data-src="./images/10.jpg" alt="" />
+    <img data-src="./images/1.jpg" alt="" />
+    <img data-src="./images/2.jpg" alt="" />
+  </div>
+
+  <script type="text/javascript">
+    var imgs = document.querySelectorAll('img');
+
+    function isIn(e) {
+      let eRect = e.getBoundingClientRect()
+
+      if (eRect.top < window.innerHeight) {
+        return true
+      } else {
+        return false
+      }
+    }
+
+    function loadImg(img){
+
+      if(!img.src){
+        // debugger
+        img.src = img.dataset.src
+      }
+    }
+
+
+    function lazyLoad() {
+      Array.from(imgs).forEach((img) => {
+        if(isIn(img)){
+          loadImg(img)
+        }
+      })
+    }
+
+    
+    window.onload = window.onscroll= () => {
+      lazyLoad()
+    }
+  </script>
+</body>
+
+</html>

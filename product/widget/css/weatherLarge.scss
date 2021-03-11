@@ -1,0 +1,36 @@
+@import 'style.scss';
+
+.weatherLarge{width:500px; height:800px;}
+.weatherLarge1{width:540px; height:320px;}
+.weatherLarge2{width:340px; height:520px;}
+
+.weatherLarge .today{width:100%; height:60%; /*border-radius:5px 5px 0 0;*/ padding:10px; position:relative;}
+.weatherLarge .today .top{width:100%; height:24%;}
+.weatherLarge .today .top .range0{font-size:12px; color:#fff; float:left;}
+.weatherLarge .today .top .refresh{float:right; cursor:pointer;}
+.weatherLarge .today .top .refresh i{color:#fff;}
+
+.weatherLarge .today .middle{display:block; width:80px; height:80px; margin:0 auto; position:absolute; top:50%; left:50%; margin-left:-40px; margin-top:-65px; padding-top:30px;}
+.weatherLarge .today .middle i{color:#fff; font-size:80px; }
+
+.weatherLarge .today .bottom{width:100%; height:38%; }
+.weatherLarge .today .bottom .temp0{width:50%;font-size:64px; color:#fff; float:left; position:absolute; bottom:30px; left:10px; }
+.weatherLarge .today .bottom .rightbox{width:50%;float:right; padding:8px 0; position:absolute; bottom:10px; right:10px;}
+.weatherLarge .today .bottom .rightbox .wek0{font-size:32px; height:32px; color:#fff; float:right; width:100%; text-align:right;}
+.weatherLarge .today .bottom .rightbox .address{font-size:12px; color:#fff; float:right;  width:100%; text-align:right;}
+
+
+
+.weatherLarge .other{width:100%; height:40%;  overflow:hidden;   position:relative;}
+.weatherLarge .other .ulbox{width:133.33%; height:70%;   position:absolute; left:0; top:10%;}
+.weatherLarge .other .ulbox li{width:25%; height:100%; float:left; border-right:1px solid #edebe9;}
+/* .weatherLarge .other .ulbox li:nth-child(3){border-right:none;} */
+.weatherLarge .other .ulbox li .wekL{font-size:12px; color:#bbb; text-align:center; height:25%;}
+.weatherLarge .other .ulbox li .iconL{width:35px; margin:0 auto; height:50%;}
+.weatherLarge .other .ulbox li .iconL i{font-size:35px; height:60px; padding-top:15px;}
+.weatherLarge .other .ulbox li .rangeL{font-size:12px; color:#bbb;  text-align:center; height:25%;}
+
+
+.weatherLarge .other .btn{width:100%; height:20px; position:absolute; bottom:0%; left:-2px;}
+.weatherLarge .other .btn ul{display:block; float:none; width:30px; height:10px; margin:0 auto;}
+.weatherLarge .other .btn ul li{width:10px; height:10px; float:left; border-radius:5px;  border:none; margin-left:5px; cursor:pointer;}

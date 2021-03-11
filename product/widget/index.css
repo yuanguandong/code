@@ -1,0 +1,351 @@
+body, html {
+  background: #edebe9; }
+
+.btn-default {
+  color: rgba(0, 0, 0, 0.65);
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  background-image: none;
+  padding: 7px 7px 7px 7px; }
+  .btn-default .x-btn-inner, .btn-default .x-btn-inner-default-small {
+    color: rgba(0, 0, 0, 0.65); }
+  .btn-default.disable {
+    background-color: #ccc !important;
+    border: 1px solid #ccc; }
+  .btn-default i {
+    margin-right: 3px;
+    float: left;
+    width: 16px;
+    font-weight: normal;
+    font-family: normal; }
+  .btn-default .text {
+    font: 500 12px/16px 'Open Sans';
+    padding: 0 5px;
+    float: left; }
+  .btn-default:hover {
+    background-color: #fff;
+    border-color: #40a9ff; }
+    .btn-default:hover .x-btn-inner, .btn-default:hover .x-btn-inner-default-small {
+      color: #40a9ff; }
+  .btn-default:active {
+    border-color: #40a9ff;
+    background-image: none;
+    background-color: #fff !important; }
+  .btn-default:after {
+    content: '';
+    width: 100%;
+    display: block;
+    height: 0px;
+    clear: both;
+    visibility: hidden; }
+
+.btn-primary {
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  background-image: none;
+  color: #f0f0f0;
+  background-color: #007bff !important;
+  border: 1px solid #006fe6;
+  padding: 7px 7px 7px 7px; }
+  .btn-primary .x-btn-inner, .btn-primary .x-btn-inner-default-small {
+    color: #f0f0f0; }
+  .btn-primary.disable {
+    background-color: #ccc !important;
+    border: 1px solid #ccc; }
+  .btn-primary i {
+    margin-right: 3px;
+    float: left;
+    width: 16px;
+    font-weight: normal;
+    font-family: normal; }
+  .btn-primary .text {
+    font: 500 12px/16px 'Open Sans';
+    padding: 0 5px;
+    float: left; }
+  .btn-primary:hover {
+    background-color: #0079fa; }
+  .btn-primary:active {
+    border-color: #006fe6;
+    background-image: none;
+    background-color: #0074f0; }
+  .btn-primary:after {
+    content: '';
+    width: 100%;
+    display: block;
+    height: 0px;
+    clear: both;
+    visibility: hidden; }
+
+.btn-primary.focus, .btn-primary:focus {
+  box-shadow: none !important; }
+
+.wiki_comment {
+  width: 652px;
+  margin: 50px;
+  background: #fff; }
+  .wiki_comment .x-dataview-item {
+    width: 100%; }
+    .wiki_comment .x-dataview-item .wiki_comment_item {
+      width: 100%;
+      padding: 15px;
+      border-bottom: 1px solid #ccc; }
+      .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_top {
+        width: 100%;
+        line-height: 24px; }
+        .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_top:after {
+          content: '';
+          width: 100%;
+          display: block;
+          height: 0px;
+          clear: both;
+          visibility: hidden; }
+        .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_top .img {
+          width: 24px;
+          height: 24px;
+          background: #ccc;
+          border-radius: 50%;
+          float: left;
+          margin-right: 10px; }
+        .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_top .name {
+          font-size: 15px;
+          line-height: 24px;
+          color: rgba(0, 0, 0, 0.8);
+          float: left;
+          margin-right: 10px; }
+        .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_top .replytext {
+          line-height: 24px;
+          float: left; }
+          .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_top .replytext .replytextcontent {
+            font-size: 15px;
+            line-height: 24px;
+            color: rgba(0, 0, 0, 0.5);
+            float: left;
+            margin-right: 10px; }
+          .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_top .replytext .replyname {
+            font-size: 15px;
+            line-height: 24px;
+            color: rgba(0, 0, 0, 0.8);
+            float: left; }
+        .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_top .time {
+          font-size: 15px;
+          line-height: 24px;
+          color: rgba(0, 0, 0, 0.5);
+          float: right; }
+      .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_content {
+        width: 100%;
+        line-height: 25px;
+        font-size: 13px;
+        padding: 10px 0; }
+      .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_bottom {
+        width: 100%; }
+        .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_bottom:after {
+          content: '';
+          width: 100%;
+          display: block;
+          height: 0px;
+          clear: both;
+          visibility: hidden; }
+        .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_bottom .operatebtn {
+          float: left;
+          margin-right: 15px;
+          display: flex;
+          cursor: pointer; }
+          .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_bottom .operatebtn i {
+            font-size: 15px;
+            line-height: 20px;
+            color: #8590a6;
+            margin-right: 5px; }
+          .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_bottom .operatebtn p {
+            font-size: 12px;
+            line-height: 20px;
+            color: #8590a6; }
+        .wiki_comment .x-dataview-item .wiki_comment_item .wiki_comment_bottom .hoverdisplay {
+          opacity: 0;
+          transition: all 0.3s; }
+      .wiki_comment .x-dataview-item .wiki_comment_item .replyfieldwrap {
+        width: 100%; }
+        .wiki_comment .x-dataview-item .wiki_comment_item .replyfieldwrap .replyfieldwrap_top {
+          width: 100%; }
+          .wiki_comment .x-dataview-item .wiki_comment_item .replyfieldwrap .replyfieldwrap_top .textarea {
+            width: 100%;
+            padding: 5px 10px;
+            transition: all 0.3s;
+            font-size: 12px;
+            background: #f6f6f6;
+            line-height: 24px;
+            border-radius: 3px;
+            border: 1px solid #ebebeb;
+            min-height: 34px;
+            outline: none;
+            height: auto;
+            resize: vertical; }
+          .wiki_comment .x-dataview-item .wiki_comment_item .replyfieldwrap .replyfieldwrap_top .textarea:empty:before {
+            content: attr(placeholder);
+            color: #bbb; }
+          .wiki_comment .x-dataview-item .wiki_comment_item .replyfieldwrap .replyfieldwrap_top .textarea:focus {
+            content: none;
+            background: #fff;
+            transition: all 0.3s; }
+        .wiki_comment .x-dataview-item .wiki_comment_item .replyfieldwrap .replyfieldwrap_bottom {
+          width: 100%;
+          margin-top: 10px; }
+          .wiki_comment .x-dataview-item .wiki_comment_item .replyfieldwrap .replyfieldwrap_bottom:after {
+            content: '';
+            width: 100%;
+            display: block;
+            height: 0px;
+            clear: both;
+            visibility: hidden; }
+          .wiki_comment .x-dataview-item .wiki_comment_item .replyfieldwrap .replyfieldwrap_bottom .cancelbtn {
+            float: right;
+            font-size: 12px; }
+          .wiki_comment .x-dataview-item .wiki_comment_item .replyfieldwrap .replyfieldwrap_bottom .commentbtn {
+            float: right;
+            font-size: 12px;
+            margin-left: 10px; }
+      .wiki_comment .x-dataview-item .wiki_comment_item:hover .hoverdisplay {
+        opacity: 1;
+        transition: all 0.3s; }
+
+.widget_projectwidget_projectguide {
+  background: #fff;
+  padding: 50px; }
+  .widget_projectwidget_projectguide .item {
+    display: flex;
+    border-left: 1px dashed #ccc;
+    padding: 10px;
+    border-radius: 50px;
+    position: relative; }
+    .widget_projectwidget_projectguide .item .icon {
+      width: 36px;
+      height: 36px;
+      background: #007bff;
+      color: #fff;
+      display: block;
+      border-radius: 50%;
+      padding: 8px;
+      line-height: 20px;
+      font-size: 16px;
+      text-align: center;
+      position: relative; }
+      .widget_projectwidget_projectguide .item .icon:after {
+        content: '';
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        position: absolute;
+        top: -15px;
+        left: 80px;
+        transform: translateX(-50%); }
+    .widget_projectwidget_projectguide .item .content {
+      padding-left: 10px;
+      flex: 1; }
+      .widget_projectwidget_projectguide .item .content .title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #007bff; }
+      .widget_projectwidget_projectguide .item .content .intro {
+        font-size: 12px;
+        color: #696969;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        -webkit-line-clamp: 1; }
+    .widget_projectwidget_projectguide .item:after {
+      content: '';
+      display: block;
+      width: calc(100% - 50px);
+      height: 1px;
+      border-top: 1px dashed #ccc;
+      position: absolute;
+      bottom: 0;
+      left: 25px; }
+  .widget_projectwidget_projectguide .even {
+    border-left: none;
+    border-right: 1px dashed #ccc; }
+    .widget_projectwidget_projectguide .even .icon:after {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      position: absolute;
+      top: -15px;
+      right: 80px;
+      left: initial;
+      transform: translateX(-50%); }
+    .widget_projectwidget_projectguide .even .content {
+      padding-right: 10px; }
+      .widget_projectwidget_projectguide .even .content .title {
+        text-align: right; }
+      .widget_projectwidget_projectguide .even .content .intro {
+        text-align: right; }
+  .widget_projectwidget_projectguide .first:before {
+    content: '';
+    display: block;
+    width: 20%;
+    height: 1px;
+    border-top: 1px dashed #ccc;
+    position: absolute;
+    top: 0;
+    left: 25px; }
+  .widget_projectwidget_projectguide .last:after {
+    content: '';
+    display: block;
+    width: calc(100% - 50px);
+    height: 1px;
+    border-top: 1px dashed #ccc;
+    position: absolute;
+    bottom: 0;
+    right: 25px;
+    left: auto; }
+
+.wrap {
+  position: relative;
+  margin: 100px; }
+
+.testdiv {
+  position: absolute;
+  width: 80%;
+  height: 300px;
+  background: #fff;
+  box-shadow: 0 0 10px #ccc; }
+
+.testdiv0 {
+  z-index: 10; }
+
+.selectionlayer {
+  margin-top: 50px; }
+  .selectionlayer .selectionlayerlist .x-dataview-item {
+    display: flex;
+    background: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #fafafa; }
+    .selectionlayer .selectionlayerlist .x-dataview-item:hover {
+      background: #007bff; }
+      .selectionlayer .selectionlayerlist .x-dataview-item:hover .name {
+        color: #fff; }
+      .selectionlayer .selectionlayerlist .x-dataview-item:hover .code {
+        color: #fff; }
+    .selectionlayer .selectionlayerlist .x-dataview-item .img {
+      width: 20px;
+      height: 20px; }
+    .selectionlayer .selectionlayerlist .x-dataview-item .name {
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 20px;
+      padding: 0 10px 0 10px; }
+    .selectionlayer .selectionlayerlist .x-dataview-item .code {
+      font-size: 12px;
+      line-height: 20px;
+      padding: 0 10px 0 10px; }
+
+/*# sourceMappingURL=index.css.map */

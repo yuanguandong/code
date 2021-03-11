@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a onclick="closeWin()" href="javascript:void(0)">保存并返回</a>
+  <script>
+    function closeWin() {
+      window.opener.location = "javascript:test();";
+      window.close();
+    }
+  </script>
+
+</body>
+
+</html>

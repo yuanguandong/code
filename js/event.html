@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>111</title>
+</head>
+
+<body>
+    <select id='bbb' title="1111">
+        <option></option>
+        <option value="b2">b2</option>
+        <option value="b3">b3</option>
+    </select>
+
+    <div id="test">测试</div>
+</body>
+<script type="text/javascript">
+    // 添加事件
+    var bbb = document.getElementById('bbb');
+    if (bbb.addEventListener) {
+        bbb.addEventListener('change', function () {
+            console.log('aaaaaa');
+        });
+    } else {
+        bbb.attachEvent('onchange', function () {
+            console.log('bbbbbb');
+        });
+    }
+
+    // 设置select默认值
+    bbb.value = 'b3';
+
+    // 手动触发事件
+    if (bbb.fireEvent) {
+        bbb.fireEvent('onchange'); //ie
+    } else {
+        // debugger
+        ev = document.createEvent("HTMLEvents");
+        ev.initEvent("change", false, true);
+        bbb.dispatchEvent(ev);
+    }
+
+    // jquery触发
+    // bbb.trigger('change');
+
+    //addEventListener,attachEvent   添加事件
+    //detachEvent,removeEventListener  删除事件
+    //fireEvent,dispatchEvent           触发事件
+
+
+    const test = document.querySelector('#test');
+    test.addEventListener('flo', event => {
+        console.log(event.detail)
+    })
+    test.dispatchEvent(new CustomEvent('flo', {
+        detail: `1`
+    }))
+
+
+   
+</script>
+
+</html>
