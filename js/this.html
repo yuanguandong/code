@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="box">box</div>
+</body>
+<script>
+  const box = document.getElementById('box')
+
+  // console.log(this) // window
+
+  // let fun = () => {
+  //   console.log(this)
+  // }
+  // box.onclick = fun // this 指向 window
+
+
+  // box.onclick = function () {
+  //   let fun = () => {
+  //     console.log(this) // this 指向 box
+  //   }
+  //   console.log(this) // this 指向 box
+  //   fun()
+  // }
+
+  // // 普通匿名函数
+  // box.onclick = function () {
+  //   function fun() {
+  //     console.log(this) // this 指向window
+  //   }
+  //   console.log(this) // this 指向 box
+  //   fun()
+  // }
+
+  let foo = function (){
+    console.log(this)
+  }
+
+  var obj1 = {
+    name: 'deejay',
+    age: 20,
+    fn: function () {
+      console.log(this); //obj1
+    }
+  };
+  foo.bind(obj1)
+  foo.bind(window)
+  
+
+  // var obj2 = {
+  //   name: 'deejay',
+  //   age: 20,
+  //   obj3: {
+  //     fn: function () {
+  //       console.log(this); //obj3
+  //     }
+  //   },
+  // };
+  // obj2.obj3.fn(); //总结，谁最后点的fn(),this就为谁
+
+
+  // var fn2 = obj1.fn;
+  // fn2(); //window
+
+</script>
+
+</html>

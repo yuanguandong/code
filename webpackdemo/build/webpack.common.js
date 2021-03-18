@@ -12,12 +12,14 @@ const commonConfig = {
 	module: {
 		rules: [{ 
 			test: /\.js$/, 
-			exclude: /node_modules/,
+			exclude: [/node_modules/,/example/],
 			use: [{
 				loader: 'babel-loader'
-			}, {
-				loader: 'imports-loader?this=>window'
-			}]
+			}
+			// , {
+			// 	loader: 'imports-loader?this=>window'
+			// }
+		]
 		}, {
 			test: /\.(jpg|png|gif)$/,
 			use: {
