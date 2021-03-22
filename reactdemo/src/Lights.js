@@ -4,20 +4,12 @@ import "./App.css";
 function Light(props) {
   const { lights, duration = 5000, twinkleDuration = 3000 } = props;
   let [light, setLight] = useState([lights[0]]);
-  const handleClick = () => {};
+  let [tick, setTick] = useState(false);
 
-  const twinkle = async (light, resolve) => {
-    const timmer = setInterval(() => {
-      setLight((l) => {
-        if (l !== "#ddd") {
-          return "#ddd";
-        } else {
-          return light;
-        }
-      });
-    }, 300);
+  const twinkle = async (resolve) => {
+    setTick(true);
     setTimeout(() => {
-      clearInterval(timmer);
+      setTick(false);
       resolve();
     }, twinkleDuration);
   };
@@ -26,29 +18,26 @@ function Light(props) {
     setLight(light);
     await new Promise((resolve, reject) => {
       setTimeout(() => {
-        twinkle(light, resolve);
+        twinkle(resolve);
       }, time);
     });
   };
 
   useEffect(() => {
-    (async () => {
-      async function circle() {
-        for (let i of lights) {
-          await handleLight(i, duration);
-
-          if (i === lights[lights.length - 1]) {
-            circle();
-          }
+    async function circle() {
+      for (let i = 0; i < lights.length; i++) {
+        let key = lights[i];
+        await handleLight(key, duration);
+        if (key === lights[lights.length - 1]) {
+          circle();
         }
       }
-      circle();
-    })();
+    }
+    circle();
   }, []);
 
   return (
     <div
-      onClick={handleClick}
       style={{
         fontSize: 40,
         width: 50,
@@ -56,7 +45,9 @@ function Light(props) {
         borderRadius: "50%",
         background: light,
         border: "1px solid #ddd",
+        marginLeft: lights.indexOf(light) * 50,
       }}
+      className={tick ? "tick" : ""}
     ></div>
   );
 }
