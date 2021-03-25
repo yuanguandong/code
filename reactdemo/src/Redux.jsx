@@ -1,5 +1,4 @@
 import React, { useEffect, useState, memo, useMemo } from "react";
-import ReactDOM from "react-dom";
 
 // 迷你版redux实现
 // 全局数据集合构造函数

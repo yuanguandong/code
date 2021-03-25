@@ -1,7 +1,15 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useReducer } from "react";
 import createStore from "./store";
 import reducers from "./reducer";
-//迷你版redux-react实现
+
+function baseReducer(state, action) {
+  return {
+    ...state,
+    ...action.payload,
+  };
+}
+
+//迷你简易版redux-react实现
 const ConnectAdvanced = ({ WrappedComponent, actualChildProps }) => {
   const renderedWrappedComponent = useMemo(
     () => <WrappedComponent {...actualChildProps} />,
@@ -12,11 +20,16 @@ const ConnectAdvanced = ({ WrappedComponent, actualChildProps }) => {
 
 const ConnectFunction = (props) => {
   const { store, mapStateToProps, dispatch, state, component } = props;
-  let [actualProps, setActualProps] = useState(state);
+  // let [actualProps, setActualProps] = useState(state);
+  let [actualProps,dispatchBase] = useReducer(baseReducer,state)
   store.subscribe(function () {
     const storeData = store.getState();
     let state = mapStateToProps(storeData);
-    setActualProps(state);
+    // setActualProps(state);
+    dispatchBase({
+      type:'save',
+      payload:state
+    })
   });
   return (
     <ConnectAdvanced
