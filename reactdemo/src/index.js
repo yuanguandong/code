@@ -5,6 +5,7 @@ import App from './App';
 import Lights from './Lights';
 import Redux from './Redux';
 import Reduxdemo from './reduxdemo';
+import Hooks from './hooks';
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -12,7 +13,8 @@ ReactDOM.render(
     {/* <App /> */}
     {/* <Lights/> */}
     {/* <Redux/> */}
-    <Reduxdemo/>
+    {/* <Reduxdemo/> */}
+    <Hooks/>
   </React.StrictMode>,
   document.getElementById('root')
 );
