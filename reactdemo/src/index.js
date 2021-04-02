@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import Lights from './Lights';
-import Redux from './Redux';
-import Reduxdemo from './reduxdemo';
-import Hooks from './hooks';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import Lights from "./Lights";
+import Redux from "./Redux";
+import Reduxdemo from "./reduxdemo";
+// import Hooks from './hooks';
+import State from "./hooks/usestate";
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -14,9 +15,10 @@ ReactDOM.render(
     {/* <Lights/> */}
     {/* <Redux/> */}
     {/* <Reduxdemo/> */}
-    <Hooks/>
+    {/* <Hooks/> */}
+    <State />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
