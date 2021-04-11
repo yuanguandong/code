@@ -17,11 +17,11 @@ const tree = {
 
 const bfs = (root)=>{
   const q = [root]
-  while(q.length>0){
+  while(q.length){
     const n = q.shift()
     console.log(n.val)
-    n.children.forEach(child=>{
-      q.push(child)
+    n.children.forEach((item)=>{
+      q.push(item)
     })
   }
 }

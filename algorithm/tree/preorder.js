@@ -14,11 +14,12 @@ const preorder = (root) => {
     return;
   }
   let stack = [root];
-  while (stack.length > 0) {
-    const n = stack.pop();
-    console.log(n.val);
-    n.right && stack.push(n.right);
-    n.right && stack.push(n.left);
+  while(stack.length>0){
+    let n = stack.pop()
+    console.log(n.val)
+    if(n.right){stack.push(n.right)}
+    if(n.left){stack.push(n.left)}
+    
   }
 };
 

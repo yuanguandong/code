@@ -12,16 +12,16 @@ const postorder = (root) => {
   if (!root) {
     return;
   }
-  let outputStack = []
-  let stack = [root];
-  while (stack.length > 0) {
-    const n = stack.pop();
-    outputStack.push(n)
-    n.right && stack.push(n.left);
-    n.right && stack.push(n.right);
+  let stack =[root]
+  let outPutStack = []
+  while(stack.length){
+    const n = stack.pop()
+    outPutStack.push(n)
+    if(n.left){stack.push(n.left)}
+    if(n.right){stack.push(n.right)}
   }
-  while(outputStack.length){
-    const n = outputStack.pop()
+  while(outPutStack.length){
+    const n = outPutStack.pop()
     console.log(n.val)
   }
 };
