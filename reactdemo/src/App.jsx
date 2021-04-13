@@ -1,40 +1,44 @@
 import React, { useState } from "react";
-import Lights from "./lights";
-import Reduxdemo from "./reduxdemo";
-import Hooks from "./hooks";
-import State from "./hooks/usestate";
-import PureComponent from "./purecomponent";
-import LifeCycle from "./lifecycle";
-import Memo from "./memo";
-import './App.css'
+import "./App.css";
+import demos from './demo'
 
-const demos = {
-  Lights,
-  Reduxdemo,
-  Hooks,
-  State,
-  PureComponent,
-  LifeCycle,
-  Memo,
-};
 
-// eslint-disable-next-line import/no-anonymous-default-export
 function App() {
-  const [key,setKey] = useState(Object.keys(demos)[0]);
-  // setState({b:2})
-  console.log("key", key);
+  const [key, setKey] = useState(Object.keys(demos)[0]);
+  const [visible, setVisible] = useState(true);
   return (
     <div className="main">
       <div className="leftSide">
+        <div
+          className="menuItem"
+          key={"demo"}
+          style={{ fontSize: "18px", fontWeight: "bold" }}
+        >
+          DEMO
+        </div>
         {Object.keys(demos).map((key) => (
-          <div className="menuItem" key={key} onClick={()=>{
-            setKey(key)
-          }}>{key}</div>
+          <div
+            className="menuItem"
+            key={key}
+            onClick={() => {
+              setKey(key);
+            }}
+          >
+            {key}
+          </div>
         ))}
       </div>
       <div className="rightSide">
-
-        <div>{React.createElement(demos[key])}</div>
+        <div className="header">
+          <div onClick={() => setVisible(false)}>卸载</div>
+          <div onClick={() => setVisible(true)}>挂载</div>
+        </div>
+        <div className="mainContent">
+          <div className="title">{key}</div>
+          <div className="content">
+            <div>{visible && React.createElement(demos[key])}</div>
+          </div>
+        </div>
       </div>
     </div>
   );

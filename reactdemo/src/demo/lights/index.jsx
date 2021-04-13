@@ -6,9 +6,13 @@ function Light(props) {
   let [light, setLight] = useState([lights[0]]);
   let [tick, setTick] = useState(false);
 
+  let timmer1 = null;
+  let timmer2 = null;
+  let promise1 = null;
+
   const twinkle = async (resolve) => {
     setTick(true);
-    setTimeout(() => {
+    timmer1 = setTimeout(() => {
       setTick(false);
       resolve();
     }, twinkleDuration);
@@ -16,8 +20,8 @@ function Light(props) {
 
   const handleLight = async (light, time) => {
     setLight(light);
-    await new Promise((resolve, reject) => {
-      setTimeout(() => {
+    promise1 = await new Promise((resolve, reject) => {
+      timmer2 = setTimeout(() => {
         twinkle(resolve);
       }, time);
     });
@@ -35,6 +39,14 @@ function Light(props) {
     }
     circle();
   }, []);
+
+  useEffect(() => {
+    return () => {
+      timmer1 && clearTimeout(timmer1);
+      timmer2 && clearTimeout(timmer2);
+      promise1 && promise1.rejected();
+    };
+  }, [timmer1, timmer2, promise1]);
 
   return (
     <div
@@ -55,13 +67,13 @@ function Light(props) {
 function App() {
   const AllLights = [
     {
-      key:1,
+      key: 1,
       lights: ["red", "yellow", "green"],
       duration: 5000,
       twinkleDuration: 3000,
     },
     {
-      key:2,
+      key: 2,
       lights: ["black", "blue"],
       duration: 3000,
       twinkleDuration: 1000,
@@ -71,7 +83,7 @@ function App() {
   return (
     <>
       {AllLights.map((o) => (
-        <Light {...o} key={o.key}/>
+        <Light {...o} key={o.key} />
       ))}
     </>
   );

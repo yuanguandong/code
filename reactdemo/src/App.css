@@ -1,5 +1,3 @@
-
-
 .main {
   width: 100%;
   height: 100%;
@@ -9,14 +7,47 @@
 
 .leftSide {
   width: 200px;
-  height:100vh;
-  background:#000;
-  color:#fff;
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
 }
-.menuItem{
-  padding:10px;
+
+.menuItem {
+  padding: 10px;
+  cursor: pointer;
 }
+
 .rightSide {
   flex: 1;
+
+}
+
+.header {
+  width: 100%;
+  background: #000;
+  height: 40px;
+  color: #fff;
+  display: flex;
+  line-height: 40px;
+}
+
+.header>* {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.mainContent {
+  background: #edebe9;
+  width:100%;
+  min-height: 100vh;
+}
+
+.content{
+  padding: 20px;
+}
+
+.title{
+  font-size:36px;
   padding:20px;
+  font-weight:bold;
 }

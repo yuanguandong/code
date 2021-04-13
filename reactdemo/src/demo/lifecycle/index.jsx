@@ -5,7 +5,6 @@ class Father extends React.Component {
     super(props);
     this.state = {
       count: 0,
-      visible: true,
     };
   }
   render() {
@@ -21,18 +20,7 @@ class Father extends React.Component {
         >
           增加count
         </button>
-
-        <button
-          onClick={() => {
-            this.setState((state) => {
-              const { visible } = state;
-              return { ...state, visible: !visible };
-            });
-          }}
-        >
-          卸载/挂载子组件
-        </button>
-        {this.state.visible && <Child count={this.state.count} />}
+        <Child count={this.state.count} />
       </>
     );
   }
@@ -75,6 +63,7 @@ class Child extends React.Component {
   }
   static getDerivedStateFromProps(props, state){ //新增
     console.log("getDerivedStateFromProps", arguments);
+    return props
   }
   
   shouldComponentUpdate(nextProps, nextState) {
