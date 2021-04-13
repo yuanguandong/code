@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./index.css";
 
 function Light(props) {
   const { lights, duration = 5000, twinkleDuration = 3000 } = props;

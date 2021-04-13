@@ -1,0 +1,18 @@
+@keyframes tick {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.tick {
+  animation: tick 0.2s infinite;
+}

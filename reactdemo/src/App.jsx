@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Lights from "./Lights";
+import Lights from "./lights";
 import Reduxdemo from "./reduxdemo";
 import Hooks from "./hooks";
 import State from "./hooks/usestate";
 import PureComponent from "./purecomponent";
 import LifeCycle from "./lifecycle";
 import Memo from "./memo";
+import './App.css'
 
 const demos = {
   Lights,
