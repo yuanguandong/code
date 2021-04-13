@@ -7,6 +7,8 @@ import Redux from "./Redux";
 import Reduxdemo from "./reduxdemo";
 // import Hooks from './hooks';
 import State from "./hooks/usestate";
+import PureComponent from "./purecomponent";
+import LifeCycle from "./lifecycle";
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -16,7 +18,9 @@ ReactDOM.render(
     {/* <Redux/> */}
     {/* <Reduxdemo/> */}
     {/* <Hooks/> */}
-    <State />
+    {/* <State /> */}
+    {/* <PureComponent/> */}
+    <LifeCycle/>
   </React.StrictMode>,
   document.getElementById("root")
 );
