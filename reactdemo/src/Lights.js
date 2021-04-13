@@ -55,11 +55,13 @@ function Light(props) {
 function App() {
   const AllLights = [
     {
+      key:1,
       lights: ["red", "yellow", "green"],
       duration: 5000,
       twinkleDuration: 3000,
     },
     {
+      key:2,
       lights: ["black", "blue"],
       duration: 3000,
       twinkleDuration: 1000,
@@ -69,7 +71,7 @@ function App() {
   return (
     <>
       {AllLights.map((o) => (
-        <Light {...o} />
+        <Light {...o} key={o.key}/>
       ))}
     </>
   );

@@ -2,26 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import Lights from "./Lights";
-import Redux from "./Redux";
-import Reduxdemo from "./reduxdemo";
-// import Hooks from './hooks';
-import State from "./hooks/usestate";
-import PureComponent from "./purecomponent";
-import LifeCycle from "./lifecycle";
-// import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    {/* <App /> */}
-    {/* <Lights/> */}
-    {/* <Redux/> */}
-    {/* <Reduxdemo/> */}
-    {/* <Hooks/> */}
-    {/* <State /> */}
-    {/* <PureComponent/> */}
-    <LifeCycle/>
-  </React.StrictMode>,
+
+    <App/>
+,
   document.getElementById("root")
 );
 
