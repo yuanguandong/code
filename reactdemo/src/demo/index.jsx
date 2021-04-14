@@ -10,6 +10,11 @@ import Lazy from "./lazy";
 import ProfilerDemo from './profiler'
 import CreateElement from './createelement'
 import CloneElement from './cloneelement'
+import CreateContext from './createcontext'
+import CreateFactory from './createfactory'
+import IsValidElement from './isvalidelement'
+import Children from './children'
+
 
 const demos = {
   Lights,
@@ -23,7 +28,11 @@ const demos = {
   Lazy,
   ProfilerDemo,
   CreateElement,
-  CloneElement
+  CloneElement,
+  CreateContext,
+  CreateFactory,
+  IsValidElement,
+  Children
 };
 
 export default demos

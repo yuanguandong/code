@@ -14,7 +14,7 @@ function App() {
           key={"demo"}
           style={{ fontSize: "18px", fontWeight: "bold" }}
         >
-          DEMO
+          ★ DEMO
         </div>
         {Object.keys(demos).map((key) => (
           <div
