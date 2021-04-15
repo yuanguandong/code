@@ -7,10 +7,42 @@
 
 .leftSide {
   width: 200px;
-  min-height: 100vh;
-  background: #000;
+  height: 100vh;
+  overflow-y: auto;
+  background: #202020;
   color: #fff;
 }
+
+.left:hover {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.leftSide::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 0px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 0px;
+}
+
+.leftSide::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #000;
+}
+
+.leftSide::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  background: transparent;
+}
+
+.leftSide:hover::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  /**/
+}
+
 
 .menuItem {
   padding: 10px;
@@ -19,8 +51,12 @@
 
 .rightSide {
   flex: 1;
-
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: 3px;
 }
+
+
 
 .header {
   width: 100%;
@@ -29,6 +65,8 @@
   color: #fff;
   display: flex;
   line-height: 40px;
+  top: 0;
+  position: sticky;
 }
 
 .header>* {
@@ -38,16 +76,17 @@
 
 .mainContent {
   background: #edebe9;
-  width:100%;
-  min-height: 100vh;
+  width: 100%;
+  min-height: calc(100vh - 40px);
+  overflow-y:auto ;
 }
 
-.content{
+.content {
   padding: 20px;
 }
 
-.title{
-  font-size:36px;
-  padding:20px;
-  font-weight:bold;
+.title {
+  font-size: 36px;
+  padding: 20px;
+  font-weight: bold;
 }

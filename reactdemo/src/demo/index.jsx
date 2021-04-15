@@ -14,6 +14,9 @@ import CreateContext from './createcontext'
 import CreateFactory from './createfactory'
 import IsValidElement from './isvalidelement'
 import Children from './children'
+import UseEffect from './useeffect'
+import UseContext from './usecontext'
+import UseImperativeHandle from './useimperativehandle'
 
 
 const demos = {
@@ -32,7 +35,9 @@ const demos = {
   CreateContext,
   CreateFactory,
   IsValidElement,
-  Children
+  Children,
+  UseEffect,
+  UseImperativeHandle
 };
 
 export default demos

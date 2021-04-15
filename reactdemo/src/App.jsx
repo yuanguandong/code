@@ -12,7 +12,7 @@ function App() {
         <div
           className="menuItem"
           key={"demo"}
-          style={{ fontSize: "18px", fontWeight: "bold" }}
+          style={{ fontSize: "18px", fontWeight: "bold", position:'sticky',top:0,background:'#000' }}
         >
           ★ DEMO
         </div>
