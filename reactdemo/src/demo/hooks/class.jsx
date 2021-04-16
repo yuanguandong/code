@@ -9,10 +9,14 @@ export default class Index extends React.Component {
   }
   handerClick=()=>{
      for(let i = 0 ;i<5;i++){
-         setTimeout(()=>{
-             this.setState({ number:this.state.number+1 })
-             console.log(this.state.number)
-         },1000)
+        //  setTimeout(()=>{
+        //      this.setState({ number:this.state.number+1 })
+        //      console.log(this.state.number)
+        //  },1000)
+         Promise.resolve().then(()=>{
+            this.setState({ number:this.state.number+1 })
+            console.log(this.state.number)
+        })
      }
   }
 

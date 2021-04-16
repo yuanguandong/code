@@ -1,6 +1,7 @@
 import Lights from "./lights";
 import Reduxdemo from "./reduxdemo";
-import Hooks from "./hooks";
+import HooksC from "./hooks/hooks";
+import ClassC from "./hooks/class";
 import State from "./hooks/usestate";
 import PureComponent from "./purecomponent";
 import LifeCycle from "./lifecycle";
@@ -17,12 +18,21 @@ import Children from './children'
 import UseEffect from './useeffect'
 import UseContext from './usecontext'
 import UseImperativeHandle from './useimperativehandle'
+import UseTransition from './usetransition'
+import CreatePortal from './createportal'
+import BatchedUpdate from './batchedupdate'
+import FlushSync from './flushsync'
+import FindDomNode from './finddomnode'
+import UnmountComponentAtNode from './unmountcomponentatnode'
+import UseState from './usestate'
+
 
 
 const demos = {
   Lights,
   Reduxdemo,
-  Hooks,
+  HooksC,
+  ClassC,
   State,
   PureComponent,
   LifeCycle,
@@ -36,8 +46,16 @@ const demos = {
   CreateFactory,
   IsValidElement,
   Children,
+  UseContext,
   UseEffect,
-  UseImperativeHandle
+  UseImperativeHandle,
+  UseTransition,
+  CreatePortal,
+  BatchedUpdate,
+  FlushSync,
+  FindDomNode,
+  UnmountComponentAtNode,
+  UseState
 };
 
 export default demos
