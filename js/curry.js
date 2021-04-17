@@ -28,17 +28,17 @@ console.log(curryAdd(1)(2)(3))
 
 
 
- //函数柯里化
- function add() {
-  const _args = [...arguments]
+//  //函数柯里化
+//  function add() {
+//   const _args = [...arguments]
 
-  function fn() {
-    _args.push(...arguments)
-    return fn
-  }
-  fn.toString = function () {
-    return _args.reduce((sum, cur) => sum + cur)
-  }
-  return fn
-}
-add(1)(2)
+//   function fn() {
+//     _args.push(...arguments)
+//     return fn
+//   }
+//   fn.toString = function () {
+//     return _args.reduce((sum, cur) => sum + cur)
+//   }
+//   return fn
+// }
+// add(1)(2)

@@ -17,28 +17,12 @@
   <button id="button1">throttle 不论点击多快，只会2秒触发一次</button>
 </body>
 <script>
-  // function debounce(fn, delay) {
-  //   let timmer = null
-  //   return function () {
-  //     let _this = this
-  //     let args = arguments
-  //     if (timmer) {
-  //       clearTimeout(timmer)
-  //     }
-  //     timmer = setTimeout(() => {
-  //       fn.apply(_this, args)
-  //     }, delay)
-  //   }
-  // }
-
   function debounce(fn, delay) {
     let timmer = null
     return function () {
-      if (timmer) {
-        clearTimeout(timmer)
-      }
+      timmer && clearInterval(timmer)
       timmer = setTimeout(() => {
-        fn.apply(this, arguments)
+        fn.call(this, arguments)
       }, delay)
     }
   }
@@ -48,117 +32,11 @@
     return function () {
       let currentTime = new Date()
       if (currentTime - startTime > delay) {
-        fn.apply(this, arguments)
+        fn.call(this, arguments)
         startTime = currentTime
       }
     }
   }
-
-
-
-
-  Function.prototype.apply = function (context, argsArr) {
-    if (typeof this !== 'function') {
-      throw new TypeError('not a function')
-    }
-    context = context || window
-    const fnSymbol = Symbol('fn')
-    context[fnSymbol] = this
-    let result = context[fnSymbol](...argsArr)
-    delete context[fnSymbol]
-    return result
-  }
-
-  Function.prototype.bind = function (context) {
-    if (typeof this !== 'function') {
-      throw new TypeError('not a function')
-    }
-    context = context || window
-    const fnSymbol = Symbol('fn')
-    context[fnSymbol] = this
-    let result = function (...arg) {
-      let value = context[fnSymbol](...arg)
-      delete context[fnSymbol]
-      return value
-    }
-    return result
-  }
-
-
-
-
-  this.name = "jack";
-  var demo = {
-    name: "rose",
-    getName: function (a) {
-      a && console.log('hh', a)
-      return this.name;
-    }
-  }
-
-  console.log(demo.getName()); //输出rose  这里的this指向demo
-
-  var another = demo.getName;
-  console.log(another()) //输出jack  这里的this指向全局对象
-
-  //运用bind方法更改this指向
-  var another2 = another.bind(demo);
-  console.log('another2', another2());
-
-
-  let arr = [1, 1, 1, 22, 22, 33]
-
-  function uniquArr(arr) {
-    return Array.from(new Set(arr))
-  }
-
-  console.log('u', uniquArr(arr))
-
-  /**
-   * 节流器
-   * @param [function] fn 事件触发后要调用的函数，也就是要节流的函数
-   * @param [object]context fn的执行上下文对象，没有执行对象设为null即可
-   * @param [number] delay 延缓执行的时间间隔 毫秒
-   * @param param fn需要的参数
-   * @return 无
-   */
-
-  // function debounce(fn, delay) {
-  //   var timer;
-  //   return function () {
-  //     var _this = this; // 取debounce执行作用域的this
-  //     var args = arguments;
-  //     if (timer) {
-  //       clearTimeout(timer);
-  //     }
-  //     timer = setTimeout(function () {
-  //       fn.apply(_this, args);
-  //     }, delay);
-  //   }
-  // }
-
-  // var throttle = function (action, delay) {
-  //   var statTime = 0;
-  //   return function () {
-  //     var currTime = +new Date();
-  //     if (currTime - statTime > delay) {
-  //       action.apply(this, arguments);
-  //       statTime = currTime;
-  //     }
-  //   }
-  // }
-
-
-  // var throttle = function (action, delay) {
-  //   var startTime = 0;
-  //   return function () {
-  //     var currentTime = +new Date()
-  //     if (currentTime - startTime > delay) {
-  //       action.apply(this, arguments)
-  //       startTime = currentTime
-  //     }
-  //   }
-  // }
 
   var a = 1
   var ajaxFun = function (params) {
