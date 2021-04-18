@@ -1,12 +1,16 @@
 Array.prototype.selectionSort = function () {
-  let indexMin = 0;
+  
   let arr = this;
-  for (let j = 0; j < this.length; j += 1) {
-    if (arr[j] < arr[indexMin]) {
-      let temp = arr[j];
-      arr[j] = arr[indexMin];
-      arr[indexMin] = temp;
+  for (let i = 0; i < arr.length-1; i++) {
+    let indexMin = i;
+    for (let j = i; j < arr.length; j += 1) {
+      if (arr[j] < arr[indexMin]) {
+        indexMin = j;
+      }
     }
+    let temp = arr[i];
+    arr[i] = arr[indexMin];
+    arr[indexMin] = temp;
   }
 };
 
