@@ -37,7 +37,6 @@
 
     function isIn(e) {
       let eRect = e.getBoundingClientRect()
-
       if (eRect.top < window.innerHeight) {
         return true
       } else {
@@ -46,13 +45,10 @@
     }
 
     function loadImg(img){
-
       if(!img.src){
-        // debugger
         img.src = img.dataset.src
       }
     }
-
 
     function lazyLoad() {
       Array.from(imgs).forEach((img) => {
@@ -61,7 +57,6 @@
         }
       })
     }
-
     
     window.onload = window.onscroll= () => {
       lazyLoad()

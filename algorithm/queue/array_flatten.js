@@ -10,7 +10,8 @@ function flatten(arr) {
   return result;
 }
 let a = [[1, [2, [3, [4]]]]];
-let b = flatten(a);
-console.log("b", b);
+debugger
+// let b = flatten(a);
+// console.log("b", b);
 
 console.log(Array.from(new Set([1, 1, 1, 2, 2, 2])));

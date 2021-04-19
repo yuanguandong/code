@@ -6,3 +6,6 @@ function convertTemplate(template, data) {
   }
   return result;
 }
+
+let str = "My name is ${ name }, I'm ${ age } years old.";
+let data = { name: "F", age: 20 };

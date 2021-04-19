@@ -40,8 +40,8 @@ function asyncToGenerator(generatorFunc) {
   };
 }
 
-// const asyncTask = asyncToGenerator(gen);
+const asyncTask = asyncToGenerator(gen);
 
-// asyncTask("a");
+asyncTask("a");
 
 

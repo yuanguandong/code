@@ -8,32 +8,47 @@ var obj = {
   fn: function () {
     alert(1);
   },
+  date: new Date(),
+  reg: new RegExp(),
   friends: [1, 2, 3, [22, 33]],
 };
 
-function copy(obj) {
-  let newobj = null; //声明一个变量用来储存拷贝之后的内容
-
-  //判断数据类型是否是复杂类型，如果是则调用自己，再次循环，如果不是，直接赋值即可，
-  //由于null不可以循环但类型又是object，所以这个需要对null进行判断
-  if (typeof (obj) == 'object' && obj !== null) {
-
-    //声明一个变量用以储存拷贝出来的值,根据参数的具体数据类型声明不同的类型来储存
-    newobj = obj instanceof Array ? [] : {};
-
-    //循环obj 中的每一项，如果里面还有复杂数据类型，则直接利用递归再次调用copy函数
-    for (var i in obj) {
-      newobj[i] = copy(obj[i])
-    }
-  } else {
-    newobj = obj
+function clone(obj) {
+  let newObj = {};
+  for (let i in obj) {
+    newObj[i] = obj[i];
   }
-  return newobj; //函数必须有返回值，否则结构为undefined
+  return newObj;
 }
 
-var obj2 = copy(obj)
-debugger
-obj2.name = '修改成功'
-obj2.main.a = 100
-console.log(obj, obj2)
+function copy(obj) {
+  let newObj = null;
+  if (typeof obj === "object" && typeof obj !== null) {
+    if (obj instanceof Array) {
+      newObj = [];
+      for (let i in obj) {
+        newObj[i] = copy(obj[i]);
+      }
+    } else if (obj instanceof Date) {
+      newObj = new Date(obj)
+    } else if (obj instanceof RegExp) {
+      newObj = new RegExp(obj)
+    } else {
+      newObj = {};
+      for (let i in obj) {
+        newObj[i] = copy(obj[i]);
+      }
+    }
+  } else {
+    newObj = obj;
+  }
+  return newObj;
+}
 
+var obj2 = copy(obj);
+
+obj2.name = "修改成功";
+obj2.main.a = 100;
+console.log(obj, obj2);
+
+debugger;
