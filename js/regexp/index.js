@@ -1,6 +1,6 @@
-const reg = /((\w+):\/\/)?([\w.]+[.]{1})[\w\-@?^=%&\/~+#]+/g;
+const reg = /((\w+):\/\/)?([\_\-\w.]+[.]{1})[\w\-@?^=%&\/~+#]+/g;
 
-var str = "fdsafdas http://www.baidu.com https://baike.baidu.com/item/%E9%9B%B6%E4%BB%B6%E5%8F%B7/9963086?fr=aladdin fdasfdsafd";
+var str = "fdsafdas http://www.baidu.com http://ip2fw-react.gantcloud.com/dashboard/default/item/%E9%9B%B6%E4%BB%B6%E5%8F%B7/9963086?fr=aladdin fdasfdsafd";
 
 const collection = new Map()
 while ((matched = reg.exec(str))) {
