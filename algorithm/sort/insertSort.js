@@ -18,15 +18,19 @@
 // };
 
 Array.prototype.insertSort = function () {
-  let temp = this[1];
-  let j = 1;
-  while (j > 0) {
-    if (this[j - 1] > temp) {
-      this[j] = this[j - 1];
+  for (let i = 1; i < this.length; i++) {
+    let j = i;
+    let temp = this[j];
+    while (j > 0) {
+      if (this[j - 1] > temp) {
+        this[j] = this[j - 1];
+      }else{
+        break
+      }
+      j--;
     }
-    j--;
+    this[j] = temp;
   }
-  this[j] = temp
 };
 
 const arr = [5, 4, 3, 2, 1];
