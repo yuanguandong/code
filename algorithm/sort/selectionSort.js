@@ -26,7 +26,7 @@ Array.prototype.selectionSort = function () {
     }
     let temp = arr[i]
     arr[i] = arr[minIndex]
-    arr[minIndex] = temp
+    arr[minIndex] = temp  
   }
 };
 
