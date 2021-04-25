@@ -20,12 +20,10 @@
 Array.prototype.insertSort = function () {
   for (let i = 1; i < this.length; i++) {
     let j = i;
-    let temp = this[j];
-    while (j > 0) {
+    let temp = this[i];
+    while (j >= 1) {
       if (this[j - 1] > temp) {
         this[j] = this[j - 1];
-      }else{
-        break
       }
       j--;
     }
