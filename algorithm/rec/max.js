@@ -10,6 +10,7 @@ const rec = (index, max) => {
   }
 };
 
+
 const a = rec(0,arr[0]);
 debugger
 
