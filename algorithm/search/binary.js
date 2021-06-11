@@ -1,3 +1,4 @@
+//二分查找
 Array.prototype.binaryFind = function(val) {
   let low = 0;
   let high = this.length - 1;

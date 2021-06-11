@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "lodash": "^4.17.21"
+  },
+  "dependencies": {
+    "path-to-regexp": "3.0.0"
   }
 }
