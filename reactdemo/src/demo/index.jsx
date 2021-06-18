@@ -1,30 +1,31 @@
-import Lights from "./lights";
-import Reduxdemo from "./reduxdemo";
-import HooksC from "./hooks/hooks";
-import ClassC from "./hooks/class";
-import State from "./hooks/usestate";
-import PureComponent from "./purecomponent";
-import LifeCycle from "./lifecycle";
-import Memo from "./memo";
+import BatchedUpdate from './batchedupdate';
+import Children from './children';
+import CloneElement from './cloneelement';
+import CreateContext from './createcontext';
+import CreateElement from './createelement';
+import CreateFactory from './createfactory';
+import CreatePortal from './createportal';
+import FindDomNode from './finddomnode';
+import FlushSync from './flushsync';
 import ForwardRef from "./forwardref";
+import ClassC from "./hooks/class";
+import HooksC from "./hooks/hooks";
+import State from "./hooks/usestate";
+import Image from './image';
+import IsValidElement from './isvalidelement';
 import Lazy from "./lazy";
-import ProfilerDemo from './profiler'
-import CreateElement from './createelement'
-import CloneElement from './cloneelement'
-import CreateContext from './createcontext'
-import CreateFactory from './createfactory'
-import IsValidElement from './isvalidelement'
-import Children from './children'
-import UseEffect from './useeffect'
-import UseContext from './usecontext'
-import UseImperativeHandle from './useimperativehandle'
-import UseTransition from './usetransition'
-import CreatePortal from './createportal'
-import BatchedUpdate from './batchedupdate'
-import FlushSync from './flushsync'
-import FindDomNode from './finddomnode'
-import UnmountComponentAtNode from './unmountcomponentatnode'
-import UseState from './usestate'
+import LifeCycle from "./lifecycle";
+import Lights from "./lights";
+import Memo from "./memo";
+import ProfilerDemo from './profiler';
+import PureComponent from "./purecomponent";
+import Reduxdemo from "./reduxdemo";
+import UnmountComponentAtNode from './unmountcomponentatnode';
+import UseContext from './usecontext';
+import UseEffect from './useeffect';
+import UseImperativeHandle from './useimperativehandle';
+import UseState from './usestate';
+import UseTransition from './usetransition';
 
 
 
@@ -55,7 +56,8 @@ const demos = {
   FlushSync,
   FindDomNode,
   UnmountComponentAtNode,
-  UseState
+  UseState,
+  Image
 };
 
 export default demos
