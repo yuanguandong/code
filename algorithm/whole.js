@@ -49,6 +49,7 @@ let arr = ["a", "b", "c", "d"];
 var permute = function(nums) {
   const res = []
   const recursion = (arr = []) => {
+
       if (arr.length === nums.length) {
           res.push(arr)
           return
