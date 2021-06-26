@@ -26,6 +26,7 @@ import UseEffect from './useeffect';
 import UseImperativeHandle from './useimperativehandle';
 import UseState from './usestate';
 import UseTransition from './usetransition';
+import Zoom from './zoom';
 
 
 
@@ -57,7 +58,8 @@ const demos = {
   FindDomNode,
   UnmountComponentAtNode,
   UseState,
-  Image
+  Image,
+  Zoom
 };
 
 export default demos

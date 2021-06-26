@@ -3,8 +3,7 @@
  * @return {number}
  */
  var fib = function(n) {
-    
-
+  
   if(n ===0 ){return 0}
   if( n===1){return 1}
   let n2 = 0  //n-2
@@ -18,3 +17,4 @@
   return sum%1000000007
 
 };
+
