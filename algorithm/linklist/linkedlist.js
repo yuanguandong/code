@@ -6,6 +6,7 @@ a.next = b;
 b.next= c;
 c.next = d;
 
+
 let p = a;
 while(p){
   console.log(p.val)
