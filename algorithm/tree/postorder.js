@@ -1,5 +1,5 @@
 const bt = require("./bt");
-
+//后序遍历
 // const postorder = (root) => {
 //   if(!root) return
 //   inorder(root.left)

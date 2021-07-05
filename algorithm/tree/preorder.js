@@ -1,5 +1,5 @@
 const bt = require("./bt");
-
+//前序遍历
 // const preorder = (root) => {
 //   if (!root) {
 //     return;
