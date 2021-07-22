@@ -1,1 +1,74 @@
-<mxfile host="app.diagrams.net" modified="2021-07-22T07:58:04.533Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36" etag="yFwB7uQKhhivYNxfrTDP" version="14.9.1" type="github"><diagram id="rC_-q-C5sXUHfJyQTO7R" name="第 1 页">ddHNEoIgEADgp+Gu0KidzfLSyUNnRjZhBl0HabSePh0wY6wTy7cLyw9heTtdDO/lFQVoQiMxEXYilMYHmszDIk8naZY6aIwSvmiDSr3AY+T1oQQMQaFF1Fb1IdbYdVDbwLgxOIZld9Rh1543sIOq5nqvNyWsdJrRdPMSVCPXznFydJmWr8X+JoPkAscvYgVhuUG0LmqnHPTyeOu7uHXnP9nPwQx09seCOdj2nifBD7HiDQ==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-07-22T08:12:41.128Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36" etag="CZ-8iCguKdsMac8oNHQa" version="14.9.1" type="github">
+  <diagram id="rC_-q-C5sXUHfJyQTO7R" name="第 1 页">
+    <mxGraphModel dx="1426" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-21" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="680" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-18" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="340" y="520" width="370" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-1" value="ms-ui-framework（umi app）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="315" y="140" width="195" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-2" value="ui-prd" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="615" width="330" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-3" value="sysmgmt" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="360" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-4" value="common" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="360" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-6" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="8PcPeRf8CqjzHStHB_jc-1" target="8PcPeRf8CqjzHStHB_jc-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="430" as="sourcePoint" />
+            <mxPoint x="320" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-8" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="8PcPeRf8CqjzHStHB_jc-1" target="8PcPeRf8CqjzHStHB_jc-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="430" as="sourcePoint" />
+            <mxPoint x="320" y="380" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-14" value="umi-plugin-project" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="380" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-15" value="umi-plugin-runtime-config" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="380" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-16" value="config.json 编译时配置" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="540" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-17" value="config.js 运行时配置" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="540" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-22" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="8PcPeRf8CqjzHStHB_jc-16" target="8PcPeRf8CqjzHStHB_jc-14">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="435" y="520" as="sourcePoint" />
+            <mxPoint x="490" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-23" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="8PcPeRf8CqjzHStHB_jc-17">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="614.5" y="520" as="sourcePoint" />
+            <mxPoint x="614.5" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-24" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="345" y="360" width="360" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="8PcPeRf8CqjzHStHB_jc-25" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="8PcPeRf8CqjzHStHB_jc-1" target="8PcPeRf8CqjzHStHB_jc-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="389" y="250" as="sourcePoint" />
+            <mxPoint x="439" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
