@@ -5,6 +5,22 @@
 //   top: 0,
 //   left: 0,
 // });
+$("#el-dialog__body").css({
+  width: "100vw",
+  height: "100vh",
+  position: "fixed",
+  top: 0,
+  left: 0,
+});
+
+width: 100vw;
+height: 100vh;
+position: fixed;
+top: 0;
+left: 0;
+
+
+
 
 // // 不支持直接设置超时, 可以用promise
 // function fetchTimeout(url, init, timeout = 3000) {
