@@ -21,13 +21,19 @@
       display: inline-block;
       vertical-align: top;
       font-size: 13px;
-      border: 1px solid red;
-      height: 30px;
+      border: 1px solid rgba(128, 128, 128, 0.5);
+      margin-bottom: 10px;
+      height: 100px;
+      text-align: center;
+      font-weight: bold;
+      line-height: 100px;
+      color:#fff;
     }
 
     /*ul只有一个子元素的样式*/
     li:nth-last-child(1):first-child {
       width: 100%;
+      background: #000;
     }
 
     /*ul有2个子元素的样式*/
@@ -36,47 +42,43 @@
     /* ~ 选择位于li:nth-last-child(2):first-child 即 第一个子元素之后的元素*/
     li:nth-last-child(2):first-child~li {
       width: calc(100% / 2);
+      background: #202020;
     }
 
     /*ul有3个子元素的样式*/
     /*第一个元素宽度为1/3，字体颜色为蓝色*/
     ul>*:nth-last-child(3):first-child {
       width: calc(100% / 3);
-      color: blue;
-    }
-
-    /*第一个元素之后的第一个元素（即 有3个子元素的ul 的 第 3 个元素）*/
-    ul>*:nth-last-child(3):first-child~li:nth-last-child(1) {
-      width: calc(100% / 4);
-      color: red;
+      background: #222;
     }
 
     /*第一个元素之后的第一个元素（即 有3个子元素的ul 的 第 2 个元素）*/
     ul>*:nth-last-child(3):first-child~li:nth-last-child(2) {
-      width: calc(100% / 6);
-      color: yellow;
+      width: calc(100% / 3);
+      background: #333;
+    }
+
+    /*第一个元素之后的第一个元素（即 有3个子元素的ul 的 第 3 个元素）*/
+    ul>*:nth-last-child(3):first-child~li:nth-last-child(1) {
+      width: calc(100% / 3);
+      background: #444;
     }
   </style>
 </head>
 
 <body>
   <ul class="list">
-    <li>11111</li>
+    <li>one</li>
   </ul>
   <ul class="list">
-    <li>11111</li>
-    <li>22222</li>
+    <li>two</li>
+    <li>two</li>
   </ul>
   <ul class="list">
-    <div>21212</div>
-    <!-- <li>11111</li> -->
-    <li>22222</li>
-    <li>33333</li>
+    <li>three</li>
+    <li>three</li>
+    <li>three</li>
   </ul>
 </body>
 
-<script>
-  console.log(window.history)
-  console.log(document.referrer)
-</script>
 </html>

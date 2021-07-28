@@ -10,13 +10,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>节流器</title>
+  <style>
+    *{text-align:center;margin:20px;}
+    #count{font-size:100px; font-weight:bold;}
+  </style>
 </head>
 
 <body>
-  <button id="button">debounce 不论点击多快，只会在连续时间后触发一次</button>
-  <button id="button1">throttle 不论点击多快，只会2秒触发一次</button>
+  <div id="count">0</div>
+  <div>
+    <button id="debounce">debounce +1</button>
+    <div>不论点击多快，只会在2秒后触发一次</div>
+  </div>
+  <div>
+    <button id="throttle">throttle +1</button>
+    <div>不论点击多快，只会以2秒的频率触发</div>
+  </div>
 </body>
 <script>
+  //防抖
   function debounce(fn, delay) {
     let timmer = null
     return function () {
@@ -26,7 +38,7 @@
       }, delay)
     }
   }
-
+  //节流
   function throttle(fn, delay) {
     let startTime = 0
     return function () {
@@ -37,24 +49,15 @@
       }
     }
   }
-
-  var a = 1
-  var ajaxFun = function (params) {
-    console.log('发起了请求', params, a++)
+  const count = document.getElementById('count')
+  const debounceButton = document.getElementById('debounce')
+  const throttleButton = document.getElementById('throttle')
+  const add = function (params) {
+    const num = Number(count.innerHTML)
+    count.innerHTML = num+1
   }
-
-  var button = document.getElementById('button')
-
-  //防抖，连续点击会重置计时器
-  button.addEventListener('click', debounce(ajaxFun, 2000));
-
-  var button1 = document.getElementById('button1')
-
-  //防抖，连续点击会重置计时器
-  button1.addEventListener('click', throttle(ajaxFun, 2000));
-
-  //节流，连续点击不会重置上次的计时器
-  // button.addEventListener('click', throttle(ajaxFun, 2000));
+  debounceButton.addEventListener('click', debounce(add, 2000));
+  throttleButton.addEventListener('click', throttle(add, 2000));
 </script>
 
 </html>

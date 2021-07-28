@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrap {
+      position: relative;
+    }
+
+    .parent {
+      position: absolute;
+      pointer-events: none;
+      transition: opacity 1s;
+      min-width: 40px;
+      height: 40px;
+    }
+
+    .child {
+      display: flex;
+      font-size: 12px;
+      padding: 0px 5px;
+      line-height: 18px;
+      max-width: 200px;
+      width: fit-content;
+      /* display: block; */
+      background-color: #fff;
+      white-space: word-wrap;
+      border: 1px rgba(49, 21, 21, 0.5) solid;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="parent">
+      <div>
+        <div class="child">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
+      </div>
+      <div>
+        <div class="child">测试测试测试</div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
