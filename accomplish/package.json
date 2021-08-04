@@ -1,0 +1,11 @@
+{
+  "name": "react_mini",
+  "scripts": {
+    "start": "react-scripts start"
+  },
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react-scripts": "3.4.1"
+  }
+}

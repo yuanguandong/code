@@ -1,10 +1,12 @@
-// $("#vhall-saas-watchbox").css({
-//   width: "100vw",
-//   height: "100vh",
-//   position: "fixed",
-//   top: 0,
-//   left: 0,
-// });
+// 微吼
+$("#vhall-saas-watchbox").css({
+  width: "100vw",
+  height: "100vh",
+  position: "fixed",
+  top: 0,
+  left: 0,
+});
+//官网
 $("#el-dialog__body").css({
   width: "100vw",
   height: "100vh",
