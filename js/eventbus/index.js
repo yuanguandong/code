@@ -44,7 +44,9 @@ class EventEmitter {
 
 
 const eventEmitter = new EventEmitter();
+
 eventEmitter.on("test", (args) => {
-  console.log(args);
+  console.log(this);
 });
+
 eventEmitter.emit("test", { a: 1 });

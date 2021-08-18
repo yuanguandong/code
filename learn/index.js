@@ -7,7 +7,7 @@ $("#vhall-saas-watchbox").css({
   left: 0,
 });
 //官网
-$("#el-dialog__body").css({
+$(".prism-player").css({
   width: "100vw",
   height: "100vh",
   position: "fixed",
@@ -21,6 +21,14 @@ position: fixed;
 top: 0;
 left: 0;
 
+
+width: 100vw;
+height: 100vh;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 99999;
+transform: translateZ(10000px);
 
 
 
