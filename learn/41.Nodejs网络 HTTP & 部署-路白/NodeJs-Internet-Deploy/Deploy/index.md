@@ -40,7 +40,7 @@ https://www.aliyun.com/daily-act/ecs/activity_selection?userCode=fyhp3q4t
 7. 配置ssh
 
 * 本地生成秘钥对: `ssh-keygen -t rsa`  demo_id_rsa
-* 将公钥放到服务器上: `scp ~/.ssh/demo_id_rsa.pub root@39.107.238.161:/root/.ssh/authorized_keys`
+* 将公钥放到服务器上: `scp ~/.ssh/id_rsa.pub root@116.62.166.63:/root/.ssh/authorized_keys`
 * 修改ssh配置 `vi ~/.ssh/config`
 
 ```

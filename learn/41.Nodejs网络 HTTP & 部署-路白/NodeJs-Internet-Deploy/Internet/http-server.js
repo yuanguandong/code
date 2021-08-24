@@ -1,5 +1,5 @@
 const http = require('http')
-const host = '127.0.0.1';
+const host = '0.0.0.0';
 const port = 80;
 http.createServer(function (req, res) {
     res.writeHead(200, {

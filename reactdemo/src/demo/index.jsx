@@ -5,6 +5,7 @@ import CreateContext from './createcontext';
 import CreateElement from './createelement';
 import CreateFactory from './createfactory';
 import CreatePortal from './createportal';
+import Dashobard from './dashboard';
 import FindDomNode from './finddomnode';
 import FlushSync from './flushsync';
 import ForwardRef from "./forwardref";
@@ -59,7 +60,8 @@ const demos = {
   UnmountComponentAtNode,
   UseState,
   Image,
-  Zoom
+  Zoom,
+  Dashobard
 };
 
 export default demos
