@@ -1,0 +1,23 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "各种常用js、css基础知识，算法，示例demo等",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuanguandong/code.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuanguandong/code/issues"
+  },
+  "homepage": "https://github.com/yuanguandong/code#readme",
+  "devDependencies": {
+    "exec": "^0.2.1",
+    "github-download": "^0.5.0"
+  }
+}
