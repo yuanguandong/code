@@ -11,7 +11,7 @@ export default function App() {
   useEffect(() => {
     const button = buttonRef.current;
     setTimeout(() => updateCount(1), 2000);
-    setTimeout(() => button.click(), 2040);
+    setTimeout(() => button.click(), 2000);
   }, []);
   console.log('count', count)
   return (
