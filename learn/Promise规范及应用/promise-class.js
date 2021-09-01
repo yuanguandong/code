@@ -3,9 +3,11 @@ const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
 class MPromise {
-
+    // 完成的回调列表
     FULFILLED_CALLBACK_LIST = [];
+    // 拒绝的回调列表
     REJECTED_CALLBACK_LIST = [];
+    // 内部管理的状态
     _status = PENDING;
     constructor(fn) {
         // 初始状态为pending
@@ -221,10 +223,22 @@ class MPromise {
 
 const test = new MPromise((resolve, reject) => {
     setTimeout(() => {
-        reject(111);
+        resolve(111);
     }, 1000);
 }).then((value) => {
-    console.log('then');
-}).catch((reason) => {
-    console.log('catch');
+    console.log(value);
+    return 2
+}).then((value) => {
+    console.log(value);
+    return 3
 })
+
+// const test = new MPromise((resolve, reject) => {
+//     setTimeout(() => {
+//         reject(111);
+//     }, 1000);
+// }).then((value) => {
+//     console.log('then');
+// }).catch((reason) => {
+//     console.log('catch');
+// })

@@ -37,9 +37,9 @@ function mountTextNode(vnode, container) {
 
 //原生节点挂载函数
 function mountHtml(vnode, container) {
-  const { type, props } = vnode;
+  const { type, props} = vnode;
+  const {children, ...rest } = props
   const node = document.createElement(type); //创建一个真实dom
-  const { children, ...rest } = props;
   children.map((item) => {
     //子元素递归
     if (Array.isArray(item)) {
@@ -67,7 +67,7 @@ function mountFunc(vnode, container) {
   const { type, props } = vnode;
   const node = new type(props);
   const nodeInstance = mount(node, container);
-  setComponentProps( node, props );
+  // setComponentProps( node, props );
   return nodeInstance
 }
 

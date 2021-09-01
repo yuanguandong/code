@@ -8,5 +8,5 @@ export default defineConfig({
     { path: '/', component: '@/pages/index' },
   ],
   fastRefresh: {},
-  antd:false
+  antd:{}
 });

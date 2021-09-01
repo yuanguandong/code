@@ -5,7 +5,6 @@ import CreateContext from './createcontext';
 import CreateElement from './createelement';
 import CreateFactory from './createfactory';
 import CreatePortal from './createportal';
-import Dashobard from './dashboard';
 import FindDomNode from './finddomnode';
 import FlushSync from './flushsync';
 import ForwardRef from "./forwardref";
@@ -28,6 +27,7 @@ import UseImperativeHandle from './useimperativehandle';
 import UseState from './usestate';
 import UseTransition from './usetransition';
 import Zoom from './zoom';
+
 
 
 
@@ -60,8 +60,7 @@ const demos = {
   UnmountComponentAtNode,
   UseState,
   Image,
-  Zoom,
-  Dashobard
+  Zoom
 };
 
 export default demos
