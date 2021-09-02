@@ -11,8 +11,15 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>节流器</title>
   <style>
-    *{text-align:center;margin:20px;}
-    #count{font-size:100px; font-weight:bold;}
+    * {
+      text-align: center;
+      margin: 20px;
+    }
+
+    #count {
+      font-size: 100px;
+      font-weight: bold;
+    }
   </style>
 </head>
 
@@ -29,32 +36,60 @@
 </body>
 <script>
   //防抖
-  function debounce(fn, delay) {
-    let timmer = null
+  // function debounce(fn, delay) {
+  //   let timmer = null
+  //   return function () {
+  //     timmer && clearInterval(timmer)
+  //     timmer = setTimeout(() => {
+  //       fn.call(this, arguments)
+  //     }, delay)
+  //   }
+  // }
+  // //节流
+  // function throttle(fn, delay) {
+  //   let startTime = 0
+  //   return function () {
+  //     let currentTime = new Date()
+  //     if (currentTime - startTime > delay) {
+  //       fn.call(this, arguments)
+  //       startTime = currentTime
+  //     }
+  //   }
+  // }
+
+
+
+
+  const debounce = (fn, delay) => {
+    let timer;
     return function () {
-      timmer && clearInterval(timmer)
-      timmer = setTimeout(() => {
-        fn.call(this, arguments)
+      if (timer) clearTimeout(timer)
+      timer = setTimeout(function () {
+        fn.apply(this, arguments)
       }, delay)
     }
   }
-  //节流
-  function throttle(fn, delay) {
-    let startTime = 0
+
+
+  const throttle = (fn,delay)=>{
+    let startTime=0;
     return function () {
-      let currentTime = new Date()
-      if (currentTime - startTime > delay) {
-        fn.call(this, arguments)
+      let currentTime = new Date();
+      if(currentTime - startTime>delay){
+        fn.apply(this, arguments)
         startTime = currentTime
       }
     }
   }
+
+
+
   const count = document.getElementById('count')
   const debounceButton = document.getElementById('debounce')
   const throttleButton = document.getElementById('throttle')
   const add = function (params) {
     const num = Number(count.innerHTML)
-    count.innerHTML = num+1
+    count.innerHTML = num + 1
   }
   debounceButton.addEventListener('click', debounce(add, 2000));
   throttleButton.addEventListener('click', throttle(add, 2000));
