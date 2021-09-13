@@ -1,21 +1,21 @@
 const a = {
-  b:{
-    c:[1,2,3]
+  b: {
+    c: [1, 2, 3],
+  },
+};
+
+const get = (obj, path, defaultValue = undefined) => {
+  if(path.length===0){return obj}
+  if(!obj){
+    return defaultValue
   }
-}
-
-const get = (obj,path)=>{
-  path = path.replace(/\[/g,'.').replace(/\]/g,'')
-  let pathArr = path.split('.')
-  let p = 0
-  let target = obj
-  while(p<pathArr.length){
-    target = target[pathArr[p]]
-    p++
+  if (typeof path === "string") {
+    path = path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
   }
-  return target
-}
+  let p = path.shift();
+  return get(obj[p],path)
+};
 
-const res = get(a,'b.c[2]')
+const res = get(a, "b.c[3]");
 
-debugger
+console.log(res);
