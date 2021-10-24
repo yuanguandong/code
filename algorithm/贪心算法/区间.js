@@ -10,22 +10,23 @@ let arr = [
 ];
 
 const greedy = (arr) => {
-  if (arr.length ===0) {
+  if (arr.length === 0) {
     return arr;
   }
+  //
   const temp = arr.sort((a, b) => a[1] - b[1]);
 
-  let count = 1
-  let xEnd =temp[0][1]
+  let count = 1;
+  let xEnd = temp[0][1];
 
   for (let i = 0; i < temp.length; i++) {
-    const start = temp[i][0]
-    if(start>=xEnd){
+    const start = temp[i][0];
+    if (start >= xEnd) {
       count++;
-      xEnd = temp[i][1]
+      xEnd = temp[i][1];
     }
   }
-  return count
+  return count;
 };
 
-console.log(greedy(arr))
+console.log(greedy(arr));

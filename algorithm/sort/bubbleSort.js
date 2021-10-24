@@ -1,3 +1,7 @@
+// 冒泡排序
+// 时间复杂度：n^2
+// 空间复杂度：n
+
 Array.prototype.bubbleSort = function () {
   const arr = this;
   for (let i = 0; i < arr.length; i++) {
@@ -5,7 +9,7 @@ Array.prototype.bubbleSort = function () {
       if (arr[i] > arr[j]) {
         let temp = arr[i];
         arr[i] = arr[j];
-        arr[j] = temp
+        arr[j] = temp;
       }
     }
   }
@@ -13,4 +17,4 @@ Array.prototype.bubbleSort = function () {
 
 const arr = [5, 4, 3, 2, 1];
 arr.bubbleSort();
-console.log(arr)
+console.log(arr);
