@@ -164,26 +164,31 @@
 //   console.log(8) //异步：微任务
 // })
 
-// async function async1() {  //a1
-//   console.log(1);  //同步
-//   await async2();
-//   console.log(2); //异步：微任务
-// }
-// async function async2() { // a2
-//   console.log(3); //同步
-// }
-// console.log(4); //同步
-// setTimeout(function () { //s1
-//   console.log(5); //异步：宏任务
-// });
-// async1()
-// new Promise(function (resolve, reject) {//p1
-//   console.log(6); //同步
-//   resolve();
-// }).then(function () { //then1
-//   console.log(7);  //异步：微任务
-// });
-// console.log(8); //同步
+async function async1() {
+  //a1
+  console.log(1); //同步
+  await async2();
+  console.log(2); //异步：微任务
+}
+async function async2() {
+  // a2
+  console.log(3); //同步
+}
+console.log(4); //同步
+setTimeout(function () {
+  //s1
+  console.log(5); //异步：宏任务
+});
+async1();
+new Promise(function (resolve, reject) {
+  //p1
+  console.log(6); //同步
+  resolve();
+}).then(function () {
+  //then1
+  console.log(7); //异步：微任务
+});
+console.log(8); //同步
 
 async function async1() {
   // a1

@@ -21,3 +21,4 @@ Function.prototype.bind = function (context) {
     return result;
   };
 };
+
