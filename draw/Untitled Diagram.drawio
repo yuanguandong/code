@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-01-06T09:31:49.563Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="qkPJie80p7eTKtDycWjt" version="16.0.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-01-06T09:39:34.757Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="c3P0GGDXabpXrXkyGrcd" version="16.0.3" type="github">
   <diagram id="jG4ywXjW9BxnAK8ypzjH" name="Page-1">
     <mxGraphModel dx="1426" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -22,7 +22,7 @@
         <mxCell id="TPIYmrkFrA7MiEZi0E7S-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="500" y="220" width="240" height="450" as="geometry" />
         </mxCell>
-        <mxCell id="TPIYmrkFrA7MiEZi0E7S-7" value="iBOM" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="TPIYmrkFrA7MiEZi0E7S-7" value="Jili BOM" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="560" y="280" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="TPIYmrkFrA7MiEZi0E7S-8" value="iForm" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -78,6 +78,9 @@
         </mxCell>
         <mxCell id="TPIYmrkFrA7MiEZi0E7S-24" value="……" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="590" y="584.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-1VPFxIjj0T5i-EiuYzb-2" value="如果不需要定制，项目上就直接拉产品仓库代码，如果有定制，那么就要copy一份到项目仓库，同步" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="140" y="710" width="570" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
