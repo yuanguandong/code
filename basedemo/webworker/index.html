@@ -23,14 +23,21 @@
 
     // 监听worker线程返回的结果，event 参数中有 data 属性，就是子线程中返回的结果数据
     window.worker.onmessage = function (event) {
+      console.log('event',event)
+      const {type,res} = event.data
       // 把子线程返回的结果添加到 div 上
-      document.getElementById("result").innerHTML += event.data + "<br/>";
+      document.getElementById("result").innerHTML += res + "<br/>";
     };
   }
 
   function sendTo() {
     // 向worker线程传递消息
-    window.worker.postMessage('Hello Worker')
+    window.worker.postMessage({
+      type: 'getFound',
+      payload: {
+        id: 1
+      }
+    })
   }
   // 主线程的任务
   function fn() {

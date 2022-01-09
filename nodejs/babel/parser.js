@@ -7,6 +7,6 @@ const options = {
 const parsedAst = babel.parse(code);
 console.log(parsedAst);
 
-import { parse } from '@babel/parser';
-const ast = parse(code);
+const  parser  = require('@babel/parser');
+const ast = parser.parse(code);
 console.log(ast);

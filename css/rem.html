@@ -7,14 +7,17 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-    :root{
-      font-size:13.3333vw;
+    :root {
+      --base-font-size: 0.13vw;
+      font-size: var(--base-font-size);
     }
-    .btn{
-      font-size:0.26rem;
+
+    .btn {
+      font-size: 26rem;
     }
-    .btn1{
-      font-size:26px;
+
+    .btn1 {
+      font-size: 26px;
     }
   </style>
 </head>
@@ -26,7 +29,10 @@
   </div>
 
   <script type="text/javascript">
-   
+    // window.addEventListener('resize', function (e) {
+    //   const width = e.target.screen.width
+    //   document.documentElement.style.setProperty('--base-font-size', 100/width + "vw")
+    // })
   </script>
 </body>
 
