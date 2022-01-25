@@ -33,27 +33,25 @@ class Child extends React.Component {
       count: 10,
     };
   }
-  // getDefaultProps() { //私有
+  // getDefaultProps() {
+  //   //私有
   //   console.log("getDefaultProps", arguments);
   // }
-  getInitialState() { //私有
+  getInitialState() {
+    //私有
     console.log("getInitialState", arguments);
   }
 
-
-
-
-
-  componentWillMount() {//废弃
+  componentWillMount() {
+    //废弃
     console.log("componentWillMount", arguments);
   }
   componentDidMount() {
     console.log("componentDidMount", arguments);
   }
 
-
-
-  componentWillReceiveProps(nextProps) {//废弃
+  componentWillReceiveProps(nextProps) {
+    //废弃
     if (nextProps.count !== this.state.count) {
       this.setState({
         count: nextProps.count,
@@ -61,46 +59,39 @@ class Child extends React.Component {
     }
     console.log("componentWillReceiveProps", arguments);
   }
-  static getDerivedStateFromProps(props, state){ //新增
+  static getDerivedStateFromProps(props, state) {
+    //新增
     console.log("getDerivedStateFromProps", arguments);
-    return props
+    return props;
   }
-  
+
   shouldComponentUpdate(nextProps, nextState) {
     console.log("shouldComponentUpdate", arguments);
-    return true
+    return true;
     return nextState.count !== this.state.count;
   }
-  componentWillUpdate(){//废弃
+  componentWillUpdate() {
+    //废弃
     console.log("componentWillUpdate", arguments);
   }
-  getSnapshotBeforeUpdate(prevProps, prevState){ //新增
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    //新增
     console.log("getSnapshotBeforeUpdate", arguments);
-    return true
+    return true;
   }
-  componentDidUpdate(perProps, perState, snapShot){
+  componentDidUpdate(perProps, perState, snapShot) {
     console.log("componentDidUpdate", snapShot);
   }
 
-
-
-
-
-  componentWillUnmount(){
+  componentWillUnmount() {
     console.log("componentWillUnmount", arguments);
   }
 
-
-
-
-  
   handerClick = () => {
     this.setState((state) => ({
       count: state.count++,
     }));
   };
-
-
 
   render() {
     console.log("render");

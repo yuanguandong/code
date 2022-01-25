@@ -1,4 +1,4 @@
-// 微吼
+
 $("#vhall-saas-watchbox").css({
   width: "100vw",
   height: "100vh",
@@ -6,29 +6,15 @@ $("#vhall-saas-watchbox").css({
   top: 0,
   left: 0,
 });
-//官网
-$(".prism-player").css({
-  width: "100vw",
-  height: "100vh",
-  position: "fixed",
-  top: 0,
-  left: 0,
-});
 
-width: 100vw;
-height: 100vh;
-position: fixed;
-top: 0;
-left: 0;
-
-
-width: 100vw;
-height: 100vh;
-position: fixed;
-top: 0;
-left: 0;
-z-index: 99999;
-transform: translateZ(10000px);
+const player = $(".prism-player")
+player.style.width = "100vw"
+player.style.height = "100vh"
+player.style.position = "fixed"
+player.style.top = 0
+player.style.left = 0
+player.style.zIndex = 999999
+player.style.transform = 'translateZ(10000px)'
 
 
 
@@ -68,3 +54,23 @@ fetchTimeout(
 ).then((res, rej) => {
   console.log(res, rej);
 });
+
+constructor
+getInitialState  
+getDefaultProps  //私有
+
+componentWillMount  //废弃
+getDevideStateFromProps //新增
+componentDidMount
+render
+
+componentWillReceiveProps //废弃
+getDevideStateFromProps //新增
+shouldComponentUpdate
+
+componentWillUpdate   //废弃
+render
+getSnapshotBeforeUpdate //新增
+componentDidUpdate
+
+componentWillUnmount
