@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-export default function lazy(loadComponent) {
+const  Lazy=(loadComponent) =>{
   const [Component, setComponent] = useState(() => Fallback);
-  const Fallback = () => <h1></h1>;
+  const Fallback = () => <h1>loading……</h1>;
 
   useEffect(() => {
     loadComponent().then((res) => {
@@ -12,3 +12,5 @@ export default function lazy(loadComponent) {
 
   return <Component />;
 }
+
+export default  Lazy

@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-
+import lazy from './hook'
 import Test from "./Test";
 const LazyComponent = React.lazy(
   () =>
@@ -10,8 +10,10 @@ const LazyComponent = React.lazy(
         });
       }, 2000);
     })
+    // import('./Test')
 );
 
+// const LazyComponent2 = lazy(()=>import('./Test.jsx'))
 
 export default class index extends React.Component {
   render() {
@@ -19,6 +21,7 @@ export default class index extends React.Component {
       <div className="context_box" style={{ marginTop: "50px" }}>
         <React.Suspense fallback={<div className="icon">loading</div>}>
           <LazyComponent />
+          {/* <LazyComponent2/> */}
         </React.Suspense>
       </div>
     );

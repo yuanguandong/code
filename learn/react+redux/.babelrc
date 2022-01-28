@@ -13,3 +13,18 @@
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
   ]
 }
+
+
+// {
+//   "presets": [
+//     [
+//       "@babel/preset-env",
+//       {
+//         "targets": {
+//           "chrome": "68"
+//         }
+//       }
+//     ],
+//     "@babel/preset-react"
+//   ]
+// }
