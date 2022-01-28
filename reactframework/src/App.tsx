@@ -4,7 +4,7 @@ import Home from './pages/home';
 import './global.less';
 
 const App = (props) => {
-  const a = 1;
+  const a = ;
   return (
     <>
       <h1 className="title">MY APP</h1>
