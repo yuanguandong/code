@@ -11,6 +11,7 @@ const schema = {
 };
 
 module.exports = function loader(source) {
+  console.log('source',source)
   const options = getOptions(this);
   validate(schema, options, {
     name: 'px2vw Loader',

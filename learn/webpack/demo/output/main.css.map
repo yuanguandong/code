@@ -1,0 +1,1 @@
+{"version":3,"file":"main.css","mappings":";;;AAAA;AACA;AACA;;;;ACFA;AACA;AACA","sources":["webpack://webpack/./src/style.css","webpack://webpack/./src/style.mobile"],"sourcesContent":["#app {\r\n  color: blue;\r\n}","#app {\r\n  font-size: 5.333333333333334vw;\r\n}"],"names":[],"sourceRoot":""}

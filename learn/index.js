@@ -74,3 +74,5 @@ getSnapshotBeforeUpdate //新增
 componentDidUpdate
 
 componentWillUnmount
+
+

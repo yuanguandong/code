@@ -1,3 +1,8 @@
-import text from './example/test'
-console.log(this === window);
-text()
+// import text from './example/test'
+// console.log(this === window);
+// text()
+
+
+if(false){
+	const a = 1
+}

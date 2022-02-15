@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TemplatedPathPlugin = require("./my-plugin.js");
 const AutoTryCatch = require("./try-catch-plugin");
+const mobileLoader = require('./mobile-css-loader')
 
 module.exports = {
   mode: "development",

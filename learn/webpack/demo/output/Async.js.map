@@ -1,0 +1,1 @@
+{"version":3,"file":"Async.js","mappings":";;;;;;;;;;;;;;AAAA;;AAEA;AAEA;AAKA;;AAEA","sources":["webpack://webpack/./src/Async.js"],"sourcesContent":["import React from 'react';\r\n\r\nfunction Async() {\r\n  \r\n  return (\r\n    <div>\r\n      Async\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default Async"],"names":[],"sourceRoot":""}
