@@ -1,0 +1,213 @@
+section#sidebar {
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+}
+
+section#sidebar:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: calc(100% + 50px);
+  top: 0;
+  left: 0;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+section#sidebar header {
+  z-index: 1;
+  color: white;
+  position: relative;
+  margin: 0;
+  background: transparent;
+  color: #fff !important;
+
+}
+
+section#sidebar header div {
+  color: #fff !important;
+}
+
+section#sidebar header h1 {
+  color: #fff !important;
+}
+
+section#sidebar header a {
+  color: #fff !important;
+}
+
+section#sidebar header input {
+  color: #fff !important;
+}
+
+section#sidebar>header>a::before {
+  background-color: #fff;
+}
+
+section#sidebar>div.scrollBox>ul a.dir>span.icon::before {
+  background: #fff;
+}
+
+section#sidebar #bookmarkBox {
+  z-index: 1;
+  color: white;
+  position: relative;
+}
+
+section#sidebar #bookmarkBox ul {
+  color: white;
+}
+
+section#sidebar #bookmarkBox ul li {
+  overflow: hidden;
+  border-radius: 5px;
+  color: white;
+}
+
+/* 页面 */
+menu.infoBar>a.save {
+  color: #000;
+}
+
+menu.infoBar>div.upload>a.remove::before {
+  background-color: #000;
+}
+
+menu.infoBar>div.upload>div>span {
+  color: #000;
+}
+
+menu.infoBar>div.upload>div>span::before {
+  background-color: #000;
+}
+
+div.editLinkTooltip {
+  position: absolute;
+  text-align: left;
+  background: #fff;
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.1));
+  padding: 10px;
+  bottom: -200px;
+  right: -10px;
+  height: 180px;
+  width: 250px;
+  border-radius: 3px;
+  z-index: 9;
+  color: #000;
+}
+
+div.editLinkTooltip input {
+  color: #000;
+}
+
+div.editLinkTooltip>button[type='submit'] {
+  color: #000;
+}
+
+body.customBackground div#fallbackInfo {
+  display: none;
+}
+
+body.edit form#search.hidden {
+  display: none;
+}
+
+div.contextmenu {
+  background: #202020 !important;
+}
+
+div.contextmenu>ul.icons {
+  background: #202020;
+}
+
+section#sidebar>header>div.searchBox>input[type='text'] {
+  color: #fff;
+}
+
+div.modal {
+  background: #000;
+}
+
+body.customBackground section#content>nav>ul>li>a {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+menu.infoBar>a.cancel {
+  color: #000;
+}
+
+body.customBackground div#gridLinks>ul>li>a>div {
+  background: rgba(255, 255, 255, 0);
+  /* backdrop-filter: blur(3px); */
+}
+
+div#gridLinks>ul>li>a>div {
+  box-shadow: none!important;
+  border: none;
+}
+
+body.customBackground div#gridLinks>ul>li>a:hover {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
+}
+
+body.customBackground>a.edit {
+  background: rgba(242,242,242,0.1);
+}
+
+div#gridLinks>ul{
+  backdrop-filter: blur(6px);
+  box-shadow: 5px 5px 30px rgb(0 0 0 / 20%);
+  padding: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+#gridLinks{
+  position: relative;
+}
+#gridLinks:before{
+  content: '';
+  width: 300px;
+  height: 80px;
+  position: absolute;
+  background-image: url(https://github.com/yuanguandong/resources/blob/master/favori/favori-logo.png?raw=true);
+  z-index: 1000;
+  top: -80px;
+  /* right: 0; */
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  /* 右上角 */
+  /* content: '';
+  width: 150px;
+  height: 30px;
+  position: fixed;
+  background-image: url(https://github.com/yuanguandong/resources/blob/master/favori/favori-logo.png?raw=true);
+  z-index: 1000;
+  top: 10px;
+  right: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; */
+
+}
+div#gridLinks>ul>li{
+  padding:0
+}
+/* .mid:after{
+  content: '';
+  width: 150px;
+  height: 100px;
+  position: absolute;
+  background-image: url(https://www.favori.cn/static/557e406a05c2dadad4cdbc5d70984d7e/99fbb/hero.webp);
+  z-index: 1000;
+  top: 10px;
+  right: 10px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius:5px;
+} */
