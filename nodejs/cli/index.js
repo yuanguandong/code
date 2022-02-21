@@ -1,13 +1,13 @@
+const { resolve } = require("path");
+const fs = require("fs");
+const { promisify } = require("util");
+const chalk = require("chalk");
 const inquirer = require("inquirer");
 const figlet = require("figlet");
 const clear = require("clear");
 const ora = require("ora");
-const { promisify } = require("util");
 const download = promisify(require("git-pull-or-clone"));
-const { resolve } = require("path");
-const fs = require("fs");
 const { spawn, log } = require("./utils");
-const chalk = require("chalk");
 
 //仓库地址
 const repo = "git@github.com:yuanguandong/react-keyevent.git";

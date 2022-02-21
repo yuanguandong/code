@@ -1,5 +1,5 @@
 const chalk = require("chalk");
-const { spawn:_spawn } = require("child_process");
+const { spawn: _spawn } = require("child_process");
 
 const spawn = async (...args) => {
   return new Promise((resolve) => {

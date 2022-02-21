@@ -1,5 +1,5 @@
 {
-  "name": "smart-background",
+  "name": "widgets-cli",
   "version": "0.0.01",
   "description": "init",
   "main": "src/index.js",
