@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "widgets-cli": "^1.0.3"
+    "widgets-cli": "^1.0.4"
   }
 }

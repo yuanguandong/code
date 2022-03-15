@@ -1,10 +1,10 @@
 lockfileVersion: 5.3
 
 specifiers:
-  widgets-cli: ^1.0.3
+  widgets-cli: ^1.0.4
 
 devDependencies:
-  widgets-cli: 1.0.3
+  widgets-cli: 1.0.4
 
 packages:
 
@@ -583,8 +583,8 @@ packages:
       isexe: 2.0.0
     dev: true
 
-  /widgets-cli/1.0.3:
-    resolution: {integrity: sha512-bL8Ci6cxjGnDyMR8ODoB9mXr2b4TMqcuQSwcgHxDiF4j6cqbHI+D4uHgTda/f0W6vamw29UItKff15bSVAr06Q==}
+  /widgets-cli/1.0.4:
+    resolution: {integrity: sha512-o1cE5j/SDt8NdTfFlW/fNBc8w0RN/c7p0eYMe1VPWRc6/Rjbluc4qTsn/wBS/T9z4V4z1XtpQwBpjZD2BWzs7A==}
     hasBin: true
     dependencies:
       chalk: 3.0.0
