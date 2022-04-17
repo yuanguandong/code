@@ -1,4 +1,4 @@
 const domScript = document.createElement("script");
-domScript.src = 'dynamic.js';
+domScript.src = './dynamic.js';
 
 document.body.append(domScript);
