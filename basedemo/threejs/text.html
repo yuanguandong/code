@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Line</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./global.css">
+  <link rel="stylesheet" href="components/menu/index.css">
+  <script src="components/menu/index.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.140.2/build/three.module.js",
+        "orbitControls": "https://unpkg.com/three@0.140.2/examples/jsm/controls/OrbitControls.js"
+      }
+    }
+  </script>
+  <style>
+    #info {
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      text-align: center;
+      z-index: 100;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="info">Description</div>
+</body>
+
+<script type="module">
+  import * as THREE from 'three';
+  import { OrbitControls } from 'orbitControls';
+
+  //创建场景
+  const scene = new THREE.Scene();
+  //创建相机
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  //创建渲染器
+  const renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  const geometry = new THREE.BoxGeometry();
+  const material = new THREE.MeshBasicMaterial({
+    color: 0xffff00
+  });
+  // const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  camera.position.z = 5;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+
+</script>
+
+
+</html>

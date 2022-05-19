@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Line</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./global.css">
+  <link rel="stylesheet" href="components/menu/index.css">
+  <script src="components/menu/index.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.140.2/build/three.module.js",
+        "orbitControls": "https://unpkg.com/three@0.140.2/examples/jsm/controls/OrbitControls.js"
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+
+</body>
+
+<script type="module">
+  import * as THREE from 'three';
+  import { OrbitControls } from 'orbitControls';
+
+  //创建渲染器
+  const renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  //创建相机
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
+  camera.position.set(0, 0, 100);
+  camera.lookAt(0, 0, 0);
+  
+  //创建场景
+  const scene = new THREE.Scene();
+
+  //材质 线基本物料
+  const material = new THREE.LineBasicMaterial({
+    color: 0x0000ff
+  });
+
+  //点坐标
+  const points = [];
+  points.push(new THREE.Vector3(-10, 0, 0));
+  points.push(new THREE.Vector3(0, 10, 0));
+  points.push(new THREE.Vector3(10, 0, 0));
+
+  //生成几何图形
+  const geometry = new THREE.BufferGeometry().setFromPoints(points);
+
+  //创建实例（给几何图赋予材质）
+  const line = new THREE.Line(geometry, material);
+
+  //把实例放入场景
+  scene.add(line);
+  
+  //基于相机渲染
+  renderer.render(scene, camera);
+</script>
+
+</html>

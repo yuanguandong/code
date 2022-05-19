@@ -1,0 +1,11 @@
+.menu-list {
+  position: fixed;
+  top: 0;
+  left: 0;
+  
+}
+
+.menu-item {
+  margin:0 10px;
+  color: #fff;
+}
