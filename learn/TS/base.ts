@@ -119,18 +119,31 @@ type T1 = Extract<"a" | "b" | "c", "a" | "f">; // "a"
 
 type T2 = Extract<string | number | (() => void), Function>; //function
 
+//Pick 选取数据类型
+interface Test {
+  name: string;
+  sex: number;
+  height: string;
+}
+
+type Sex = Pick<Test, "sex">; // number
+
+const a: Sex = { sex: 1 }; 
 
 
+//Omit 去掉某个数据类型
 
+type WithoutSex = Omit<Test, 'sex'>;
 
+const b: WithoutSex = {
+  sex:1,
+  name:'1',
+  height:'2'
+}
 
+interface Test11 <T> {
+  userId: T;
+}
 
-
-
-
-
-
-
-
-
+type TestA = Test11<number>;
 
