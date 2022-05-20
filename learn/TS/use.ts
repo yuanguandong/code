@@ -39,9 +39,12 @@ export function EnableCache(target: any, name: string, desciptor) {
   desciptor.value = async function (...args: any) {
     const cacheKey = name + JSON.stringify(args);
     if (!cacheMap.get(cacheKey)) {
-      const cacheValue = Promise.resolve(val.apply(this, args));
+      const cacheValue = Promise.resolve(val.apply(this, args)).cache((_) => {
+        cacheMap.set(cacheKey, null);
+      });
       cacheMap.set(cacheKey, null);
+      cacheMap.set(cacheKey, cacheValue);
     }
-    cacheMap.set(cacheKey, cacheValue);
+    return cacheMap.get(cacheKey);
   };
 }

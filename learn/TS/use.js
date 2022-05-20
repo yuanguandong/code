@@ -96,11 +96,13 @@ function EnableCache(target, name, desciptor) {
             return __generator(this, function (_a) {
                 cacheKey = name + JSON.stringify(args);
                 if (!cacheMap.get(cacheKey)) {
-                    cacheValue = Promise.resolve(val.apply(this, args));
+                    cacheValue = Promise.resolve(val.apply(this, args)).cache(function (_) {
+                        cacheMap.set(cacheKey, null);
+                    });
                     cacheMap.set(cacheKey, null);
+                    cacheMap.set(cacheKey, cacheValue);
                 }
-                cacheMap.set(cacheKey, cacheValue);
-                return [2 /*return*/];
+                return [2 /*return*/, cacheMap.get(cacheKey)];
             });
         });
     };
