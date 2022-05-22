@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100vh;
+    font-family: 'Poppins';
+    background: #fff;
+}
+
+.webgl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+.main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    opacity: 0;
+    transition: all 2s;
+
+}
+
+.box {
+    max-width: 300px;
+}
+
+.left {
+    flex: 1;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.right {
+    flex: 1;
+}
+
+.title {
+    font-size: 5vw;
+    font-weight: bold;
+}
+
+p {
+    color: rgba(0, 0, 0, 0.65)
+}
