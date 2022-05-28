@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100vh;
+    font-family: 'Poppins';
+    background-image: linear-gradient(to top, #2D2C42 0%, #000 100%);
+}
+
+.webgl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+.mymain {
+    width: 100%;
+    height: 300vh;
+    display: flex;
+    /* opacity: 0; */
+    transition: all 2s;
+    color:#fff;
+    z-index:1;
+}
+
+.box {
+    max-width: 300px;
+}
+
+.left {
+    flex: 1;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right {
+    flex: 1;
+}
+
+/* .title {
+    font-size: 5vw;
+    font-weight: bold;
+} */
+
+p {
+    
+}

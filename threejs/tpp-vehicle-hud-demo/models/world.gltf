@@ -1,0 +1,280 @@
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "THREE.GLTFExporter",
+    "name": "demo"
+  },
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [4]
+    }
+  ],
+  "scene": 0,
+  "nodes": [
+    {
+      "matrix": [
+        -0.46946997448907607,
+        8.472929314416041e-8,
+        -0.8829488325845565,
+        0,
+        0.49373880789889735,
+        0.829037448950686,
+        -0.26252424461143054,
+        0,
+        0.7319975818067563,
+        -0.5591933210960633,
+        -0.3892082086240577,
+        0,
+        0,
+        10,
+        56.676815032958984,
+        1
+      ],
+      "name": "sun",
+      "extras": {
+        "name": "sun",
+        "data": "light"
+      }
+    },
+    {
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0.11279357224702835,
+        0.100398413543466,
+        0.133900996405394,
+        1
+      ],
+      "name": "player",
+      "extras": {
+        "name": "player",
+        "data": "spawn",
+        "type": "player"
+      }
+    },
+    {
+      "matrix": [
+        -0.769022054684803,
+        0,
+        0.6392223047303531,
+        0,
+        0,
+        1,
+        0,
+        0,
+        -0.6392223047303531,
+        0,
+        -0.769022054684803,
+        0,
+        -58.36204528808594,
+        -34.26008619002417,
+        53.77983252743322,
+        1
+      ],
+      "name": "car",
+      "extras": {
+        "name": "car",
+        "data": "spawn",
+        "type": "car"
+      }
+    },
+    {
+      "matrix": [
+        50,
+        0,
+        0,
+        0,
+        0,
+        0.3,
+        0,
+        0,
+        0,
+        0,
+        50,
+        0,
+        0,
+        -0.35,
+        0,
+        1
+      ],
+      "name": "ground",
+      "extras": {
+        "name": "ground",
+        "data": "physics",
+        "type": "box"
+      },
+      "mesh": 0
+    },
+    {
+      "name": "world",
+      "extras": {
+        "name": "world",
+        "data": "world",
+        "atmosphere_settings": {
+          "enabled": 1,
+          "elevation": 7.2605695724487305,
+          "azimuth": 19.93166160583496
+        },
+        "NWBusyDrawing": "",
+        "NWLazySource": "Image Texture.002",
+        "NWLazyTarget": "Image Texture.001",
+        "blender_osm": {
+          "defaultLevels": [
+            {
+              "levels": 4,
+              "weight": 10
+            },
+            {
+              "levels": 5,
+              "weight": 40
+            },
+            {
+              "levels": 6,
+              "weight": 10
+            }
+          ]
+        },
+        "glTF2ExportSettings": {
+          "export_apply": 1,
+          "export_extras": 1
+        }
+      },
+      "children": [0, 1, 2, 3]
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 288,
+      "target": 34962,
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 288,
+      "byteLength": 288,
+      "target": 34962,
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 576,
+      "byteLength": 192,
+      "target": 34962,
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 768,
+      "byteLength": 72,
+      "target": 34963
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 840,
+      "uri": "data:application/octet-stream;base64,AACAvwAAgL8AAIA/AACAvwAAgL8AAIA/AACAvwAAgL8AAIA/AACAvwAAgD8AAIA/AACAvwAAgD8AAIA/AACAvwAAgD8AAIA/AACAvwAAgL8AAIC/AACAvwAAgL8AAIC/AACAvwAAgL8AAIC/AACAvwAAgD8AAIC/AACAvwAAgD8AAIC/AACAvwAAgD8AAIC/AACAPwAAgL8AAIA/AACAPwAAgL8AAIA/AACAPwAAgL8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgL8AAIC/AACAPwAAgL8AAIC/AACAPwAAgL8AAIC/AACAPwAAgD8AAIC/AACAPwAAgD8AAIC/AACAPwAAgD8AAIC/AACAvwAAAAAAAAAAAAAAAAAAgL8AAACAAAAAAAAAAAAAAIA/AACAvwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAACAvwAAAAAAAAAAAAAAAAAAgL8AAACAAAAAAAAAAAAAAIC/AACAvwAAAAAAAAAAAAAAAAAAAAAAAIC/AAAAAAAAgD8AAAAAAAAAAAAAgL8AAACAAAAAAAAAAAAAAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAgL8AAACAAAAAAAAAAAAAAIC/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIC/AAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAADAPgAAgD8AAAA+AACAPgAAwD4AAAAAAAAgPwAAgD8AACA/AAAAAAAAYD8AAIA+AADAPgAAQD8AAAA+AAAAPwAAwD4AAEA/AAAgPwAAQD8AACA/AABAPwAAYD8AAAA/AADAPgAAgD4AAMA+AACAPgAAwD4AAIA+AAAgPwAAgD4AACA/AACAPgAAID8AAIA+AADAPgAAAD8AAMA+AAAAPwAAwD4AAAA/AAAgPwAAAD8AACA/AAAAPwAAID8AAAA/AAADAAkAAAAJAAYACAAKABUACAAVABMAFAAXABEAFAARAA4ADQAPAAQADQAEAAIABwASAAwABwAMAAEAFgALAAUAFgAFABAA"
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 24,
+      "max": [
+        1,
+        1,
+        1
+      ],
+      "min": [
+        -1,
+        -1,
+        -1
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 24,
+      "max": [
+        1,
+        1,
+        1
+      ],
+      "min": [
+        -1,
+        -1,
+        -1
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 24,
+      "max": [
+        0.875,
+        1
+      ],
+      "min": [
+        0.125,
+        0
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5123,
+      "count": 36,
+      "max": [
+        23
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "metallicFactor": 1,
+        "roughnessFactor": 1
+      },
+      "emissiveFactor": [
+        0.6705882352941176,
+        0.16862745098039217,
+        0.16862745098039217
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "mode": 4,
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0
+        }
+      ]
+    }
+  ]
+}
