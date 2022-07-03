@@ -75,3 +75,87 @@ export class RouterHelper {
 
 RouterHelper.replace(RoutePath.About, { testName: '1' });
 RouterHelper.replace(RoutePath.Index, { name: '11', testName: '1' });
+
+const a = {
+  effect: {
+    b: function () {},
+    c: function () {},
+  },
+  reducer: {
+    save: function* () {},
+  },
+};
+
+type actions = typeof a.effect & typeof a.reducer;
+
+// interface Props extends actions {}
+interface Props {
+  [K in actions]: a.effect[K];
+}
+
+const A = function (props: Props) {
+  const { save, b, c } = props;
+};
+
+interface AA {
+  a: string;
+  b: string;
+  c?: string;
+}
+// 使属性变为可选
+type PartialByKeys<T, K extends keyof T> = {
+  [P in K]?: T[P];
+} & Pick<T, Exclude<keyof T, K>>;
+
+type A = PartialByKeys<AA, 'a'>;
+
+const some: A = {
+  // a:'1',
+  b: '1',
+};
+
+// 使属性变为必填
+type RequireByKeys<T, K extends keyof T> = {
+  [P in K]-?: T[P];
+} & Omit<T, K>;
+
+type RequiredByKeys<T, Keys extends keyof T = keyof T> = Omit<T, Keys> & {
+  [P in Keys]-?: T[P];
+};
+
+type RequireC = RequireByKeys<AA, 'c'>;
+const someB: RequireC = {
+  a: '1',
+  b: '1',
+  // c:'1'
+};
+
+type Simplify<T> = {
+  [P in keyof T]: T[P];
+};
+
+type User = {
+  id: number;
+  name: string;
+  age: number;
+};
+
+const B: Simplify<User> = {};
+
+interface Vector1D {
+  x: number;
+}
+
+interface Vector2D {
+  x: number;
+  y: number;
+}
+
+type SubtypeOf<T,U> = T extends U ? true : false
+
+enum YY {
+  A = 'a',
+  B = 'b'
+}
+
+type K = keyof typeof YY
