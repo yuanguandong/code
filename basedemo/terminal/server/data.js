@@ -1,8 +1,8 @@
-const express = require("express");
+module.exports = `const express = require("express");
 const expressWs = require("express-ws");
 const pty = require("node-pty");
 const os = require("os");
-const example = require('./data')
+
 const app = express();
 const port = 4000;
 
@@ -20,7 +20,6 @@ const term = pty.spawn(shell, ["--login"], {
 
 // 暴露socket
 app.ws("/socket", (ws, req) => {
-  term.write(example);
   // 编码转换
   term.onData(function (data) {
     ws.send(data);
@@ -35,5 +34,6 @@ app.ws("/socket", (ws, req) => {
 });
 
 app.listen(port, "127.0.0.1", () => {
-  console.log(`Example app listening on port ${port}`);
+
 });
+`
