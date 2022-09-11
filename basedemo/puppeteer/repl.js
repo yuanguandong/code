@@ -1,5 +1,3 @@
-
-
 const puppeteer = require('puppeteer-extra');
 const repl = require('puppeteer-extra-plugin-repl')();
 
@@ -30,7 +28,5 @@ async function showREPL() {
   //在browser对象上开启交互的REPL，这样可以实时看到page上提供的方法执行结果
 
   await browser.close();
-
-
 }
 showREPL();

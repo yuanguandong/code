@@ -7,7 +7,6 @@ const waitTillHTMLRendered = async (page, timeout = 10000) => {
   let checkCounts = 1;
   let countStableSizeIterations = 0;
   const minStableSizeIterations = 3;
-
   while (checkCounts++ <= maxChecks) {
     let html = await page.content();
     let currentHTMLSize = html.length;
@@ -24,7 +23,6 @@ const waitTillHTMLRendered = async (page, timeout = 10000) => {
       break;
     }
     lastHTMLSize = currentHTMLSize;
-
     await page.waitForTimeout(checkDurationMsecs);
   }
 };

@@ -42,13 +42,14 @@ const proxyUrl = async () => {
 
 // 自动填表单
 const fillForm = async () => {
-  // const browser = await puppeteer.launch();
-  const browser = await puppeteer.launch({
-    headless: false,
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    args: ['--start-maximized']
-    //launch这里将浏览器设置为非无头模式，且这里设置启动本机安装的chrome，如果这里不设置，还需要下载chromium，这里请设置你自己本机的chrome浏览器
-  });
+  const browser = await puppeteer.launch();
+  // 调试可见
+  // const browser = await puppeteer.launch({
+  //   headless: false,
+  //   executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  //   args: ['--start-maximized']
+  //   //launch这里将浏览器设置为非无头模式，且这里设置启动本机安装的chrome，如果这里不设置，还需要下载chromium，这里请设置你自己本机的chrome浏览器
+  // });
   const page = await browser.newPage();
   // 地址栏输入网页地址
   await page.goto('https://baidu.com/', {
