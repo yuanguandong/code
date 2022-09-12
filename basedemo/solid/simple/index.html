@@ -1,0 +1,32 @@
+<html>
+  <body>
+    <script type="module">
+      import {
+        createSignal,
+        onCleanup
+      } from "https://cdn.skypack.dev/solid-js";
+      import { render } from "https://cdn.skypack.dev/solid-js/web";
+      import html from "https://cdn.skypack.dev/solid-js/html";
+      import confetti from "https://cdn.skypack.dev/canvas-confetti";
+      import moment from "https://cdn.skypack.dev/moment";
+
+      const App = () => {
+        const [count, setCount] = createSignal(0);
+
+        const timer = setInterval(() => setCount(count() + 1), 1000);
+
+        const handleAdd = (params) => {
+          setCount((count) => count + params);
+          confetti();
+          console.log(moment().format());
+        };
+
+        onCleanup(() => clearInterval(timer));
+
+        return html`<div>${count}</div>
+          <button onClick=${[handleAdd, 2]}>ADD</button>`;
+      };
+      render(App, document.body);
+    </script>
+  </body>
+</html>
