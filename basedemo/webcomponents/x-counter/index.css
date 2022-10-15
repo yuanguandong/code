@@ -1,0 +1,12 @@
+.wrap{
+  padding:100px;
+  background:blue;
+  color:#fff;
+  text-align:center;
+  border-radius:20px;
+}
+.counter{
+  font-size:100px;
+  font-weight:bold;
+  
+}

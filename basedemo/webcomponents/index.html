@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Component</title>
+  <script src="./x-counter/index.js"></script>
+</head>
+
+<body>
+  <div id="list">
+    <x-counter initialValue=10></x-counter>
+    <div class="counter">同样的class,样式被隔离</div>
+  </div>
+</body>
+
+<script>
+  setTimeout(function () {
+    console.log('window.counter', window.counter);
+  }, 2000)
+
+</script>
+
+</html>
