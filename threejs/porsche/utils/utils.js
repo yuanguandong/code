@@ -32,12 +32,7 @@ export const initResize = ({ camera, renderer }) => {
 
 // 初始化相机
 export const initCamera = ({ scene }) => {
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    sizes.width / sizes.height,
-    0.1,
-    100
-  );
+  const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
   camera.position.x = 0;
   camera.position.y = 0;
   camera.position.z = 1;
