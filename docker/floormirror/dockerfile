@@ -1,0 +1,4 @@
+FROM test:v3
+LABEL maintainer="favori"
+
+COPY file.txt .
