@@ -1,4 +1,3 @@
-
 $("#vhall-saas-watchbox").css({
   width: "100vw",
   height: "100vh",
@@ -7,16 +6,15 @@ $("#vhall-saas-watchbox").css({
   left: 0,
 });
 
-const player = $(".prism-player")
-player.style.width = "100vw"
-player.style.height = "100vh"
-player.style.position = "fixed"
-player.style.top = 0
-player.style.left = 0
-player.style.zIndex = 999999
-player.style.transform = 'translateZ(10000px)'
-
-
+const target = ".rounded-3xl";
+const player = $(target);
+player.style.width = "100vw";
+player.style.height = "100vh";
+player.style.position = "fixed";
+player.style.top = 0;
+player.style.left = 0;
+player.style.zIndex = 999999;
+player.style.transform = "translateZ(10000px)";
 
 // // 不支持直接设置超时, 可以用promise
 // function fetchTimeout(url, init, timeout = 3000) {
@@ -36,7 +34,7 @@ const fetchA = () => {
 
 function fetchTimeout(url, init, timeout = 3000) {
   const res = fetchA(url, init);
-  
+
   setTimeout(() => {
     return;
   }, timeout);
@@ -55,24 +53,22 @@ fetchTimeout(
   console.log(res, rej);
 });
 
-constructor
-getInitialState  
-getDefaultProps  //私有
+constructor;
+getInitialState;
+getDefaultProps; //私有
 
-componentWillMount  //废弃
-getDevideStateFromProps //新增
-componentDidMount
-render
+componentWillMount; //废弃
+getDevideStateFromProps; //新增
+componentDidMount;
+render;
 
-componentWillReceiveProps //废弃
-getDevideStateFromProps //新增
-shouldComponentUpdate
+componentWillReceiveProps; //废弃
+getDevideStateFromProps; //新增
+shouldComponentUpdate;
 
-componentWillUpdate   //废弃
-render
-getSnapshotBeforeUpdate //新增
-componentDidUpdate
+componentWillUpdate; //废弃
+render;
+getSnapshotBeforeUpdate; //新增
+componentDidUpdate;
 
-componentWillUnmount
-
-
+componentWillUnmount;
