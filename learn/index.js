@@ -15,7 +15,7 @@ player.style.top = 0;
 player.style.left = 0;
 player.style.zIndex = 999999;
 player.style.transform = "translateZ(10000px)";
-
+player.style.borderRadius = "0";
 // // 不支持直接设置超时, 可以用promise
 // function fetchTimeout(url, init, timeout = 3000) {
 //   return new Promise((resolve, reject) => {
