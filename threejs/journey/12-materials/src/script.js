@@ -21,13 +21,15 @@ gradientTexture.minFilter = THREE.NearestFilter;
 gradientTexture.magFilter = THREE.NearestFilter;
 gradientTexture.generateMipmaps = false;
 
+const folder = 3;
+const sufix = "jpg";
 const environmentTexture = cubeTextureLoader.load([
-  "/textures/environmentMaps/4/px.png",
-  "/textures/environmentMaps/4/nx.png",
-  "/textures/environmentMaps/4/py.png",
-  "/textures/environmentMaps/4/ny.png",
-  "/textures/environmentMaps/4/pz.png",
-  "/textures/environmentMaps/4/nz.png",
+  `/textures/environmentMaps/${folder}/px.${sufix}`,
+  `/textures/environmentMaps/${folder}/nx.${sufix}`,
+  `/textures/environmentMaps/${folder}/py.${sufix}`,
+  `/textures/environmentMaps/${folder}/pz.${sufix}`,
+  `/textures/environmentMaps/${folder}/ny.${sufix}`,
+  `/textures/environmentMaps/${folder}/nz.${sufix}`,
 ]);
 
 /**
@@ -40,21 +42,21 @@ const canvas = document.querySelector("canvas.webgl");
 const scene = new THREE.Scene();
 
 // const material = new THREE.MeshBasicMaterial({
-//   map: doorColorTexture,
-//   //   color: new THREE.Color("green"),
-//   //   wireframe: true,
-//   //   opacity: 0.5,
-//   //   transparent: true,
-//   alphaMap: doorAlphaTexture,
+//   // map: doorColorTexture,
+//   color: new THREE.Color("green"),
+//   wireframe: true,
+//   // opacity: 0.5,
+//   transparent: true,
+//   // alphaMap: doorAlphaTexture,
 //   side: THREE.DoubleSide,
 // });
 
 // const material = new THREE.MeshNormalMaterial({
-//   flatShading: true,
+//   // flatShading: true,
 // });
 
 // const material = new THREE.MeshMatcapMaterial({
-//   matcap: matcapTexture,
+//   // matcap: matcapTexture,
 // });
 
 // const material = new THREE.MeshDepthMaterial();
@@ -86,10 +88,11 @@ const material = new THREE.MeshStandardMaterial({
   //   normalScale: [0.5, 0.5],
   envMap: environmentTexture,
 });
-gui.add(material, "metalness").min(0).max(1).step(0.0001);
-gui.add(material, "roughness").min(0).max(1).step(0.0001);
-gui.add(material, "aoMapIntensity").min(0).max(10).step(0.0001);
-gui.add(material, "displacementScale").min(0).max(10).step(0.0001);
+
+// gui.add(material, "metalness").min(0).max(1).step(0.0001);
+// gui.add(material, "roughness").min(0).max(1).step(0.0001);
+// gui.add(material, "aoMapIntensity").min(0).max(10).step(0.0001);
+// gui.add(material, "displacementScale").min(0).max(10).step(0.0001);
 
 const sphere = new THREE.Mesh(new THREE.SphereBufferGeometry(0.5, 16, 16), material);
 

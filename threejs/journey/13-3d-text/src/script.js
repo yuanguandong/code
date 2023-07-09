@@ -25,8 +25,9 @@ const scene = new THREE.Scene();
 /**
  * Textures
  */
+const num = 8;
 const textureLoader = new THREE.TextureLoader();
-const matcapTexture = textureLoader.load("/textures/matcaps/3.png");
+const matcapTexture = textureLoader.load(`/textures/matcaps/${num}.png`);
 /**
  * Object
  */

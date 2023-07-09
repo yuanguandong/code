@@ -45,4 +45,4 @@ initTick({ renderer, scene, camera });
 
 setTimeout(() => {
   document.querySelector(".mymain").style.opacity = "1";
-}, 1500);
+}, 3500);
