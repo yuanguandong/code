@@ -41,18 +41,8 @@ const initEnv = () => {
 
   const clock = new THREE.Clock();
 
-  const tick = () => {
-    const elapsedTime = clock.getElapsedTime();
-    controls.update();
-    renderer.render(scene, camera);
-    window.requestAnimationFrame(tick);
-  };
-
-  tick();
-  return { scene, camera, renderer };
+  return { scene, camera, renderer, controls };
 };
-
-const { scene, camera, renderer } = initEnv();
 
 const initScene = () => {
   const urls = [
@@ -65,5 +55,36 @@ const initScene = () => {
   ];
   const textureCube = new THREE.CubeTextureLoader().load(urls);
   scene.background = textureCube;
+  return { textureCube };
 };
-initScene();
+
+const initMeshes = () => {
+  const geometry = new THREE.SphereGeometry(0.1, 64, 64);
+  const material = new THREE.MeshBasicMaterial({
+    color: 0xffffff,
+    envMap: textureCube,
+  });
+  for (let i = 0; i < 500; i++) {
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = Math.random() * 10 - 5;
+    mesh.position.y = Math.random() * 10 - 5;
+    mesh.position.z = Math.random() * 10 - 5;
+    mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 3 + 1;
+    scene.add(mesh);
+  }
+};
+
+const { scene, camera, renderer, controls } = initEnv();
+const { textureCube } = initScene();
+initMeshes();
+
+const update = () => {};
+const tick = () => {
+  update();
+  // const elapsedTime = clock.getElapsedTime();
+  controls.update();
+  renderer.render(scene, camera);
+  window.requestAnimationFrame(tick);
+};
+
+tick();
