@@ -1,0 +1,266 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<script src="./js/three.min.js"></script>
+		<script src="./js/stats.min.js"></script>
+		<script src="./js/OrbitControls.js"></script>
+		<script src="./js/PointerLockControls.js"></script>
+		<script src="./js/NURBSUtils.js"></script>
+		<script src="./js/NURBSCurve.js"></script>
+		<script src="./js/fflate.min.js"></script>
+		<script src="./js/lil-gui.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+      }
+      .lil-gui.closed>.title:before,
+      .lil-gui .title:before {
+        content: '';
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      +function(THREE, Stats) {
+        // 库
+        const { OrbitControls, PointerLockControls } = THREE
+        const { GUI } = lil
+
+        // 生成容器
+        const container = document.createElement('div')
+				document.body.appendChild( container ) 
+
+        // 初始化场景,相机，控制器
+				const scene = new THREE.Scene()
+        const renderer = new THREE.WebGLRenderer({ antialias: true })
+
+        // 控制板
+        let gui = null
+
+        // 动画
+        const clock = new THREE.Clock()
+        let isPause = false
+        // fps
+        let stats = null
+        
+        // box
+        let cube = null
+        let status = null
+        init()
+        initBox()
+        const { camera, controls } = initOrbitControls()
+        render()
+
+        function initOrbitControls() {
+          // 相机视觉,位置
+				  const camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, 3000 )
+          camera.position.set( 50, 500, 800 )
+          const controls = new OrbitControls( camera, renderer.domElement )
+				  controls.screenSpacePanning = false;
+          document.addEventListener('keydown', keyMove)
+
+          // 是否正在跳跃
+          let jumping = false
+          const step = 17
+
+          // 键盘监听
+          function keyMove(ev) {
+            switch(ev.keyCode) {
+              case 65:
+                status = 'left'
+                moveBox()
+                break
+              case 87:
+                status = 'forward'
+                moveBox()
+                break
+              case 68:
+                status = 'right'
+                moveBox()
+                break
+              case 83:
+                status = 'back'
+                moveBox()
+                break
+              case 32:
+                jump()
+              default:
+                return;
+            }
+          }
+
+          // 跳跃
+          function jump() {
+            if (jumping) return
+            jumping = true
+            // 跳跃的最大高度
+            const max = 100
+            // 初始高度
+            const initY = cube.position.y
+            // 是否在下坠
+            let down = false
+            // 递增和递减系数
+            let t = 1
+            const x = 0.6
+            // 跳跃
+            let interval = setInterval(() => {
+              const downNumber = down ? -1 : 1
+              cube.position.y += 3 * downNumber * t
+              camera.position.y += 3 * downNumber * t
+              t += downNumber * x
+              // 到最高点开始下坠
+              if (cube.position.y >= max) {
+                down = true
+              }
+              // 到最低点结束跳跃
+              if (cube.position.y <= initY && down) {
+                cube.position.y = initY
+                jumping = false
+                clearInterval(interval)
+              }
+              setControl(...cube.position)
+            }, 30)
+          }
+
+          // 移动物体
+          function moveBox() {
+            // 获取人物中心点和相机中心点
+            const p1 = cube.position
+            const p2 = camera.position
+            // 计算两者连接形成的向量
+            const v1 = p1.clone().sub(p2)
+            // 去掉y轴，变成xz的两位向量
+            v1.y = 0
+            const length = v1.length()
+            // 获取垂直向量
+            const v2 = new THREE.Vector3(v1.z, 0, -v1.x)
+            // 移动的方向
+            let dir = 1
+            let v = v1
+            switch(status) {
+              case 'forward': 
+                dir = 1
+                break
+              case 'left':
+                dir = 1
+                v = v2
+                break
+              case 'right':
+                dir = -1
+                v = v2
+                break
+              case 'back': 
+                dir = -1
+                break
+              default:
+                return;
+            }
+            // 移动位置
+            for (const key in v) {
+              if (key === 'y') continue
+              const temp =  dir * step * v[key] / length
+              cube.position[key] += temp
+              camera.position[key] += temp
+            }
+            setControl(...cube.position)
+          }
+          function setControl(x,y,z) {
+            controls.target.set( x,y,z )
+            controls.update()
+          }
+
+          return {
+            camera,
+            controls
+          }
+        }
+
+        function initBox() {
+          const geometry = new THREE.BoxGeometry( 100, 100, 100 );
+          const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+          cube = new THREE.Mesh( geometry, material );
+          cube.position.y = 50
+          scene.add( cube );
+        }
+
+
+        
+
+        // 初始化场景
+        function init(config = {}) { 
+          
+
+          // 背景色
+          scene.background = new THREE.Color( 0xa0a0a0 )
+
+          // 渲染器设置
+          renderer.setPixelRatio(window.devicePixelRatio)
+          renderer.setSize(window.innerWidth, window.innerHeight)
+          renderer.shadowMap.enabled = true
+          container.appendChild(renderer.domElement)
+
+          // fps
+          stats = new Stats()
+          container.appendChild(stats.dom)
+
+          initGround()
+          initLight()
+          initGui()
+        }
+
+        // 初始化面板
+        function initGui() {
+          gui = new GUI()
+          const folder = gui.addFolder('test')
+          folder.add({
+            pause: () => {
+              console.log(1)
+            }
+          }, 'pause')
+        }
+
+        // 初始化灯光
+        function initLight(flag = true) {
+          if (!flag) return
+          const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444)
+          hemiLight.position.set(0, 200, 0)
+          scene.add(hemiLight)
+
+          const dirLight = new THREE.DirectionalLight(0xffffff)
+          dirLight.position.set(100, 100, 0)
+          dirLight.castShadow = true
+          dirLight.shadow.camera.top = 200
+          dirLight.shadow.camera.bottom = -200
+          dirLight.shadow.camera.left = -220
+          // dirLight.shadow.camera.left = 0
+          dirLight.shadow.camera.right = 220
+          scene.add(dirLight)
+          // 阴影辅助线
+          // scene.add( new THREE.CameraHelper( dirLight.shadow.camera ) ) 
+        }
+
+        // 初始化地板
+        function initGround(flag = true) {
+          if (!flag) return
+          const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false }))
+          mesh.rotation.x = - Math.PI / 2
+          mesh.receiveShadow = true
+          scene.add(mesh)
+
+          const grid = new THREE.GridHelper(2000, 20, 0x000000, 0x000000)
+          grid.material.opacity = 0.2
+          grid.material.transparent = true
+          scene.add(grid)
+        }
+
+        // 渲染动画
+        function render() {
+          requestAnimationFrame(render)
+          const delta = clock.getDelta();
+          renderer.render(scene, camera)
+          stats && stats.update()
+        }
+      }(window.THREE, window.Stats)
+    </script>
+  </body>
+</html>

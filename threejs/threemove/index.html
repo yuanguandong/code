@@ -1,0 +1,318 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<script src="./js/three.min.js"></script>
+		<script src="./js/OrbitControls.js"></script>
+		<script src="./js/NURBSUtils.js"></script>
+		<script src="./js/NURBSCurve.js"></script>
+		<script src="./js/fflate.min.js"></script>
+		<script src="./js/FBXLoader.js"></script>
+		<script src="./js/animation.js"></script>
+    <style>
+      * {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 动画状态机
+      class MoveState {
+        animationsStatus = {
+          stand: 'static',
+          forward: 'move',
+          back: 'move',
+          left: 'move',
+          right: 'move',
+          jump: 'move',
+        }
+        statuses = Object.keys(this.animationsStatus)
+        constructor(mixer, animations) {
+          this.status = 'stand'
+          this.mixer = mixer
+          
+          this.animations = animations
+          this.playAnimation()
+        }
+
+        getStatus() {
+          return this.status
+        }
+
+        playAnimation() {
+          this.mixer.stopAllAction()
+          this.animations[this.animationsStatus[this.status]].play()
+        }
+        
+        changeStatus(status) {
+          if (this.status === status || !this.statuses.includes(status)) return
+          this.status = status
+          this.playAnimation()
+        }
+      }
+
+      +function(THREE) {
+        // 库
+        const { OrbitControls, FBXLoader } = THREE
+
+        // 生成容器
+        const container = document.createElement('div')
+				document.body.appendChild( container ) 
+
+        // 初始化场景,相机，控制器
+				const scene = new THREE.Scene()
+        const renderer = new THREE.WebGLRenderer({ antialias: true })
+
+        // 动画
+        const clock = new THREE.Clock()
+        let mixer = null
+        let moveState = null
+
+        init()
+        // 初始化场景
+        function init(config = {}) { 
+
+          // 背景色
+          scene.background = new THREE.Color( 0xa0a0a0 )
+
+          // 渲染器设置
+          renderer.setPixelRatio(window.devicePixelRatio)
+          renderer.setSize(window.innerWidth, window.innerHeight)
+          container.appendChild(renderer.domElement)
+
+          initGround()
+          initLight()
+        }
+
+        // 初始化地板
+        function initGround() {
+          // 地板
+          const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false }))
+          mesh.rotation.x = - Math.PI / 2
+          mesh.receiveShadow = true
+          scene.add(mesh)
+          // 地砖
+          const grid = new THREE.GridHelper(2000, 20, 0x000000, 0x000000)
+          grid.material.opacity = 0.2
+          grid.material.transparent = true
+          scene.add(grid)
+        }
+
+        // 初始化灯光
+        function initLight() {
+          const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444)
+          hemiLight.position.set(0, 200, 0)
+          scene.add(hemiLight)
+
+          const dirLight = new THREE.DirectionalLight(0xffffff)
+          dirLight.position.set(100, 100, 0)
+          dirLight.castShadow = true
+          dirLight.shadow.camera.top = 200
+          dirLight.shadow.camera.bottom = -200
+          dirLight.shadow.camera.left = -220
+          dirLight.shadow.camera.right = 220
+          scene.add(dirLight)
+          // 阴影辅助线
+          // scene.add( new THREE.CameraHelper( dirLight.shadow.camera ) ) 
+        }
+        
+        const { camera, controls } = initOrbitControls()
+
+        function initOrbitControls() {
+          // 相机视觉,位置
+				  const camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, 3000 )
+          camera.position.set( 50, 500, 800 )
+          const controls = new OrbitControls( camera, renderer.domElement )
+				  controls.screenSpacePanning = false;
+          return {
+            camera,
+            controls
+          }
+        }
+
+        render()
+        // 渲染动画
+        function render() {
+          requestAnimationFrame(render)
+          const delta = clock.getDelta();
+          mixer && mixer.update(delta)
+          renderer.render(scene, camera)
+        }
+
+        // 模型对象
+        let model = null
+        
+        loadModel()
+        // 加载模型
+        function loadModel(url = './model/Samba Dancing.fbx') {
+          // 加载器
+          const loader = new FBXLoader()
+          loader.load(url, object => {
+            model = object
+            // 动画混合器
+            mixer = new THREE.AnimationMixer(object)
+
+            // 动画集合
+            const animations = {
+              static: mixer.clipAction(staticAnimation),
+              move: mixer.clipAction(moveAnimation)
+            }
+
+            moveState = new MoveState(mixer, animations)
+
+
+            // 材质设置为接收光
+            object.traverse(child => {
+              if (child.isMesh) {
+                child.castShadow = true
+                child.receiveShadow = true
+              }
+            })
+            // const helper = new THREE.SkeletonHelper( object )
+            // scene.add( helper ) // 显示骨骼
+            scene.add( object )
+          })
+        }
+
+        initMovement()
+
+        function initMovement() {
+          document.addEventListener('keydown', keyMove)
+          document.addEventListener('keyup', keyUp)
+
+          // 步长
+          const step = 17
+
+          function keyUp(ev) {
+            if (moveState.getStatus() !== 'jump') {
+              moveState.changeStatus('stand')
+            }
+          }
+          // 键盘监听
+          function keyMove(ev) {
+            if (moveState.getStatus() === 'jump') return
+            switch(ev.keyCode) {
+              case 65:
+                moveState.changeStatus('left')
+                moveBox()
+                break
+              case 87:
+                moveState.changeStatus('forward')
+                moveBox()
+                break
+              case 68:
+                moveState.changeStatus('right')
+                moveBox()
+                break
+              case 83:
+                moveState.changeStatus('back')
+                moveBox()
+                break
+              case 32:
+                moveState.changeStatus('jump')
+                jump()
+              default:
+                return;
+            }
+          }
+
+          // 跳跃
+          function jump() {
+            // 跳跃的最大高度
+            const max = 100
+            // 初始高度
+            const initY = model.position.y
+            // 是否在下坠
+            let down = false
+            // 递增和递减系数
+            let t = 1
+            const x = 0.6
+            // 跳跃
+            let interval = setInterval(() => {
+              const downNumber = down ? -1 : 1
+              model.position.y += 3 * downNumber * t
+              camera.position.y += 3 * downNumber * t
+              t += downNumber * x
+              // 到最高点开始下坠
+              if (model.position.y >= max) {
+                down = true
+              }
+              // 到最低点结束跳跃
+              if (model.position.y <= initY && down) {
+                model.position.y = initY
+                moveState.changeStatus('stand')
+                clearInterval(interval)
+              }
+              setControl(...model.position)
+            }, 30)
+          }
+
+          // 移动物体
+          function moveBox() {
+            // 获取人物中心点和相机中心点
+            const p1 = model.position
+            const p2 = camera.position
+            // 计算两者连接形成的向量
+            const v1 = p1.clone().sub(p2)
+            // 去掉y轴，变成xz的两位向量
+            v1.y = 0
+            const length = v1.length()
+            // 获取垂直向量
+            const v2 = new THREE.Vector3(v1.z, 0, -v1.x)
+            // 移动的方向
+            let dir = 1
+            let v = v1
+            switch(moveState.getStatus()) {
+              case 'forward': 
+                dir = 1
+                break
+              case 'left':
+                dir = 1
+                v = v2
+                break
+              case 'right':
+                dir = -1
+                v = v2
+                break
+              case 'back': 
+                dir = -1
+                break
+              default:
+                return;
+            }
+            // 移动位置
+            for (const key in v) {
+              if (key === 'y') continue
+              const temp =  dir * step * v[key] / length
+              model.position[key] += temp
+              camera.position[key] += temp
+            }
+            setControl(...model.position)
+          }
+          // 设置相机位置
+          function setControl(x,y,z) {
+            rotateModel()
+            controls.target.set( x,y,z )
+            controls.update()
+          }
+          // 选择人物方向
+          function rotateModel() {
+            // 获取人物中心点和相机中心点
+            const p1 = model.position
+            const p2 = camera.position
+            // 计算两者连接形成的向量
+            const v1 = p1.clone().sub(p2)
+            v1.y = 0
+            // 人物的初始面向
+            const origin = new THREE.Vector3(0,0,1)
+            // 点乘求夹角
+            const radian = Math.acos(v1.dot( origin ) /(v1.length()*origin.length()))
+            // 叉乘求方向
+            v1.cross(origin)
+            model.rotation.y = radian * (v1.z === 0 && 1 / v1.z < 0 ? -1 : 1)
+          }
+        }
+      }(window.THREE)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/20.0.0/tween.umd.js"></script>
+
+<div id="box"></div>
+
+<style>
+  #box {
+    background-color: deeppink;
+    width: 100px;
+    height: 100px;
+  }
+</style>
+
+<script>
+  const box = document.getElementById("box"); // Get the element we want to animate.
+
+  const coords = { x: 0, y: 0 }; // Start at (0, 0)
+
+  const tween = new TWEEN.Tween(coords, false) // Create a new tween that modifies 'coords'.
+    .to({ x: 300, y: 200 }, 10000) // Move to (300, 200) in 1 second.
+    .easing(TWEEN.Easing.Quadratic.InOut) // Use an easing function to make the animation smooth.
+    .onUpdate(() => {
+      // Called after tween.js updates 'coords'.
+      // Move 'box' to the position described by 'coords' with a CSS translation.
+      box.style.setProperty("transform", "translate(" + coords.x + "px, " + coords.y + "px)");
+    })
+    .start(); // Start the tween immediately.
+
+  // Setup the animation loop.
+  function animate(time) {
+    tween.update(time);
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+</script>

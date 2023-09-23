@@ -1,0 +1,201 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<script src="./js/three.min.js"></script>
+		<script src="./js/stats.min.js"></script>
+		<script src="./js/OrbitControls.js"></script>
+		<script src="./js/NURBSUtils.js"></script>
+		<script src="./js/NURBSCurve.js"></script>
+		<script src="./js/fflate.min.js"></script>
+		<script src="./js/FBXLoader.js"></script>
+		<script src="./js/SkeletonUtils.js"></script>
+		<script src="./js/lil-gui.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+      }
+      .lil-gui.closed>.title:before,
+      .lil-gui .title:before {
+        content: '';
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      +function(THREE, Stats, initConfig) {
+        const { OrbitControls, FBXLoader } = THREE
+        const { GUI } = lil
+
+        const container = document.createElement('div')
+				document.body.appendChild( container ) // 生成容器
+
+				const scene = new THREE.Scene()
+        const renderer = new THREE.WebGLRenderer({ antialias: true })
+        const clock = new THREE.Clock()
+        let isPause = false
+        let staticAnimationAction = null
+        let camera = null
+        let controls = null
+        let stats = null
+        let gui = null
+        let mixer = null
+        let animations = null
+        let bones = null // 初始化参数
+
+        let objectModel = null
+
+        // 头发模型
+        const hairs = [1, 2, 3, 4]
+        let hairSkeleton = null
+        
+        init(initConfig)
+        loadShoes2()
+        loadShoes()
+        loadShoes('./model/test3.fbx', 2)
+        loadShoes('./model/test4.fbx', 3)
+        render()
+        function loadShoes2(url = './model/OldManIdle.fbx') {
+          const loader = new FBXLoader()
+          loader.load(url, object => {
+            const b = object.children.splice(6,1)[0]
+            hairs[0] = b
+            hairSkeleton = b.skeleton
+            objectModel = object
+
+            object.traverse(child => {
+              if (child.isMesh) {
+                child.castShadow = true
+                child.receiveShadow = true
+              }
+            })
+            mixer = new THREE.AnimationMixer(object)
+            const action = mixer.clipAction(object.animations[0])
+            action.play()
+            const helper = new THREE.SkeletonHelper( object )
+            scene.add( helper ) // 显示骨骼
+            scene.add( object )
+          })
+        }
+        function loadShoes(url = './model/test.fbx', index = 1) {
+          const loader = new FBXLoader()
+          loader.load(url, object => {
+            const a = object.children.splice(0,1)[0]
+            hairs[index] = a
+            console.log(index, a)
+          })
+        }
+
+        function init(config = {}) { // 初始化场景
+				  camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 )
+          camera.position.set( 50, 500, 800 )
+          scene.background = new THREE.Color( 0xa0a0a0 )
+          renderer.setPixelRatio(window.devicePixelRatio)
+          renderer.setSize(window.innerWidth, window.innerHeight)
+          renderer.shadowMap.enabled = true
+          container.appendChild(renderer.domElement)
+          
+          if (!config.noStats) {
+            stats = new Stats()
+            container.appendChild(stats.dom)
+          }
+
+          controls = new OrbitControls( camera, renderer.domElement )
+          controls.target.set( 0, 100, 0 )
+          controls.update()
+
+          !config.noGround && initGround()
+          initLight()
+          initGui()
+        }
+
+        function initGui() {
+          gui = new GUI()
+          const folder = gui.addFolder('test')
+          folder.add({
+            pause: () => {
+              if (objectModel.children.length === 8) {
+                objectModel.children.splice(7,1)
+              }
+              hairs[0].skeleton = hairSkeleton
+              objectModel.add(hairs[0])
+            }
+          }, 'pause')
+          folder.add({
+            start: () => {
+              if (objectModel.children.length === 8) {
+                objectModel.children.splice(7,1)
+              }
+              hairs[1].skeleton = hairSkeleton
+              objectModel.add(hairs[1])
+            }
+          }, 'start')
+          folder.add({
+            start2: () => {
+              if (objectModel.children.length === 8) {
+                objectModel.children.splice(7,1)
+              }
+              hairs[2].geometry.attributes.skinIndex = hairs[0].geometry.attributes.skinIndex
+              hairs[2].geometry.attributes.skinWeight = hairs[0].geometry.attributes.skinWeight
+              const temp = new THREE.SkinnedMesh(hairs[2].geometry, hairs[2].material)
+              temp.skeleton = hairSkeleton
+              objectModel.add(temp)
+            }
+          }, 'start2')
+          folder.add({
+            start3: () => {
+              if (objectModel.children.length === 8) {
+                objectModel.children.splice(7,1)
+              }
+              hairs[2].geometry.attributes.skinIndex = hairs[0].geometry.attributes.skinIndex
+              hairs[2].geometry.attributes.skinWeight = hairs[0].geometry.attributes.skinWeight
+              const temp = new THREE.SkinnedMesh(hairs[3].geometry, hairs[3].material)
+              temp.skeleton = hairSkeleton
+              objectModel.add(temp)
+            }
+          }, 'start3')
+        }
+
+        function initLight(flag = true) { // 初始化灯光
+          if (!flag) return
+          const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444)
+          hemiLight.position.set(0, 200, 0)
+          scene.add(hemiLight)
+
+          const dirLight = new THREE.DirectionalLight(0xffffff)
+          dirLight.position.set(0, 200, 100)
+          dirLight.castShadow = true
+          dirLight.shadow.camera.top = 180
+          dirLight.shadow.camera.bottom = -100
+          dirLight.shadow.camera.left = -120
+          dirLight.shadow.camera.right = 120
+          scene.add(dirLight)
+        }
+
+        function initGround(flag = true) { // 初始化网格
+          if (!flag) return
+          const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false }))
+          mesh.rotation.x = - Math.PI / 2
+          mesh.receiveShadow = true
+          scene.add(mesh)
+
+          const grid = new THREE.GridHelper(2000, 20, 0x000000, 0x000000)
+          grid.material.opacity = 0.2
+          grid.material.transparent = true
+          scene.add(grid)
+        }
+
+        function render() { // 渲染动画
+          requestAnimationFrame(render)
+          const delta = clock.getDelta();
+          !isPause && mixer && mixer.update(delta)
+          renderer.render(scene, camera)
+          stats && stats.update()
+        }
+      }(window.THREE, window.Stats, {
+        url: './model/Samba Dancing.fbx',
+        // noStats: true,
+        // noGround: true
+      })
+    </script>
+  </body>
+</html>
