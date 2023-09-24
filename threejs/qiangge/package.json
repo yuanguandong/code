@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "deploy": "vercel --prod"
   },
   "devDependencies": {
-    "vite": "^4.0.4"
+    "vite": "^4.0.4",
+    "vercel": "^28.18.5"
   },
   "dependencies": {
     "@tweenjs/tween.js": "^21.0.0",
