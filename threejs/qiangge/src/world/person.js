@@ -5,7 +5,8 @@ import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js";
 import { Action } from "./action";
 
 export class Person {
-  resourceUrl = "models/gltf/RobotExpressive/RobotExpressive.glb";
+  resourceUrl =
+    "/github-api/yuanguandong/code/raw/master/threejs/qiangge/static/models/gltf/RobotExpressive/RobotExpressive.glb";
 
   clips;
 
