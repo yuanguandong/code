@@ -22,6 +22,7 @@ export class Action {
   initMovement() {
     document.addEventListener("keydown", this.keyMove.bind(this));
     document.addEventListener("keyup", this.keyUp.bind(this));
+    document.addEventListener("click", this.click.bind(this));
   }
 
   keyUp(ev) {
@@ -29,6 +30,10 @@ export class Action {
       this.moveState = "stand";
     }
     this.personController.fadeToAction("Idle", 0.5);
+  }
+
+  click() {
+    this.personController.fadeToAction("Punch", 0);
   }
 
   // 键盘监听
@@ -52,12 +57,8 @@ export class Action {
         this.moveBox();
         break;
       case 32:
-        const oldRotation = this.personController.model.rotation;
-        this.tweenRotation
-          .to({ x: oldRotation.x, y: 100, z: oldRotation.z }, 1000) // 目标值，毫秒数
-          .start();
-      // this.moveState = "jump";
-      // this.jump();
+        this.moveState = "jump";
+        this.jump();
       default:
         return;
     }
@@ -139,17 +140,18 @@ export class Action {
       this.render.sceneController.camera.position[key] += temp;
     }
     this.setControl(...this.personController.model.position);
+    this.rotateModel();
   }
 
   // 设置相机位置
   setControl(x, y, z) {
-    this.rotateModel();
     this.render.sceneController.controls.target.set(x, y, z);
     this.render.sceneController.controls.update();
   }
 
   // 选择人物方向
   rotateModel() {
+    const me = this;
     // 获取人物中心点和相机中心点
     const p1 = this.personController.model.position;
     const p2 = this.render.sceneController.camera.position;
@@ -164,12 +166,28 @@ export class Action {
     v1.cross(origin);
 
     const oldRotation = this.personController.model.rotation;
-    const rotationY = radian * (v1.z === 0 && 1 / v1.z < 0 ? -1 : 1);
+    let rotationY = radian * (v1.z === 0 && 1 / v1.z < 0 ? -1 : 1);
 
-    this.tweenRotation
-      .stop()
-      .to({ x: oldRotation.x, y: rotationY, z: oldRotation.z }, 1000) // 目标值，毫秒数
-      .start();
+    if (this.moveState === "left") {
+      rotationY += Math.PI / 2;
+    }
+    if (this.moveState === "right") {
+      rotationY -= Math.PI / 2;
+    }
+    if (this.moveState === "forward") {
+      rotationY = rotationY;
+    }
+    if (this.moveState === "back") {
+      rotationY += Math.PI;
+    }
+
+    const isAnimating = me.tweenRotation.update();
+    if (!isAnimating && Math.abs(oldRotation.y - rotationY) > 0.1) {
+      this.tweenRotation._valuesStart = this.personController.model.rotation;
+      this.tweenRotation
+        .to({ x: oldRotation.x, y: rotationY, z: oldRotation.z }, 500) // 目标值，毫秒数
+        .start();
+    }
   }
 
   initTween() {

@@ -3,6 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js";
 import { Person } from "./person";
+import { Car } from "./car";
 
 export class Scene {
   scene;
@@ -16,6 +17,7 @@ export class Scene {
   constructor(render) {
     this.render = render;
     this.personController = new Person(render);
+    this.carController = new Car(render);
     this.initScene();
     this.initCamera();
     this.initAxesHelper();
@@ -27,7 +29,7 @@ export class Scene {
   initScene() {
     const scene = new THREE.Scene();
     this.scene = scene;
-    scene.background = new THREE.Color(0xe0e0e0);
+    scene.background = new THREE.Color(0xcdf0f4);
 
     // scene.fog = new THREE.Fog(0xe0e0e0, 20, 100);
   }

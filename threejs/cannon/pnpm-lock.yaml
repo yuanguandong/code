@@ -1,0 +1,15 @@
+lockfileVersion: 5.4
+
+specifiers:
+  cannon-es: ^0.20.0
+
+dependencies:
+  cannon-es: registry.npmmirror.com/cannon-es/0.20.0
+
+packages:
+
+  registry.npmmirror.com/cannon-es/0.20.0:
+    resolution: {integrity: sha512-eZhWTZIkFOnMAJOgfXJa9+b3kVlvG+FX4mdkpePev/w/rP5V8NRquGyEozcjPfEoXUlb+p7d9SUcmDSn14prOA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cannon-es/-/cannon-es-0.20.0.tgz}
+    name: cannon-es
+    version: 0.20.0
+    dev: false

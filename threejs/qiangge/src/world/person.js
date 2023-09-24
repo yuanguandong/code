@@ -111,13 +111,15 @@ export class Person {
     }
   }
 
-  fadeToAction(name, duration) {
+  fadeToAction(name, duration, fadeOut = true) {
     const previousAction = this.activeAction;
     this.activeAction = this.actions[name];
     if (previousAction === this.activeAction) {
       return;
     }
-    previousAction.fadeOut(duration);
+    if (fadeOut) {
+      previousAction.fadeOut(duration);
+    }
     this.activeAction.reset().fadeIn(duration).play();
   }
 }
