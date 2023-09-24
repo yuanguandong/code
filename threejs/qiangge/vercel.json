@@ -1,8 +1,8 @@
 {
   "rewrites": [
       {
-          "source": "/github-api/(.*)",
-          "destination": "/api/proxy"
+          "source": "/resources-api/(.*)",
+          "destination": "/api/proxy.mjs"
       }
   ]
 }

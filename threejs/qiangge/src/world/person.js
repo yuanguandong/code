@@ -6,7 +6,7 @@ import { Action } from "./action";
 
 export class Person {
   resourceUrl =
-    "/github-api/yuanguandong/code/raw/master/threejs/qiangge/static/models/gltf/RobotExpressive/RobotExpressive.glb";
+    "/resources-api/code/threejs/qiangge/static/models/gltf/RobotExpressive/RobotExpressive.glb";
 
   clips;
 
