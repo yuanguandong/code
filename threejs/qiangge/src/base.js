@@ -51,7 +51,7 @@ function initLight() {
 
   dirLight = new THREE.DirectionalLight(0xffffff, 1);
   dirLight.position.set(0, 30, 10);
-  scene.add(dirLight);
+  scene.add(dirLight); 
   // scene.add(new THREE.AmbientLight(0x505050));
 
   // spotLight = new THREE.SpotLight(0xffffff);
