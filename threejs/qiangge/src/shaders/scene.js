@@ -65,7 +65,7 @@ export class Scene {
       10000
     );
     this.camera = camera;
-    camera.position.set(1, 1, 1);
+    camera.position.set(100, 100, 500);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
   }
 

@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { Demo } from "./demo";
+import { Box } from "./box";
 export class Scene {
   scene;
 
@@ -13,20 +13,21 @@ export class Scene {
   constructor(render) {
     this.render = render;
     this.initScene((scene) => {
-      this.DemoController = new Demo(render, scene);
+      this.boxController = new Box(render,scene);
     });
     this.initCamera();
-    this.initAxesHelper();
+    // this.initAxesHelper();
     // this.initGridHelper();
     // this.initGround();
     // this.initLight();
     this.initControls();
+    
   }
 
   initScene(cb) {
     const scene = new THREE.Scene();
     this.scene = scene;
-    scene.background = new THREE.Color(0x000000);
+    scene.background = new THREE.Color(0xcdf0f4);
     // scene.fog = new THREE.Fog(0xe0e0e0, 10, 1000);
     if (cb) {
       cb(scene);
@@ -65,8 +66,8 @@ export class Scene {
       10000
     );
     this.camera = camera;
-    camera.position.set(1, 1, 1);
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    camera.position.set(0, 0, 0.1);
+    // camera.lookAt(new THREE.Vector3(0, 2, 0));
   }
 
   initLight() {
@@ -85,6 +86,13 @@ export class Scene {
 
   initControls() {
     this.controls = new OrbitControls(this.camera, this.render.renderer.domElement);
+    this.controls.enableZoom = false
+    this.controls.enablePan = false
+    this.controls.rotateSpeed = -0.25
+    this.controls.enableDamping = true
+    this.render.registerUpdate('control',()=>{
+      this.controls.update()
+    })
     // this.controls.maxPolarAngle = Math.PI / 2.5;
   }
 }
