@@ -8,7 +8,7 @@ export class Demo {
 
   raycaster = new THREE.Raycaster();
 
-  constructor(render, scene) {
+  constructor(render, scene) { 
     this.render = render;
     this.scene = scene;
     this.init();
@@ -16,16 +16,16 @@ export class Demo {
   }
 
   init() {
+    // 创建几何体并合并定点
     const boxGeometry = new THREE.BoxGeometry(200, 200, 200, 16, 16, 16);
     boxGeometry.deleteAttribute("uv");
     boxGeometry.deleteAttribute("normal");
-
     const mergeBoxGeometry = BufferGeometryUtils.mergeVertices(boxGeometry);
-    console.log(mergeBoxGeometry);
     const position = mergeBoxGeometry.getAttribute("position");
 
     const geometry = new THREE.BufferGeometry();
 
+    // 生成每个定点的颜色和大小
     const colors = [];
     const sizes = [];
     const color = new THREE.Color();
@@ -36,11 +36,12 @@ export class Demo {
       sizes[i] = this.PARTICLE;
     }
 
+    // 给几何体设置颜色和大小属性
     geometry.setAttribute("position", position);
     geometry.setAttribute("customColor", new THREE.Float32BufferAttribute(colors, 3));
     geometry.setAttribute("size", new THREE.Float32BufferAttribute(sizes, 1));
 
-    // console.log("colors", colors);
+    // 在shader里进行颜色和大小的设置
     this.material = new THREE.ShaderMaterial({
       uniforms: {
         color: { value: new THREE.Color(0xffffff) },
@@ -86,13 +87,13 @@ export class Demo {
       this.intersets = this.raycaster.intersectObject(this.particles);
       const attributes = this.particles.geometry.attributes;
       if (this.intersets.length > 0) {
-        if (this.INTERSECTED != this.intersets[0].index) {
-          this.INTERSECTED = this.intersets[0].index;
-          attributes.size.array[this.INTERSECTED] = this.PARTICLE * 1.5;
+        if (this.activeIndex != this.intersets[0].index) {
+          this.activeIndex = this.intersets[0].index;
+          attributes.size.array[this.activeIndex] = this.PARTICLE * 1.5;
         }
       } else {
-        attributes.size.array[this.INTERSECTED] = this.PARTICLE;
-        this.INTERSECTED = null;
+        attributes.size.array[this.activeIndex] = this.PARTICLE;
+        this.activeIndex = null;
       }
       attributes.size.needsUpdate = true;
     });

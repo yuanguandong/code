@@ -16,7 +16,7 @@ export class Scene {
       this.DemoController = new Demo(render, scene);
     });
     this.initCamera();
-    // this.initAxesHelper();
+    this.initAxesHelper();
     // this.initGridHelper();
     // this.initGround();
     // this.initLight();
