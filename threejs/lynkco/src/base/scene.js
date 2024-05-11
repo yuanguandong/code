@@ -8,17 +8,15 @@ export class Scene {
 
   controls;
 
-  personController;
-
   constructor(render) {
     this.render = render;
     this.initScene((scene) => {
       this.DemoController = new Demo(render, scene);
     });
     this.initCamera();
-    this.initAxesHelper();
-    // this.initGridHelper();
-    // this.initGround();
+    // this.initAxesHelper();
+    this.initGridHelper();
+    this.initGround();
     // this.initLight();
     this.initControls();
   }
@@ -85,6 +83,9 @@ export class Scene {
 
   initControls() {
     this.controls = new OrbitControls(this.camera, this.render.renderer.domElement);
+    this.render.registerUpdate('updateControls', () => {
+      this.controls.update()
+    })
     // this.controls.maxPolarAngle = Math.PI / 2.5;
   }
 }
