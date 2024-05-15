@@ -1,5 +1,6 @@
 import styles from "./index.less";
 import { Collapse, CollapseProps, Input, List, Typography } from "antd";
+import ElementList from "./list";
 const { Title } = Typography;
 
 const { Search } = Input;
@@ -12,27 +13,27 @@ const text = `
 
 const data = [
   {
-    key:'cube',
+    key: "cube",
     name: "立方体",
   },
   {
-    key:'cylinder',
+    key: "cylinder",
     name: "圆柱体",
   },
   {
-    key:'text',
+    key: "text",
     name: "文字",
   },
   {
-    key:'plane',
+    key: "plane",
     name: "平面",
   },
   {
-    key:'icon',
+    key: "icon",
     name: "图标",
   },
   {
-    key:'image',
+    key: "image",
     name: "图片",
   },
 ];
@@ -41,16 +42,7 @@ const items: CollapseProps["items"] = [
   {
     key: "1",
     label: "通用",
-    children: (
-      <List
-        size='small'
-        // header={<div>Header</div>}
-        // footer={<div>Footer</div>}
-        bordered={false}
-        dataSource={data}
-        renderItem={(item) => <List.Item className={styles.listItem}>{item.name}</List.Item>}
-      />
-    ),
+    children: <ElementList data={data} />,
   },
   {
     key: "2",

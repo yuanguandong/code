@@ -40,25 +40,11 @@ export class Controller {
     const me = this;
     queueMicrotask(function () {
       const camera = me.engine.sceneController.camera;
-      me.addCube();
+      // me.action?.addCube();
     });
   }
 
-  // 添加立方体
-  addCube() {
-    const me = this;
 
-    const data = {
-      x: 0.5,
-      z: 0.5,
-    }
-
-    const cube = new Cube(this.engine, {
-      ...data
-    });
-    this.engine.sceneController.addElement(cube);
-    return
-  }
 
 
 }
