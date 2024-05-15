@@ -56,21 +56,53 @@ export class Scene {
   }
 
   initGround() {
+    // const plane = new THREE.Mesh(
+    //   new THREE.PlaneGeometry(16.2, 16.2),
+    //   // new THREE.MeshPhongMaterial({
+    //   //   color: 0x999999,
+    //   // })
+    //   new THREE.MeshBasicMaterial({
+    //     color: 0xffffff,
+    //   })
+    // );
+    // plane.rotation.x = -Math.PI / 2;
+    // plane.position.y = -0.1;
+    // plane.userData.isGround = true;
+    // var planeFace = new THREE.Plane(new THREE.Vector3(0, 1, 0));
+    // // this.ground = planeFace;
+    // this.plane = planeFace
+    // this.scene.add(plane);
+
+    var width = 16;
+    var height = 16;
+    var thickness = 0.1; // 厚度
+
+    var material = [
+
+      new THREE.MeshBasicMaterial({ color: 0xECECED }), // 前面
+
+      new THREE.MeshBasicMaterial({ color: 0xD2D2D4 }), // 后面
+
+      new THREE.MeshBasicMaterial({ color: 0xECECED }), // 底面
+
+      new THREE.MeshBasicMaterial({ color: 0xD2D2D4 }), // 左面
+      new THREE.MeshBasicMaterial({ color: 0xffffff }), // 顶面
+      new THREE.MeshBasicMaterial({ color: 0xB8B8BB }), // 右面
+    ];
+
     const plane = new THREE.Mesh(
-      new THREE.PlaneGeometry(16.2, 16.2),
+      new THREE.BoxGeometry(width, height, thickness),
       // new THREE.MeshPhongMaterial({
       //   color: 0x999999,
       // })
-      new THREE.MeshBasicMaterial({
-        color: 0xffffff,
-      })
+      material
     );
     plane.rotation.x = -Math.PI / 2;
-    plane.position.y = -0.1;
+    plane.position.y = -0.06
     plane.userData.isGround = true;
     var planeFace = new THREE.Plane(new THREE.Vector3(0, 1, 0));
     // this.ground = planeFace;
-    this.plane = planeFace
+    this.plane = planeFace;
     this.scene.add(plane);
   }
 
