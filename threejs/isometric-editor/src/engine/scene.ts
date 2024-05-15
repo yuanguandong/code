@@ -1,19 +1,26 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { Demo } from "./demo";
+import { OrbitControls } from "three/addons";
+import { Controller } from "./controller";
 import { PickController } from "./pick";
+import { Render } from "./render";
+import { Element3D } from "./interface";
+
 export class Scene {
-  scene;
+  scene: THREE.Scene = new THREE.Scene();
 
-  camera;
+  camera?: THREE.OrthographicCamera;
 
-  controls;
+  controls?: OrbitControls;
 
-  constructor(render) {
-    this.render = render;
-    this.initScene((scene) => {
-      this.DemoController = new Demo(render, scene);
-    });
+  controller: Controller;
+
+  pickController?: PickController;
+
+  plane?: THREE.Plane;
+
+  constructor(private engine: Render) {
+    this.scene.background = new THREE.Color(0x000000);
+    this.controller = new Controller(this.engine);
     this.initCamera();
     // this.initAxesHelper();
     this.initGridHelper();
@@ -24,8 +31,8 @@ export class Scene {
     // this.initGrid();
   }
 
-  initPicker(){
-    this.pickController = new PickController(this.render)
+  initPicker() {
+    this.pickController = new PickController(this.engine)
   }
 
   initGrid() {
@@ -42,15 +49,6 @@ export class Scene {
     this.scene.add(grid);
   }
 
-  initScene(cb) {
-    const scene = new THREE.Scene();
-    this.scene = scene;
-    scene.background = new THREE.Color(0x000000);
-    // scene.fog = new THREE.Fog(0xe0e0e0, 10, 1000);
-    if (cb) {
-      cb(scene);
-    }
-  }
 
   initAxesHelper() {
     const axesHelper = new THREE.AxesHelper(2);
@@ -70,9 +68,9 @@ export class Scene {
     plane.rotation.x = -Math.PI / 2;
     plane.position.y = -0.1;
     plane.userData.isGround = true;
-    // var planeFace = new THREE.Plane(new THREE.Vector3(0, 1, 0));
+    var planeFace = new THREE.Plane(new THREE.Vector3(0, 1, 0));
     // this.ground = planeFace;
-    this.plane = plane
+    this.plane = planeFace
     this.scene.add(plane);
   }
 
@@ -109,13 +107,10 @@ export class Scene {
   }
 
   initCamera() {
-    // const camera = new THREE.PerspectiveCamera(
-    //   75,
-    //   window.innerWidth / window.innerHeight,
-    //   0.25,
-    //   10000
-    // );
-    const aspect = window.innerWidth / window.innerHeight;
+    const me = this;
+    const width = window.innerWidth
+    const height = window.innerHeight
+    const aspect = width / height;
     const d = 7;
     const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 1, 10000);
     this.camera = camera;
@@ -123,10 +118,6 @@ export class Scene {
     // camera.rotation.order = "YXZ";
     // camera.rotation.y = -Math.PI / 4;
     // camera.rotation.x = Math.atan(-1 / Math.sqrt(2));
-  }
-
-  updateCamera(){
-    
   }
 
   initLight() {
@@ -144,11 +135,21 @@ export class Scene {
   }
 
   initControls() {
-    this.controls = new OrbitControls(this.camera, this.render.renderer.domElement);
+    const camera = this.camera;
+    if (!camera) {
+      return;
+    }
+    this.controls = new OrbitControls(camera, this.engine.renderer.domElement);
     this.controls.enableRotate = false;
-    this.render.registerUpdate("updateControls", () => {
-      this.controls.update();
+    this.engine.registerUpdate("updateControls", () => {
+      this.controls?.update();
     });
     // this.controls.maxPolarAngle = Math.PI / 2.5;
+  }
+
+  addElement(element3D: Element3D) {
+    if (element3D.object3D) {
+      this.engine.sceneController.scene.add(element3D.object3D);
+    }
   }
 }

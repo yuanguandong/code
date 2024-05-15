@@ -160,7 +160,7 @@ export class Demo {
     //   map: new THREE.CanvasTexture(this.getTextCanvas({text:'T2',width:200,height:200})),
     // }); // 白色材质
     const textTexture = new THREE.CanvasTexture(
-      this.getTextCanvas({ text: "T2", width: 200, height: 200 })
+      this.getTextCanvas({ text: "T2", width: 1000, height: 1000 })
     );
 
     material[2] = new THREE.MeshBasicMaterial({ map: textTexture }); // 将纹理应用到前面
@@ -182,15 +182,13 @@ export class Demo {
 
   // 生成文字
   getTextCanvas({ text, height, width }) {
-    var width = 256,
-      height = 256;
     var canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
     var ctx = canvas.getContext("2d");
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, width, height);
-    ctx.font = 100 + 'px " bold';
+    ctx.font = height/2 + 'px " bold';
     ctx.fillStyle = "#000000";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";

@@ -4,7 +4,6 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js";
 import { Scene } from "./scene";
 
-
 export class Render {
   renderer;
 
@@ -20,15 +19,12 @@ export class Render {
     this.sceneController = new Scene(this);
     this.animate();
     this.initEvent();
-
   }
-
-
 
   // 初始化渲染器
   initRenderer() {
-    const renderer = new THREE.WebGLRenderer({antialias: true});
-    // renderer.physicallyCorrectLights = true; 
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    // renderer.physicallyCorrectLights = true;
     this.renderer = renderer;
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -44,14 +40,24 @@ export class Render {
 
   // 窗口改变大小
   onWindowResize() {
-    this.sceneController.camera.aspect = window.innerWidth / window.innerHeight;
-    this.sceneController.camera.updateProjectionMatrix();
+    const camera = this.sceneController.camera;
+    const aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = aspect;
+    var d = 7;
+
+    camera.left = -d * aspect;
+    camera.right = d * aspect;
+    camera.top = d;
+    camera.bottom = -d;
+
+    camera.updateProjectionMatrix();
+    // camera.rotation.y = -Math.PI / 4;
+    // camera.rotation.x = Math.atan(-1 / Math.sqrt(2));
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
   // 动画帧
   animate() {
-    
     requestAnimationFrame(this.animate.bind(this));
     this.render();
     const delta = this.clock.getDelta();

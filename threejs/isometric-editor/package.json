@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "author": "yuanguandong <yuangd@gantsoftware.com>",
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi setup",
+    "setup": "umi setup",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.3.7",
+    "antd": "^5.17.2",
+    "three": "^0.164.1",
+    "umi": "^4.2.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.33",
+    "@types/react-dom": "^18.0.11",
+    "@types/three": "^0.164.0",
+    "typescript": "^5.0.3"
+  }
+}

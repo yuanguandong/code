@@ -1,0 +1,10 @@
+{
+  "extends": "./src/.umi/tsconfig.json",
+  // "compilerOptions": {
+  //   "typeRoots": [
+  //     "./node_modules/@types",
+  //     "./node_modules/three/examples/jsm"
+  //   ],
+  //   // 其他配置项
+  // }
+}
