@@ -1,14 +1,13 @@
-import * as THREE from "three";
-import { RenderPass, EffectComposer, OutlinePass, LineGeometry, LineMaterial, Line2 } from "three/addons";
-import { Render } from '../render'
+import { ElementData } from "../interface";
+import { Render } from '../render';
 import { Action } from "./action";
+import { Elements } from "./element";
+import { Area, AreaOptions } from "./element/area";
+import { Cube, CubeOptions } from "./element/cube";
+import { Cylinder, CylinderOptions } from "./element/cylinder";
+import { Text, TextOptions } from "./element/text";
 import { Events } from "./event";
 import { Post } from "./post";
-import { Cube } from "./element/cube";
-import { Elements } from "./element";
-import { ElementData } from "../interface";
-import { Cylinder } from "./element/cylinder";
-
 export class Controller {
 
   elements?: Elements
@@ -40,23 +39,26 @@ export class Controller {
     const me = this;
     const scene = me.engine.sceneController.scene;
 
-
     console.log('data', data)
     for (let i = 0; i < data.length; i++) {
       const item = data[i];
       const { type, options } = item
       switch (type) {
         case 'cube':
-          this.elements?.addElement(new Cube(this.engine, options))
+          this.elements?.addElement(new Cube(this.engine, options as CubeOptions))
           break;
         case 'cylinder':
-          this.elements?.addElement(new Cylinder(this.engine, options))
+          this.elements?.addElement(new Cylinder(this.engine, options as CylinderOptions))
+          break;
+        case 'text':
+          this.elements?.addElement(new Text(this.engine, options as TextOptions))
+          break;
+        case 'area':
+          this.elements?.addElement(new Area(this.engine, options as AreaOptions))
           break;
       }
     }
 
-
-    
 
   }
 

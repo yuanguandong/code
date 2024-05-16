@@ -18,14 +18,14 @@ const data = [
   },
   {
     key: "cylinder",
-    name: "圆柱体",
+    name: "棱柱体",
   },
   {
     key: "text",
     name: "文字",
   },
   {
-    key: "plane",
+    key: "area",
     name: "平面",
   },
   {

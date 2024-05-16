@@ -25,6 +25,25 @@ export default function ElementList(props: ElementListProps) {
           z: 7,
         });
         break;
+      case "text":
+        engine.sceneController.controller.action?.addText({
+          x: -9,
+          z: 7,
+          content: "Default Text",
+          color: "#000000",
+          fontSize: 0.2,
+          fontWeight: "bold",
+        });
+        break;
+      case "area":
+        engine.sceneController.controller.action?.addArea({
+          x: -9,
+          z: 7,
+          width: 3,
+          length: 3,
+          color: "#E6E7E8",
+        });
+        break;
     }
   }, []);
 

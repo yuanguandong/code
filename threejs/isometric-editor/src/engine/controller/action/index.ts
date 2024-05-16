@@ -2,8 +2,9 @@ import { Render } from "@/engine/render";
 import { Cube, CubeOptions } from "../element/cube";
 import { Element3D } from "@/engine/interface";
 import { message } from "antd";
-import { Cylinder } from "../element/cylinder";
-
+import { Cylinder, CylinderOptions } from "../element/cylinder";
+import { Text, TextOptions } from "../element/text";
+import { Area, AreaOptions } from "../element/area";
 export class Action {
 
   constructor(private engine: Render) {
@@ -19,19 +20,35 @@ export class Action {
     this.engine.sceneController.controller.elements?.addElement(element);
   }
 
-  // 添加立方体
-  addCylinder(data: CubeOptions) {
+  // 添加棱柱体
+  addCylinder(data: CylinderOptions) {
     const element = new Cylinder(this.engine, {
       ...data
     });
     this.engine.sceneController.controller.elements?.addElement(element);
   }
 
-  save(){
+  // 添加文字
+  addText(data: TextOptions) {
+    const element = new Text(this.engine, {
+      ...data
+    });
+    this.engine.sceneController.controller.elements?.addElement(element);
+  }
+
+  // 添加文字
+  addArea(data: AreaOptions) {
+    const element = new Area(this.engine, {
+      ...data
+    });
+    this.engine.sceneController.controller.elements?.addElement(element);
+  }
+
+  save() {
     const me = this;
     const data = this.engine.sceneController.controller.elements?.getData();
-    console.log('data',data)
-    localStorage.setItem('elements',JSON.stringify(data))
+    console.log('data', data)
+    localStorage.setItem('elements', JSON.stringify(data))
     message.success("保存成功");
   }
 

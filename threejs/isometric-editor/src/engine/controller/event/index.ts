@@ -8,7 +8,7 @@ export class Events {
 
   dragDelta = new THREE.Vector3();
 
-  dragObject?: THREE.Object3D<THREE.Object3DEventMap>;
+  dragObject?: Element3D;
 
   activeObject?: Element3D;
 
@@ -20,11 +20,11 @@ export class Events {
   // 鼠标按下
   pointdown(event: MouseEvent) {
     const me = this;
-    const scene = me.engine.sceneController.scene;
-    const camera = me.engine.sceneController.camera;
+    // const scene = me.engine.sceneController.scene;
+    // const camera = me.engine.sceneController.camera;
 
-    const outlinePass = me.engine.sceneController.controller.post?.outlinePass;
-    const composer = me.engine.sceneController.controller.post?.composer;
+    // const outlinePass = me.engine.sceneController.controller.post?.outlinePass;
+    // const composer = me.engine.sceneController.controller.post?.composer;
     event.preventDefault();
     if (!me.engine.sceneController?.pickController) { return }
 
@@ -41,6 +41,7 @@ export class Events {
       }
 
       me.dragObject = target;
+      me.activeObject?.disActive();
       me.activeObject = target;
       me.activeObject?.active();
       // 更新当前选中的物体
@@ -84,7 +85,7 @@ export class Events {
       if (!intersectPoint) { return }
       me.dragObject.position.x = intersectPoint.x - me.dragDelta.x;
       me.dragObject.position.z = intersectPoint.z - me.dragDelta.z;
-      me.dragObject.position.y = 0;
+      me.dragObject.position.y = me.dragObject?.groundGap || 0;
     }
   }
 

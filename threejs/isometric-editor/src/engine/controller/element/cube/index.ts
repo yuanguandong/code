@@ -13,6 +13,8 @@ export interface CubeOptions {
 
 
 export class Cube extends Base3DObject {
+  groundGap = 0.01;
+
   lineWdith = 0.03;
   lineWdithActive = 0.05;
 
@@ -48,11 +50,11 @@ export class Cube extends Base3DObject {
       new THREE.MeshBasicMaterial({ color: 'purple' }), // 右面
     ];
 
-    const textTexture = new THREE.CanvasTexture(
-      Utils.getTextCanvas({ text: "T2", width: 1000, height: 1000 })
-    );
+    // const textTexture = new THREE.CanvasTexture(
+    //   Utils.getTextCanvas({ text: "T2", width: 1000, height: 1000 })
+    // );
+    // material[2] = new THREE.MeshBasicMaterial({ map: textTexture }); 
 
-    material[2] = new THREE.MeshBasicMaterial({ map: textTexture }); // 将纹理应用到前面
     const cube = new THREE.Mesh(geometry, material);
     geometry.translate(0, height / 2, 0);
     this.position.x = me.options.x;
@@ -63,6 +65,7 @@ export class Cube extends Base3DObject {
     cube.userData.pickable = true;
     cube.userData.key = this.key;
     me.add(cube);
+    this.position.y = this.groundGap
   }
 
   addLine1() {
@@ -97,20 +100,29 @@ export class Cube extends Base3DObject {
     for (let i = 0; i < edgesCoordinates.length; i++) {
       const start = edgesCoordinates[i].start;
       const end = edgesCoordinates[i].end;
+      // const positions = [
+      //   start.x + position.x + 0.01,
+      //   start.y + position.y + 0.01,
+      //   start.z + position.z + 0.01,
+      //   end.x + position.x + 0.01,
+      //   end.y + position.y + 0.01,
+      //   end.z + position.z + 0.01,
+      // ];
+
       const positions = [
-        start.x + position.x + 0.01,
-        start.y + position.y + 0.01,
-        start.z + position.z + 0.01,
-        end.x + position.x + 0.01,
-        end.y + position.y + 0.01,
-        end.z + position.z + 0.01,
+        start.x + position.x,
+        start.y + position.y,
+        start.z + position.z,
+        end.x + position.x,
+        end.y + position.y,
+        end.z + position.z,
       ];
 
       const lineGeometry = new LineGeometry();
       lineGeometry.setPositions(positions);
       const line = new Line2(lineGeometry, me.matLine);
       line.computeLineDistances();
-      line.scale.set(1, 1, 1);
+      line.scale.set(1.01, 1.01, 1.01);
       this.add(line);
     }
   }
@@ -129,7 +141,7 @@ export class Cube extends Base3DObject {
 
   getData() {
     const me = this;
-    const position = me.cube?.position
+    const position = me?.position
     if (!position) return;
     const { x, z } = position;
     return {

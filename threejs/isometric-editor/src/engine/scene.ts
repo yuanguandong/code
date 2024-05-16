@@ -131,7 +131,7 @@ export class Scene {
 
     // const grid = new THREE.GridHelper(10, 10, 0, 0);
 
-    const gridHelper = new THREE.GridHelper(16, 16, 0x000000, 0x000000);
+    const gridHelper = new THREE.GridHelper(16, 16, 0x54626F, 0x54626F);
     // gridHelper.position.y = -150;
     // gridHelper.position.x = -150;
     this.scene.add(gridHelper);

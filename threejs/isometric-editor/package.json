@@ -14,6 +14,7 @@
     "antd": "^5.17.2",
     "nanoid": "^5.0.7",
     "three": "^0.164.1",
+    "troika-three-text": "^0.49.1",
     "umi": "^4.2.3"
   },
   "devDependencies": {
