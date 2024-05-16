@@ -1,11 +1,16 @@
+import { Element3D } from "@/engine/interface";
 import { Render } from "@/engine/render";
+import { Utils } from "@/engine/utils";
 import * as THREE from "three";
 import { RenderPass, EffectComposer, OutlinePass } from "three/addons";
 
 export class Events {
 
   dragDelta = new THREE.Vector3();
+
   dragObject?: THREE.Object3D<THREE.Object3DEventMap>;
+
+  activeObject?: Element3D;
 
   constructor(private engine: Render) {
 
@@ -25,38 +30,48 @@ export class Events {
 
     const allIntersects = me.engine.sceneController?.pickController?.pick(event);
     const allObjects = allIntersects?.filter((item) => item.object.userData.pickable);
-
     if (allObjects.length > 0) {
       const object = allObjects[0].object;
+      const target = Utils.lookUpElement(object)
+
       var intersectPoint = me.engine.sceneController.pickController.intersectPlane(event);
 
       if (intersectPoint) {
-        me.dragDelta.subVectors(intersectPoint, object.position);
+        me.dragDelta.subVectors(intersectPoint, target.position);
       }
 
-      me.dragObject = object;
+      me.dragObject = target;
+      me.activeObject = target;
+      me.activeObject?.active();
       // 更新当前选中的物体
-      if (!object.userData.hasOutline) {
-        object.userData.hasOutline = true;
-        if (outlinePass && composer) {
-          outlinePass.selectedObjects = scene.children.filter((item) => item.userData.hasOutline);
-          composer.addPass(outlinePass);
-        }
-      } else {
+      // if (!object.userData.hasOutline) {
+      //   object.userData.hasOutline = true;
+      //   if (outlinePass && composer) {
+      //     outlinePass.selectedObjects = [object]
+      //     composer.addPass(outlinePass);
+      //   }
+      // } else {
         // object.userData.hasOutline = false;
         // outlinePass.selectedObjects = scene.children.filter((item) => item.userData.hasOutline);
         // composer.removePass(outlinePass);
         // me.dragObject = null;
-      }
+      // }
     } else {
-      if (outlinePass && composer) {
-        outlinePass.selectedObjects = [];
-        composer.removePass(outlinePass);
-      }
-      scene.children.forEach(function (obj) {
-        obj.userData.hasOutline = false;
-      });
+      me.activeObject?.disActive();
+      // if (outlinePass && composer) {
+      //   outlinePass.selectedObjects = [];
+      //   composer.removePass(outlinePass);
+      // }
+
+      // const elements = me.engine.sceneController.controller.elements
+      // elements?.traverse(function (node) {
+      //   if (node instanceof THREE.Mesh) {
+      //     node.userData.hasOutline = false;
+      //   }
+      // });
+
       me.dragObject = undefined;
+      me.activeObject = undefined;
     }
   }
 

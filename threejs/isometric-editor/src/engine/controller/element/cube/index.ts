@@ -1,62 +1,164 @@
 import * as THREE from "three";
-import { RenderPass, EffectComposer, OutlinePass } from "three/addons";
+import { RenderPass, EffectComposer, OutlinePass, Line2, LineMaterial, LineGeometry } from "three/addons";
 import { Render } from "@/engine/render";
 import { Base3DObject } from "../base";
 import { Utils } from "@/engine/utils";
+import { nanoid } from 'nanoid';
+import { SIDE_DARK_COLOR, SIDE_LIGHT_COLOR, TOP_COLOR } from "@/engine/constant";
 
 export interface CubeOptions {
   x: number,
   z: number
 }
 
+
 export class Cube extends Base3DObject {
+  lineWdith = 0.03;
+  lineWdithActive = 0.05;
 
-  object3D?: THREE.Mesh<THREE.BoxGeometry, THREE.MeshBasicMaterial[], THREE.Object3DEventMap>;
+  cube?: THREE.Mesh<THREE.BoxGeometry, THREE.MeshBasicMaterial[], THREE.Object3DEventMap>
 
-  constructor(engine: Render, private options:CubeOptions) {
+  matLine?: LineMaterial = new LineMaterial({
+    color: 0x000000,
+    linewidth: this.lineWdith,
+    worldUnits: true,
+    dashed: false,
+    alphaToCoverage: true,
+    vertexColors: true,
+  });
+
+  constructor(engine: Render, private options: CubeOptions) {
     super(engine);
     this.init();
   }
 
   init() {
+    const me = this;
     const length = 1;
     const width = 1;
     const height = 0.5;
     const geometry = new THREE.BoxGeometry(length, height, width);
 
     var material = [
-      new THREE.MeshBasicMaterial({ color: 0xECECED }), // 前面
-      new THREE.MeshBasicMaterial({ color: 0xD2D2D4 }), // 后面
-      new THREE.MeshBasicMaterial({ color: 0xffffff }), // 顶面
-      new THREE.MeshBasicMaterial({ color: 0xECECED }), // 底面
-      new THREE.MeshBasicMaterial({ color: 0xD2D2D4 }), // 左面
-      new THREE.MeshBasicMaterial({ color: 0xB8B8BB }), // 右面
+      new THREE.MeshBasicMaterial({ color: SIDE_DARK_COLOR }), // 前面
+      new THREE.MeshBasicMaterial({ color: 'green' }), // 后面
+      new THREE.MeshBasicMaterial({ color: TOP_COLOR }), // 顶面
+      new THREE.MeshBasicMaterial({ color: 'blue' }), // 底面
+      new THREE.MeshBasicMaterial({ color: SIDE_LIGHT_COLOR }), // 左面
+      new THREE.MeshBasicMaterial({ color: 'purple' }), // 右面
     ];
 
-    // var material = new THREE.MeshBasicMaterial({
-    //   color: 0xedebe9,
-    //   map: new THREE.CanvasTexture(this.getTextCanvas({text:'T2',width:200,height:200})),
-    // }); // 白色材质
     const textTexture = new THREE.CanvasTexture(
       Utils.getTextCanvas({ text: "T2", width: 1000, height: 1000 })
     );
 
     material[2] = new THREE.MeshBasicMaterial({ map: textTexture }); // 将纹理应用到前面
-
     const cube = new THREE.Mesh(geometry, material);
-    cube.userData.pickable = true;
     geometry.translate(0, height / 2, 0);
-    cube.position.x = this.options.x;
-    cube.position.z = this.options.z;
+    this.position.x = me.options.x;
+    this.position.z = me.options.z;
+    me.cube = cube;
 
+    this.addLine2()
+    cube.userData.pickable = true;
+    cube.userData.key = this.key;
+    me.add(cube);
+  }
+
+  addLine1() {
+    const me = this;
+    const cube = me.cube;
+    if (!cube) { return }
+    const geometry = cube.geometry;
+    // 添加线条
     var edges = new THREE.EdgesGeometry(geometry);
     var lineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 20 });
-
     var lines = new THREE.LineSegments(edges, lineMaterial);
     lines.userData.pickable = false;
     cube.add(lines);
+  }
 
-    this.object3D = cube;
+  addLine2() {
+    const me = this;
+    const cube = me.cube;
+    if (!cube) { return }
+    const geometry = cube.geometry;
+    const position = cube.position;
+
+    // 添加线条
+    var edges = new THREE.EdgesGeometry(geometry);
+    const edgesArray = edges.attributes.position.array;
+    const edgesCoordinates = [];
+    for (let i = 0; i < edgesArray.length; i += 6) {
+      const start = new THREE.Vector3(edgesArray[i], edgesArray[i + 1], edgesArray[i + 2]);
+      const end = new THREE.Vector3(edgesArray[i + 3], edgesArray[i + 4], edgesArray[i + 5]);
+      edgesCoordinates.push({ start, end });
+    }
+    for (let i = 0; i < edgesCoordinates.length; i++) {
+      const start = edgesCoordinates[i].start;
+      const end = edgesCoordinates[i].end;
+      const positions = [
+        start.x + position.x + 0.01,
+        start.y + position.y + 0.01,
+        start.z + position.z + 0.01,
+        end.x + position.x + 0.01,
+        end.y + position.y + 0.01,
+        end.z + position.z + 0.01,
+      ];
+
+      const lineGeometry = new LineGeometry();
+      lineGeometry.setPositions(positions);
+      const line = new Line2(lineGeometry, me.matLine);
+      line.computeLineDistances();
+      line.scale.set(1, 1, 1);
+      this.add(line);
+    }
+  }
+
+  active() {
+    if (this.matLine) {
+      this.matLine.linewidth = this.lineWdithActive
+    }
+  }
+
+  disActive() {
+    if (this.matLine) {
+      this.matLine.linewidth = this.lineWdith;
+    }
+  }
+
+  getData() {
+    const me = this;
+    const position = me.cube?.position
+    if (!position) return;
+    const { x, z } = position;
+    return {
+      type: 'cube',
+      options: {
+        x,
+        z
+      }
+    }
+  }
+
+  destroy() {
+    const me = this;
+    this.children.forEach(child => {
+      if (child instanceof THREE.Mesh) {
+        child?.parent?.remove(child);
+        child.geometry.dispose();
+        if (child.material instanceof Array) {
+          child.material.forEach(material => {
+            material.dispose();
+          });
+        } else {
+          child.material.dispose();
+        }
+      }
+    });
+    me.cube = undefined;
+    me.matLine = undefined;
+    super.destroy();
   }
 
 }

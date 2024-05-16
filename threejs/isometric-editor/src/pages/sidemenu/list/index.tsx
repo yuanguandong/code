@@ -11,11 +11,21 @@ export default function ElementList(props: ElementListProps) {
   const { data } = props;
   const engine = useEngine();
 
-  const handleItemClick = useCallback(() => {
-    engine.sceneController.controller.action?.addCube({
-      x: -9,
-      z: 7,
-    });
+  const handleItemClick = useCallback((key: string) => {
+    switch (key) {
+      case "cube":
+        engine.sceneController.controller.action?.addCube({
+          x: -9,
+          z: 7,
+        });
+        break;
+      case "cylinder":
+        engine.sceneController.controller.action?.addCylinder({
+          x: -9,
+          z: 7,
+        });
+        break;
+    }
   }, []);
 
   return (
@@ -26,7 +36,7 @@ export default function ElementList(props: ElementListProps) {
       renderItem={(item) => (
         <List.Item
           className={styles.listItem}
-          onClick={handleItemClick}
+          onClick={handleItemClick.bind(null, item.key)}
         >
           {item.name}
         </List.Item>

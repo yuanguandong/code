@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { Scene } from "./scene";
 
 export class Render {
-  renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({ antialias: true,alpha: true });
 
   sceneController;
 
@@ -27,6 +27,7 @@ export class Render {
   // 初始化渲染器
   initRenderer() {
     this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setClearColor('hsl(0,0%,95%)',1.0)
     // renderer.outputEncoding = THREE.sRGBEncoding;
   }
 
@@ -43,6 +44,7 @@ export class Render {
     this.renderer.setSize(width, height);
     dom.appendChild(this.renderer.domElement);
     this.domInited = true
+    this.onWindowResize();
   }
 
   // 初始化事件
@@ -60,8 +62,11 @@ export class Render {
     this.width = domContainerWidth;
     this.height = domContainerHeight;
 
-    const width = window.innerWidth
-    const height = window.innerHeight
+    // const width = window.innerWidth
+    // const height = window.innerHeight
+
+    const width = domContainerWidth
+    const height = domContainerHeight
 
     const camera = this.sceneController.camera;
     if (camera) {

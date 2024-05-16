@@ -19,8 +19,8 @@ export class Scene {
   plane?: THREE.Plane;
 
   constructor(private engine: Render) {
-    this.scene.background = new THREE.Color(0x000000);
-    this.controller = new Controller(this.engine);
+    // this.scene.background = new THREE.Color(0x000000);
+    this.controller = new Controller(engine);
     this.initCamera();
     // this.initAxesHelper();
     this.initGridHelper();
@@ -97,6 +97,7 @@ export class Scene {
       // })
       material
     );
+    plane.name = "plane"
     plane.rotation.x = -Math.PI / 2;
     plane.position.y = -0.06
     plane.userData.isGround = true;
@@ -140,13 +141,22 @@ export class Scene {
 
   initCamera() {
     const me = this;
-    const width = window.innerWidth
-    const height = window.innerHeight
+
+    const rect = this.engine.domContainer?.getBoundingClientRect();
+    const domContainerWidth = rect?.width
+    const domContainerHeight = rect?.height
+
+    const width = domContainerWidth || this.engine.width
+    const height = domContainerHeight || this.engine.width
+
     const aspect = width / height;
     const d = 7;
     const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 1, 10000);
     this.camera = camera;
     camera.position.set(10, 10, 10);
+
+    camera.updateProjectionMatrix();
+
     // camera.rotation.order = "YXZ";
     // camera.rotation.y = -Math.PI / 4;
     // camera.rotation.x = Math.atan(-1 / Math.sqrt(2));
@@ -179,9 +189,5 @@ export class Scene {
     // this.controls.maxPolarAngle = Math.PI / 2.5;
   }
 
-  addElement(element3D: Element3D) {
-    if (element3D.object3D) {
-      this.engine.sceneController.scene.add(element3D.object3D);
-    }
-  }
+
 }

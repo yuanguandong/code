@@ -5,14 +5,18 @@ specifiers:
   '@types/react': ^18.0.33
   '@types/react-dom': ^18.0.11
   '@types/three': ^0.164.0
+  ahooks: ^3.7.11
   antd: ^5.17.2
+  nanoid: ^5.0.7
   three: ^0.164.1
   typescript: ^5.0.3
   umi: ^4.2.3
 
 dependencies:
   '@ant-design/icons': registry.npmjs.org/@ant-design/icons/5.3.7
+  ahooks: registry.npmjs.org/ahooks/3.7.11
   antd: registry.npmjs.org/antd/5.17.2
+  nanoid: registry.npmjs.org/nanoid/5.0.7
   three: registry.npmjs.org/three/0.164.1
   umi: registry.npmjs.org/umi/4.2.3_r4uv52uoodtokbnpjpecx56sry
 
@@ -2863,6 +2867,25 @@ packages:
     version: 8.11.3
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: false
+
+  registry.npmjs.org/ahooks/3.7.11:
+    resolution: {integrity: sha512-BfSq7HJ9wk/7a2vX7WbLdwzHyQHmbNe21ipX1PfIzssXIzQfAl79WVJ9GjZaqNl4PFPsJusj/Xjg2OF+gIgGaQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/ahooks/-/ahooks-3.7.11.tgz}
+    name: ahooks
+    version: 3.7.11
+    engines: {node: '>=8.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': registry.npmjs.org/@babel/runtime/7.24.5
+      dayjs: registry.npmjs.org/dayjs/1.11.11
+      intersection-observer: registry.npmjs.org/intersection-observer/0.12.2
+      js-cookie: registry.npmjs.org/js-cookie/2.2.1
+      lodash: registry.npmjs.org/lodash/4.17.21
+      react-fast-compare: registry.npmjs.org/react-fast-compare/3.2.2
+      resize-observer-polyfill: registry.npmjs.org/resize-observer-polyfill/1.5.1
+      screenfull: registry.npmjs.org/screenfull/5.2.0
+      tslib: registry.npmjs.org/tslib/2.6.2
     dev: false
 
   registry.npmjs.org/ajv-keywords/3.5.2_ajv@6.12.6:
@@ -5757,6 +5780,12 @@ packages:
       side-channel: registry.npmjs.org/side-channel/1.0.6
     dev: false
 
+  registry.npmjs.org/intersection-observer/0.12.2:
+    resolution: {integrity: sha512-7m1vEcPCxXYI8HqnL8CKI6siDyD+eIWSwgB3DZA+ZTogxk9I4CDnj4wilt9x/+/QbHI4YG5YZNmC6458/e9Ktg==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/intersection-observer/-/intersection-observer-0.12.2.tgz}
+    name: intersection-observer
+    version: 0.12.2
+    dev: false
+
   registry.npmjs.org/invariant/2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/invariant/-/invariant-2.2.4.tgz}
     name: invariant
@@ -6264,6 +6293,12 @@ packages:
       jest-util: registry.npmjs.org/jest-util/29.7.0
       merge-stream: registry.npmjs.org/merge-stream/2.0.0
       supports-color: registry.npmjs.org/supports-color/8.1.1
+    dev: false
+
+  registry.npmjs.org/js-cookie/2.2.1:
+    resolution: {integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/js-cookie/-/js-cookie-2.2.1.tgz}
+    name: js-cookie
+    version: 2.2.1
     dev: false
 
   registry.npmjs.org/js-tokens/4.0.0:
@@ -6793,6 +6828,14 @@ packages:
     name: nanoid
     version: 3.3.7
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+    dev: false
+
+  registry.npmjs.org/nanoid/5.0.7:
+    resolution: {integrity: sha512-oLxFY2gd2IqnjcYyOXD8XGCftpGtZP2AbHbOkthDkvRywH5ayNtPVy9YlOPcHckXzbLTCHpkb7FB+yuxKV13pQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/nanoid/-/nanoid-5.0.7.tgz}
+    name: nanoid
+    version: 5.0.7
+    engines: {node: ^18 || >=20}
     hasBin: true
     dev: false
 
@@ -9136,6 +9179,13 @@ packages:
       '@types/json-schema': registry.npmjs.org/@types/json-schema/7.0.15
       ajv: registry.npmjs.org/ajv/6.12.6
       ajv-keywords: registry.npmjs.org/ajv-keywords/3.5.2_ajv@6.12.6
+    dev: false
+
+  registry.npmjs.org/screenfull/5.2.0:
+    resolution: {integrity: sha512-9BakfsO2aUQN2K9Fdbj87RJIEZ82Q9IGim7FqM5OsebfoFC6ZHXgDq/KvniuLTPdeM8wY2o6Dj3WQ7KeQCj3cA==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/screenfull/-/screenfull-5.2.0.tgz}
+    name: screenfull
+    version: 5.2.0
+    engines: {node: '>=0.10.0'}
     dev: false
 
   registry.npmjs.org/scroll-into-view-if-needed/3.1.0:

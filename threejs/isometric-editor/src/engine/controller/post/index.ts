@@ -1,6 +1,8 @@
 import { Render } from "@/engine/render";
 import * as THREE from "three";
-import { RenderPass, EffectComposer, OutlinePass } from "three/addons";
+import { RenderPass, EffectComposer, OutlinePass, ShaderPass, FXAAShader } from "three/addons";
+import { CustomOutlinePass } from "./CustomOutlinePass.js";
+import FindSurfaces from "./FindSurfaces.js";
 
 export class Post {
 
@@ -8,7 +10,7 @@ export class Post {
 
   composer?: EffectComposer;
 
-  
+
   constructor(private engine: Render) {
 
     this.init();
@@ -20,6 +22,59 @@ export class Post {
 
   // 后处理效果
   initPostRender() {
+    return
+    const me = this;
+    const scene = me.engine.sceneController.scene;
+    const camera = me.engine.sceneController.camera;
+    const renderer = me.engine.renderer
+    const domElement = me.engine.renderer.domElement;
+    if (!camera) { return }
+
+    const width = domElement.clientWidth;
+    const height = domElement.clientHeight;
+    const depthTexture = new THREE.DepthTexture();
+    const renderTarget = new THREE.WebGLRenderTarget(
+      width,
+      height,
+      {
+        depthTexture: depthTexture,
+        depthBuffer: true,
+      }
+    );
+
+    // Initial render pass.
+    const composer = new EffectComposer(renderer, renderTarget);
+    const pass = new RenderPass(scene, camera);
+    composer.addPass(pass);
+
+    // Outline pass.
+    const customOutline = new CustomOutlinePass(
+      new THREE.Vector2(width,
+        height,),
+      scene,
+      camera
+    );
+    composer.addPass(customOutline);
+
+    // Antialias pass.
+    const effectFXAA = new ShaderPass(FXAAShader);
+    effectFXAA.uniforms["resolution"].value.set(
+      1 / width,
+      1 / height
+    );
+    composer.addPass(effectFXAA);
+
+    this.engine.registerUpdate("composer", () => {
+      // var scaleFactor = camera.zoom; // 根据相机距离调整
+      // outlinePass.edgeStrength = scaleFactor;
+      // outlinePass.edgeThickness = scaleFactor / 100; // 边缘厚度
+      composer.render();
+    });
+  }
+
+  // 后处理效果
+  initPostRender1() {
+    return
     const me = this;
     const scene = me.engine.sceneController.scene;
     const camera = me.engine.sceneController.camera;

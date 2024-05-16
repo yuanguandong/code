@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
+    "ahooks": "^3.7.11",
     "antd": "^5.17.2",
+    "nanoid": "^5.0.7",
     "three": "^0.164.1",
     "umi": "^4.2.3"
   },
