@@ -2,11 +2,13 @@ import * as THREE from "three";
 import { Render } from "./render";
 
 export class PickController {
+  // 视窗中心位置
+  centerVector2 = new THREE.Vector2();
 
-  centerVector2= new THREE.Vector2();
-
+  // 鼠标位置
   mouse = new THREE.Vector2();
 
+  // 射线
   raycaster = new THREE.Raycaster();
 
   constructor(private engine: Render) {

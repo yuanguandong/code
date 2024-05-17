@@ -1,28 +1,30 @@
-import { ElementData } from "../interface";
 import { Render } from '../render';
 import { Action } from "./action";
+import { Data } from "./data";
 import { Elements } from "./element";
-import { Area, AreaOptions } from "./element/area";
-import { Cube, CubeOptions } from "./element/cube";
-import { Cylinder, CylinderOptions } from "./element/cylinder";
-import { Icon, IconOptions } from "./element/icon";
-import { Text, TextOptions } from "./element/text";
 import { Events } from "./event";
 import { Post } from "./post";
 export class Controller {
-
+  // 元素管理器
   elements?: Elements
 
+  // 动作管理器
   action?: Action;
 
+  // 事件管理器
   event?: Events;
 
+  // 数据管理器
+  data?: Data;
+
+  // 后处理管理器
   post?: Post;
 
   constructor(private engine: Render) {
     this.action = new Action(engine);
     this.event = new Events(engine);
     this.post = new Post(engine);
+    this.data = new Data(engine);
 
     this.init();
   }
@@ -36,35 +38,7 @@ export class Controller {
     });
   }
 
-  initData(data: ElementData[]) {
-    const me = this;
-    const scene = me.engine.sceneController.scene;
-
-    console.log('data', data)
-    for (let i = 0; i < data.length; i++) {
-      const item = data[i];
-      const { type, options } = item
-      switch (type) {
-        case 'cube':
-          this.elements?.addElement(new Cube(this.engine, options as CubeOptions))
-          break;
-        case 'cylinder':
-          this.elements?.addElement(new Cylinder(this.engine, options as CylinderOptions))
-          break;
-        case 'text':
-          this.elements?.addElement(new Text(this.engine, options as TextOptions))
-          break;
-        case 'area':
-          this.elements?.addElement(new Area(this.engine, options as AreaOptions))
-          break;
-        case 'icon':
-          this.elements?.addElement(new Icon(this.engine, options as IconOptions))
-          break;
-      }
-    }
-
-
-  }
+  
 
 
 

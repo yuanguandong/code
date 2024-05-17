@@ -21,8 +21,8 @@ export class Events {
   pointdown(event: MouseEvent) {
     const me = this;
     event.preventDefault();
-    if (!me.engine.sceneController?.pickController) { return }
-    const allIntersects = me.engine.sceneController?.pickController?.pick(event);
+    if (!me.engine.pickController) { return }
+    const allIntersects = me.engine.pickController?.pick(event);
     const allObjects = allIntersects?.filter((item) => item.object.userData.pickable);
 
     if (allObjects.length > 0) {
@@ -30,7 +30,7 @@ export class Events {
       const target = Utils.lookUpElement(object)
       if (!target) { return }
 
-      var intersectPoint = me.engine.sceneController.pickController.intersectPlane(event);
+      var intersectPoint = me.engine.pickController.intersectPlane(event);
       if (intersectPoint) {
         me.dragDelta.subVectors(intersectPoint, target.position);
       }
@@ -49,8 +49,8 @@ export class Events {
   pointerMove(event: MouseEvent) {
     const me = this;
 
-    if (me.dragObject && me.engine.sceneController.pickController) {
-      var intersectPoint = me.engine.sceneController.pickController.intersectPlane(event);
+    if (me.dragObject && me.engine.pickController) {
+      var intersectPoint = me.engine.pickController.intersectPlane(event);
       if (!intersectPoint) { return }
       me.dragObject.position.x = intersectPoint.x - me.dragDelta.x;
       me.dragObject.position.z = intersectPoint.z - me.dragDelta.z;
@@ -83,18 +83,18 @@ export class Events {
 //   // const scene = me.engine.sceneController.scene;
 //   // const camera = me.engine.cameraController.camera;
 
-//   // const outlinePass = me.engine.sceneController.controller.post?.outlinePass;
-//   // const composer = me.engine.sceneController.controller.post?.composer;
+//   // const outlinePass = me.engine.controller.post?.outlinePass;
+//   // const composer = me.engine.controller.post?.composer;
 //   event.preventDefault();
-//   if (!me.engine.sceneController?.pickController) { return }
+//   if (!me.engine.pickController) { return }
 
-//   const allIntersects = me.engine.sceneController?.pickController?.pick(event);
+//   const allIntersects = me.engine.pickController?.pick(event);
 //   const allObjects = allIntersects?.filter((item) => item.object.userData.pickable);
 //   if (allObjects.length > 0) {
 //     const object = allObjects[0].object;
 //     const target = Utils.lookUpElement(object)
 
-//     var intersectPoint = me.engine.sceneController.pickController.intersectPlane(event);
+//     var intersectPoint = me.engine.pickController.intersectPlane(event);
 
 //     if (intersectPoint) {
 //       me.dragDelta.subVectors(intersectPoint, target.position);
@@ -124,7 +124,7 @@ export class Events {
 //     //   composer.removePass(outlinePass);
 //     // }
 
-//     // const elements = me.engine.sceneController.controller.elements
+//     // const elements = me.engine.controller.elements
 //     // elements?.traverse(function (node) {
 //     //   if (node instanceof THREE.Mesh) {
 //     //     node.userData.hasOutline = false;

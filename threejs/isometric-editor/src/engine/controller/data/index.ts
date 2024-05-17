@@ -1,20 +1,31 @@
-import { Element3D } from "@/engine/interface";
+import { ElementData } from "@/engine/interface";
 import { Render } from "@/engine/render";
-import * as THREE from "three";
-import { RenderPass, EffectComposer, OutlinePass } from "three/addons";
-
+import { message } from "antd";
 export class Data {
 
   constructor(private engine: Render) {
 
-
   }
 
-
-
   // 获取数据
-  getData(){
-    
+  getData() {
+    return this.engine.controller?.elements?.getData()
+  }
+
+  // 初始化数据
+  setData(data: ElementData[]) {
+    const me = this;
+    for (let i = 0; i < data.length; i++) {
+      me.engine.controller?.elements?.addElement(data[i])
+    }
+  }
+
+  save() {
+    const me = this;
+    const data = this.engine.controller.elements?.getData();
+    console.log('data', data)
+    localStorage.setItem('elements', JSON.stringify(data))
+    message.success("保存成功");
   }
 
 }

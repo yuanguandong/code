@@ -2,31 +2,52 @@ import * as THREE from "three";
 import { Scene } from "./scene";
 import { SVGLoader } from "three/addons";
 import { Camera } from "./camera";
+import { PickController } from "./pick";
+import { Controller } from "./controller";
 
 export class Render {
+  // 渲染器
   renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
-  sceneController: Scene;
-  cameraController: Camera;
-
+  // 时钟
   clock = new THREE.Clock();
 
   // 动画帧更新函数注册表
   updates: Record<string, Function> = {};
 
+  // 渲染容器
   domContainer?: HTMLDivElement;
 
+  // 是否初始化DOM
   domInited = false;
+
+  // 画布宽度
   width: number = 500;
+
+  // 画布高度
   height: number = 500;
 
+  // SVG加载器
   loader = new SVGLoader();
 
+  // 场景控制器
+  sceneController: Scene;
+
+  // 相机控制器
+  cameraController: Camera;
+
+  // 选取控制器
+  pickController: PickController;
+
+  // 业务控制器
+  controller: Controller;
 
   constructor() {
     this.initRenderer();
     this.cameraController = new Camera(this);
     this.sceneController = new Scene(this);
+    this.pickController = new PickController(this)
+    this.controller = new Controller(this);
     this.animate();
     this.initEvent();
   }
@@ -38,6 +59,7 @@ export class Render {
     // renderer.outputEncoding = THREE.sRGBEncoding;
   }
 
+  // 初始化DOM
   initDom(dom: HTMLDivElement) {
     if (this.domInited) {
       return
@@ -66,7 +88,7 @@ export class Render {
     const rect = this.domContainer?.getBoundingClientRect();
     const domContainerWidth = rect?.width || this.width;
     const domContainerHeight = rect?.height || this.height;
-    
+
     this.width = domContainerWidth;
     this.height = domContainerHeight;
 
@@ -78,7 +100,6 @@ export class Render {
   animate() {
     requestAnimationFrame(this.animate.bind(this));
     this.render();
-    const delta = this.clock.getDelta();
     const fns = Object.values(this.updates);
     for (let i = 0; i < fns.length; i++) {
       const fn = fns[i];
@@ -88,8 +109,8 @@ export class Render {
 
   // 重新渲染
   render() {
-    const delta = this.clock.getDelta();
-    const time = this.clock.getElapsedTime() * 10;
+    // const delta = this.clock.getDelta();
+    // const time = this.clock.getElapsedTime() * 10;
     const camera = this.cameraController.camera;
     if (!camera) {
       return

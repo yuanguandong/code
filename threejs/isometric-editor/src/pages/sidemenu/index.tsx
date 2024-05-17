@@ -32,10 +32,10 @@ const data = [
     key: "icon",
     name: "图标",
   },
-  {
-    key: "image",
-    name: "图片",
-  },
+  // {
+  //   key: "image",
+  //   name: "图片",
+  // },
 ];
 
 const items: CollapseProps["items"] = [

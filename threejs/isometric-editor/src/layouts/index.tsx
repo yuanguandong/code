@@ -8,9 +8,9 @@ import { useEngine } from "@/engine";
 
 export default function Layout() {
   const engine = useEngine();
+  
   const handleSave = useCallback(() => {
-    engine.sceneController?.controller?.action?.save();
-
+    engine.controller?.data?.save();
   }, []);
 
   return (

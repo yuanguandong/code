@@ -28,9 +28,9 @@ export default function Scene() {
     const container = ref.current;
     if (container && !ready) {
       engine.initDom(container);
-      engine.sceneController.controller.post?.initPostRender();
+      engine.controller.post?.initPostRender();
       if (elementsData) {
-        engine.sceneController.controller.initData(elementsData);
+        engine.controller.data?.setData(elementsData);
       }
       setReady(true);
     }

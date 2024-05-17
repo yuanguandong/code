@@ -5,16 +5,16 @@ const useKeyPressEffect = () => {
   const engine = useEngine();
 
   useKeyPress("delete", () => {
-    const activeElementKey = engine.sceneController.controller.event?.activeObject?.key;
+    const activeElementKey = engine.controller.event?.activeObject?.key;
     if (!activeElementKey) {
       return;
     }
-    engine.sceneController.controller.elements?.removeElement(activeElementKey);
+    engine.controller.elements?.removeElement(activeElementKey);
   });
 
   useKeyPress(['meta.s'], (event) => {
     event.preventDefault();
-    engine.sceneController.controller.action?.save();
+    engine.controller.action?.save();
   });
   
 };
