@@ -1,6 +1,6 @@
 import { Element3D } from "@/engine/interface";
 import { Render } from "@/engine/render";
-import { Utils } from "@/engine/utils";
+import { MeshElement, Utils } from "@/engine/utils";
 import * as THREE from "three";
 import { RenderPass, EffectComposer, OutlinePass } from "three/addons";
 
@@ -20,57 +20,26 @@ export class Events {
   // 鼠标按下
   pointdown(event: MouseEvent) {
     const me = this;
-    // const scene = me.engine.sceneController.scene;
-    // const camera = me.engine.sceneController.camera;
-
-    // const outlinePass = me.engine.sceneController.controller.post?.outlinePass;
-    // const composer = me.engine.sceneController.controller.post?.composer;
     event.preventDefault();
     if (!me.engine.sceneController?.pickController) { return }
-
     const allIntersects = me.engine.sceneController?.pickController?.pick(event);
     const allObjects = allIntersects?.filter((item) => item.object.userData.pickable);
+
     if (allObjects.length > 0) {
       const object = allObjects[0].object;
       const target = Utils.lookUpElement(object)
+      if (!target) { return }
 
       var intersectPoint = me.engine.sceneController.pickController.intersectPlane(event);
-
       if (intersectPoint) {
         me.dragDelta.subVectors(intersectPoint, target.position);
       }
-
       me.dragObject = target;
       me.activeObject?.disActive();
       me.activeObject = target;
       me.activeObject?.active();
-      // 更新当前选中的物体
-      // if (!object.userData.hasOutline) {
-      //   object.userData.hasOutline = true;
-      //   if (outlinePass && composer) {
-      //     outlinePass.selectedObjects = [object]
-      //     composer.addPass(outlinePass);
-      //   }
-      // } else {
-        // object.userData.hasOutline = false;
-        // outlinePass.selectedObjects = scene.children.filter((item) => item.userData.hasOutline);
-        // composer.removePass(outlinePass);
-        // me.dragObject = null;
-      // }
     } else {
       me.activeObject?.disActive();
-      // if (outlinePass && composer) {
-      //   outlinePass.selectedObjects = [];
-      //   composer.removePass(outlinePass);
-      // }
-
-      // const elements = me.engine.sceneController.controller.elements
-      // elements?.traverse(function (node) {
-      //   if (node instanceof THREE.Mesh) {
-      //     node.userData.hasOutline = false;
-      //   }
-      // });
-
       me.dragObject = undefined;
       me.activeObject = undefined;
     }
@@ -105,3 +74,64 @@ export class Events {
   }
 
 }
+
+
+
+// // 鼠标按下
+// pointdown(event: MouseEvent) {
+//   const me = this;
+//   // const scene = me.engine.sceneController.scene;
+//   // const camera = me.engine.cameraController.camera;
+
+//   // const outlinePass = me.engine.sceneController.controller.post?.outlinePass;
+//   // const composer = me.engine.sceneController.controller.post?.composer;
+//   event.preventDefault();
+//   if (!me.engine.sceneController?.pickController) { return }
+
+//   const allIntersects = me.engine.sceneController?.pickController?.pick(event);
+//   const allObjects = allIntersects?.filter((item) => item.object.userData.pickable);
+//   if (allObjects.length > 0) {
+//     const object = allObjects[0].object;
+//     const target = Utils.lookUpElement(object)
+
+//     var intersectPoint = me.engine.sceneController.pickController.intersectPlane(event);
+
+//     if (intersectPoint) {
+//       me.dragDelta.subVectors(intersectPoint, target.position);
+//     }
+
+//     me.dragObject = target;
+//     me.activeObject?.disActive();
+//     me.activeObject = target;
+//     me.activeObject?.active();
+//     // 更新当前选中的物体
+//     // if (!object.userData.hasOutline) {
+//     //   object.userData.hasOutline = true;
+//     //   if (outlinePass && composer) {
+//     //     outlinePass.selectedObjects = [object]
+//     //     composer.addPass(outlinePass);
+//     //   }
+//     // } else {
+//       // object.userData.hasOutline = false;
+//       // outlinePass.selectedObjects = scene.children.filter((item) => item.userData.hasOutline);
+//       // composer.removePass(outlinePass);
+//       // me.dragObject = null;
+//     // }
+//   } else {
+//     me.activeObject?.disActive();
+//     // if (outlinePass && composer) {
+//     //   outlinePass.selectedObjects = [];
+//     //   composer.removePass(outlinePass);
+//     // }
+
+//     // const elements = me.engine.sceneController.controller.elements
+//     // elements?.traverse(function (node) {
+//     //   if (node instanceof THREE.Mesh) {
+//     //     node.userData.hasOutline = false;
+//     //   }
+//     // });
+
+//     me.dragObject = undefined;
+//     me.activeObject = undefined;
+//   }
+// }

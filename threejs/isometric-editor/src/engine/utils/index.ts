@@ -1,5 +1,11 @@
-import { Mesh } from "three";
+import { Mesh, Object3D, Object3DEventMap } from "three";
 import { TOP_COLOR } from "../constant";
+import { Element3D } from "../interface";
+
+export interface MeshElement extends Mesh {
+  isElement: boolean;
+  parent: MeshElement;
+}
 
 export class Utils {
   // 生成文字canvas
@@ -26,12 +32,13 @@ export class Utils {
     return canvas;
   }
 
-  static lookUpElement(mesh: any) {
-    if (!mesh?.parent) { return }
-    if (mesh?.parent?.['isElement']) {
-      return mesh.parent
+  static lookUpElement(_mesh: Object3D<Object3DEventMap>): Element3D | undefined {
+    const mesh = _mesh as MeshElement
+    if (!mesh) { return }
+    if (mesh?.['isElement']) {
+      return mesh as unknown as Element3D
     }
-    Utils.lookUpElement(mesh.parent)
+    return Utils.lookUpElement(mesh?.parent)
   }
 
 }

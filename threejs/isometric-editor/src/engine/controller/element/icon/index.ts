@@ -1,25 +1,23 @@
 import { Render } from "@/engine/render";
 import * as THREE from "three";
-import { Line2, LineGeometry, LineMaterial } from "three/addons";
-import { Text as TextMesh } from 'troika-three-text';
+import { Line2, LineGeometry, LineMaterial, SVGLoader } from "three/addons";
 import { Base3DObject } from "../base";
 
-export interface TextOptions {
+export interface IconOptions {
   x: number,
   z: number,
-  content: string,
+  size: number,
   color: string,
-  fontSize: number,
-  fontWeight: string,
+
 }
 
 
-export class Text extends Base3DObject {
+export class Icon extends Base3DObject {
   lineWdith = 0.03;
   groundGap = 0.01;
-  outlinePadding = 0.05;
+  outlinePadding = 0;
 
-  text: any;
+  icon: any;
 
   matLine?: LineMaterial = new LineMaterial({
     color: 0x000000,
@@ -32,52 +30,66 @@ export class Text extends Base3DObject {
 
   line?: Line2;
 
-  constructor(engine: Render, private options: TextOptions) {
+  svgUrl = 'user.svg';
+
+  constructor(engine: Render, private options: IconOptions) {
     super(engine);
     this.init();
   }
 
   init() {
     const me = this;
-    const { x, z, content, color, fontSize, fontWeight } = me.options
+    const { x, z, color, size } = me.options
     this.position.x = x;
     this.position.z = z;
 
-    let text = new TextMesh();
-    text.font = 'MicrosoftYahei.ttf';
-    text.text = content;
-    text.fontSize = fontSize;
-    text.color = color;
-    text.fontWeight = fontWeight;
-    text.outlineColor = '#ffffff'
-    text.outlineWidth = 0.02;
+    me.engine.loader.load(this.svgUrl, function (data) {
+      const paths = data.paths;
+      const icon = new THREE.Group();
+      icon.scale.multiplyScalar(size / 1024);
+      // group.scale.y *= - 1;
 
-    text.sync()
+      let renderOrder = 0;
 
-    
-    this.add(text);
-    
-    this.text = text;
-    text.userData.pickable = true;
-    text.userData.key = this.key;
-    this.position.y = this.groundGap;
-    this.rotation.x = - Math.PI / 2;
+      paths.forEach((path) => {
+        const material = new THREE.MeshBasicMaterial({
+          color,
+          side: THREE.DoubleSide,
+          // depthWrite: false
+        });
 
+        const shapes = SVGLoader.createShapes(path);
 
+        shapes.forEach((shape) => {
+          const geometry = new THREE.ShapeGeometry(shape);
+          const mesh = new THREE.Mesh(geometry, material);
+          mesh.renderOrder = renderOrder++;
+          mesh.userData.pickable = true;
+          mesh.userData.key = me.key;
+          icon.add(mesh);
+        });
+      });
+
+      me.add(icon);
+
+      me.icon = icon;
+      me.position.y = me.groundGap;
+      me.rotation.x = Math.PI / 2;
+    });
   }
 
 
   addLine() {
     const me = this;
-    const boundingBox = this.text.geometry.boundingBox;
-    const { max, min } = boundingBox
+    const width = this.icon.geometry.parameters.width;
+    const length = this.icon.geometry.parameters.height;
     const padding = this.outlinePadding;
     const positions = [
-      max.x + padding, min.y - padding, 0,
-      min.x - padding, min.y - padding, 0,
-      min.x - padding, max.y + padding, 0,
-      max.x + padding, max.y + padding, 0,
-      max.x + padding, min.y - padding, 0,
+      width / 2 + padding, -length / 2 - padding, 0,
+      width / 2 + padding, length / 2 + padding, 0,
+      -width / 2 - padding, length / 2 + padding, 0,
+      -width / 2 - padding, -length / 2 - padding, 0,
+      width / 2 + padding, -length / 2 - padding, 0,
     ]
     const lineGeometry = new LineGeometry();
     lineGeometry.setPositions(positions);
@@ -89,7 +101,7 @@ export class Text extends Base3DObject {
   }
 
   active() {
-    this.addLine();
+    // this.addLine();
   }
 
   disActive() {
@@ -107,14 +119,13 @@ export class Text extends Base3DObject {
     if (!position) return;
     const { x, z } = position;
     return {
-      type: 'text',
+      type: 'icon',
       options: {
         x,
         z,
-        content: me.text?.text,
-        color: me.text?.color,
-        fontSize: me.text?.fontSize,
-        fontWeight: me.text?.fontWeight,
+        size: me.icon?.scale.x * 1024,
+        color: me.options.color,
+
       }
     }
   }
@@ -137,7 +148,7 @@ export class Text extends Base3DObject {
         }
       }
     });
-    me.text = undefined;
+    me.icon = undefined;
     me.matLine = undefined;
     me.line = undefined
     super.destroy();

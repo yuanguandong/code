@@ -5,6 +5,7 @@ import { Elements } from "./element";
 import { Area, AreaOptions } from "./element/area";
 import { Cube, CubeOptions } from "./element/cube";
 import { Cylinder, CylinderOptions } from "./element/cylinder";
+import { Icon, IconOptions } from "./element/icon";
 import { Text, TextOptions } from "./element/text";
 import { Events } from "./event";
 import { Post } from "./post";
@@ -55,6 +56,9 @@ export class Controller {
           break;
         case 'area':
           this.elements?.addElement(new Area(this.engine, options as AreaOptions))
+          break;
+        case 'icon':
+          this.elements?.addElement(new Icon(this.engine, options as IconOptions))
           break;
       }
     }

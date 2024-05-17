@@ -4,13 +4,15 @@ import { Collapse, Typography } from "antd";
 const { Title } = Typography;
 import { useLayoutEffect, useRef, useState } from "react";
 import { useLocalStorageState } from "ahooks";
+import { ElementData } from "@/engine/interface";
+import ToolBar from "./toolbar";
 
 export default function Scene() {
   const ref = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
   const engine = useEngine();
 
-  const [elementsData, setElementsData] = useLocalStorageState<Record<string, any>[]>("elements", {
+  const [elementsData, setElementsData] = useLocalStorageState<ElementData[]>("elements", {
     defaultValue: [
       {
         type: "cube",
@@ -27,7 +29,9 @@ export default function Scene() {
     if (container && !ready) {
       engine.initDom(container);
       engine.sceneController.controller.post?.initPostRender();
-      engine.sceneController.controller.initData(elementsData);
+      if (elementsData) {
+        engine.sceneController.controller.initData(elementsData);
+      }
       setReady(true);
     }
   }, []);
@@ -36,6 +40,8 @@ export default function Scene() {
     <div
       className={styles.main}
       ref={ref}
-    />
+    >
+      <ToolBar />
+    </div>
   );
 }

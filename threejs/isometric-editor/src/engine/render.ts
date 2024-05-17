@@ -1,10 +1,13 @@
 import * as THREE from "three";
 import { Scene } from "./scene";
+import { SVGLoader } from "three/addons";
+import { Camera } from "./camera";
 
 export class Render {
-  renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({ antialias: true,alpha: true });
+  renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
-  sceneController;
+  sceneController: Scene;
+  cameraController: Camera;
 
   clock = new THREE.Clock();
 
@@ -17,8 +20,12 @@ export class Render {
   width: number = 500;
   height: number = 500;
 
+  loader = new SVGLoader();
+
+
   constructor() {
     this.initRenderer();
+    this.cameraController = new Camera(this);
     this.sceneController = new Scene(this);
     this.animate();
     this.initEvent();
@@ -27,7 +34,7 @@ export class Render {
   // 初始化渲染器
   initRenderer() {
     this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setClearColor('hsl(0,0%,95%)',1.0)
+    this.renderer.setClearColor('hsl(0,0%,95%)', 1.0)
     // renderer.outputEncoding = THREE.sRGBEncoding;
   }
 
@@ -59,30 +66,11 @@ export class Render {
     const rect = this.domContainer?.getBoundingClientRect();
     const domContainerWidth = rect?.width || this.width;
     const domContainerHeight = rect?.height || this.height;
+    
     this.width = domContainerWidth;
     this.height = domContainerHeight;
 
-    // const width = window.innerWidth
-    // const height = window.innerHeight
-
-    const width = domContainerWidth
-    const height = domContainerHeight
-
-    const camera = this.sceneController.camera;
-    if (camera) {
-      const aspect = width / height;
-      // camera.aspect = aspect;
-      var d = 7;
-      camera.left = -d * aspect;
-      camera.right = d * aspect;
-      camera.top = d;
-      camera.bottom = -d;
-
-      camera.updateProjectionMatrix();
-    }
-
-    // camera.rotation.y = -Math.PI / 4;
-    // camera.rotation.x = Math.atan(-1 / Math.sqrt(2));
+    this.cameraController.updateCamera();
     this.renderer.setSize(domContainerWidth, domContainerHeight);
   }
 
@@ -102,7 +90,7 @@ export class Render {
   render() {
     const delta = this.clock.getDelta();
     const time = this.clock.getElapsedTime() * 10;
-    const camera = this.sceneController.camera;
+    const camera = this.cameraController.camera;
     if (!camera) {
       return
     }

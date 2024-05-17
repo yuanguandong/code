@@ -25,7 +25,7 @@ export class Post {
     return
     const me = this;
     const scene = me.engine.sceneController.scene;
-    const camera = me.engine.sceneController.camera;
+    const camera = me.engine.cameraController.camera;
     const renderer = me.engine.renderer
     const domElement = me.engine.renderer.domElement;
     if (!camera) { return }
@@ -77,7 +77,7 @@ export class Post {
     return
     const me = this;
     const scene = me.engine.sceneController.scene;
-    const camera = me.engine.sceneController.camera;
+    const camera = me.engine.cameraController.camera;
     if (!camera) { return }
     // 创建渲染通道
     const composer = new EffectComposer(this.engine.renderer);

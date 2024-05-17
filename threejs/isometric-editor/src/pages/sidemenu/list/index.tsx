@@ -14,22 +14,14 @@ export default function ElementList(props: ElementListProps) {
   const handleItemClick = useCallback((key: string) => {
     switch (key) {
       case "cube":
-        engine.sceneController.controller.action?.addCube({
-          x: -9,
-          z: 7,
-        });
+        engine.sceneController.controller.action?.addCube({});
         break;
       case "cylinder":
-        engine.sceneController.controller.action?.addCylinder({
-          x: -9,
-          z: 7,
-        });
+        engine.sceneController.controller.action?.addCylinder({});
         break;
       case "text":
         engine.sceneController.controller.action?.addText({
-          x: -9,
-          z: 7,
-          content: "Default Text",
+          content: "Default Text 😀😝🤡😳😞😟🦋🐽",
           color: "#000000",
           fontSize: 0.2,
           fontWeight: "bold",
@@ -37,11 +29,15 @@ export default function ElementList(props: ElementListProps) {
         break;
       case "area":
         engine.sceneController.controller.action?.addArea({
-          x: -9,
-          z: 7,
           width: 3,
           length: 3,
           color: "#E6E7E8",
+        });
+        break;
+      case "icon":
+        engine.sceneController.controller.action?.addIcon({
+          size:1,
+          color: "#000000",
         });
         break;
     }

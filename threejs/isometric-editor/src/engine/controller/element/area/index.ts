@@ -2,9 +2,9 @@ import { Render } from "@/engine/render";
 import * as THREE from "three";
 import { Line2, LineGeometry, LineMaterial } from "three/addons";
 import { Text as TextMesh } from 'troika-three-text';
-import { Base3DObject } from "../base";
+import { Base3DObject, IBase3DObject } from "../base";
 
-export interface AreaOptions {
+export interface AreaOptions extends IBase3DObject{
   x: number,
   z: number,
   width: number,

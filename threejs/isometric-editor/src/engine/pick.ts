@@ -3,6 +3,8 @@ import { Render } from "./render";
 
 export class PickController {
 
+  centerVector2= new THREE.Vector2();
+
   mouse = new THREE.Vector2();
 
   raycaster = new THREE.Raycaster();
@@ -11,31 +13,41 @@ export class PickController {
 
   }
 
+  // 与平面求交点
   intersectPlane(event: MouseEvent) {
-    const camera = this.engine.sceneController.camera
-    const scene = this.engine.sceneController.scene
+    const camera = this.engine.cameraController.camera
     const intersectionPoint = new THREE.Vector3();
-
     if (!camera) { return intersectionPoint }
     var rect = this.engine.renderer.domElement.getBoundingClientRect();
-
     this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
     this.raycaster.setFromCamera(this.mouse, camera);
-
     if (!this.engine.sceneController.plane) {
       return intersectionPoint
     }
     // 找到射线和平面的交点
     this.raycaster.ray.intersectPlane(this.engine.sceneController.plane, intersectionPoint);
-
     return intersectionPoint
-    // const intersects = this.raycaster.intersectObject(this.engine.sceneController.plane, true);
-    // return intersects[0].point;
   }
 
+  // 获取视窗下的三维中心点
+  getViewportCenterPoint() {
+    const camera = this.engine.cameraController.camera
+    const intersectionPoint = new THREE.Vector3();
+    if (!camera) { return intersectionPoint }
+
+    this.raycaster.setFromCamera(this.centerVector2, camera);
+    if (!this.engine.sceneController.plane) {
+      return intersectionPoint
+    }
+    // 找到射线和平面的交点
+    this.raycaster.ray.intersectPlane(this.engine.sceneController.plane, intersectionPoint);
+    return intersectionPoint
+  }
+
+  // 拾取物体
   pick(event: MouseEvent, target?: THREE.Object3D) {
-    const camera = this.engine.sceneController.camera
+    const camera = this.engine.cameraController.camera
     const scene = this.engine.sceneController.scene
     if (!camera) { return [] }
     var rect = this.engine.renderer.domElement.getBoundingClientRect();
