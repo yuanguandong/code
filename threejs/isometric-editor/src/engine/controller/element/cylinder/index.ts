@@ -13,18 +13,18 @@ export interface CylinderOptions {
 
 export class Cylinder extends Base3DObject {
   groundGap = 0.01;
-  lineWdith = 0.03;
-  lineWdithActive = 0.05;
-  
+  lineWdith = 0.02;
+  lineWdithActive = 0.03;
+
   cylinder?: THREE.Mesh<THREE.CylinderGeometry, THREE.MeshBasicMaterial[], THREE.Object3DEventMap>
 
   matLine?: LineMaterial = new LineMaterial({
-    color: 0x000000,
-    linewidth: 0.03,
+    color: this.defaultOutlineColor,
+    linewidth: this.lineWdith,
     worldUnits: true,
     dashed: false,
     alphaToCoverage: true,
-    vertexColors: true,
+    vertexColors: false,
   });
 
   constructor(engine: Render, private options: CylinderOptions) {
@@ -46,7 +46,7 @@ export class Cylinder extends Base3DObject {
     const radiusTop = 0.5; // 顶部半径
     const radiusBottom = 0.5; // 底部半径
     const height = 0.5; // 高度
-    const radialSegments = 6 // 分段数，决定棱柱的边数
+    const radialSegments = 8 // 分段数，决定棱柱的边数
     const geometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments);
 
 
@@ -76,7 +76,7 @@ export class Cylinder extends Base3DObject {
     this.position.x = me.options.x;
     this.position.z = me.options.z;
 
-    this.rotateY(75 * Math.PI / 180); // 绕y轴旋转45度
+    this.rotateY(180 / radialSegments * Math.PI / 180); // 绕y轴旋转45度
 
     var edges = new THREE.EdgesGeometry(geometry);
     var lineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 20 });
@@ -135,12 +135,14 @@ export class Cylinder extends Base3DObject {
   active() {
     if (this.matLine) {
       this.matLine.linewidth = this.lineWdithActive
+      this.matLine.color.set(this.activeOutlineColor)
     }
   }
 
   disActive() {
     if (this.matLine) {
       this.matLine.linewidth = this.lineWdith;
+      this.matLine.color.set(this.defaultOutlineColor)
     }
   }
 

@@ -1,7 +1,7 @@
 import { Mesh, Object3D, Object3DEventMap } from "three";
 import { TOP_COLOR } from "../constant";
 import { Element3D } from "../interface";
-
+import * as THREE from "three";
 export interface MeshElement extends Mesh {
   isElement: boolean;
   parent: MeshElement;
@@ -32,6 +32,7 @@ export class Utils {
     return canvas;
   }
 
+  // 从mesh向上查找元素
   static lookUpElement(_mesh: Object3D<Object3DEventMap>): Element3D | undefined {
     const mesh = _mesh as MeshElement
     if (!mesh) { return }
@@ -40,6 +41,28 @@ export class Utils {
     }
     return Utils.lookUpElement(mesh?.parent)
   }
+
+  // 函数来计算 Group 的尺寸
+  static getGroupSize(group: THREE.Group) {
+    const box = new THREE.Box3().setFromObject(group);
+    const size = new THREE.Vector3();
+    box.getSize(size);
+    return size;
+  }
+
+  // 计算group的边界 (全局坐标系)
+  static getBoundingBox(group: THREE.Group) {
+    // 创建一个空的边界框
+    const boundingBox = new THREE.Box3();
+    // 计算 Group 对象的边界框
+    group.traverse((object) => {
+      if (object?.type === 'Mesh') {
+        boundingBox.expandByObject(object);
+      }
+    });
+    return boundingBox
+  }
+
 
 }
 

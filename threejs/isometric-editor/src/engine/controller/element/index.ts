@@ -48,7 +48,7 @@ export class Elements extends THREE.Group {
       case "icon":
         data.options = {
           ...data.options,
-          size: 1,
+          size: 2,
           color: "#000000",
         };
         break;

@@ -22,12 +22,12 @@ export class Area extends Base3DObject {
   area: any;
 
   matLine?: LineMaterial = new LineMaterial({
-    color: 0x000000,
+    color: this.activeOutlineColor,
     linewidth: this.lineWdith,
     worldUnits: true,
     dashed: false,
     alphaToCoverage: true,
-    vertexColors: true,
+    vertexColors: false,
   });
 
   line?: Line2;

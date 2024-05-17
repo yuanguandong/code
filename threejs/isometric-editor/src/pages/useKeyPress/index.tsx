@@ -14,7 +14,7 @@ const useKeyPressEffect = () => {
 
   useKeyPress(['meta.s'], (event) => {
     event.preventDefault();
-    engine.controller.action?.save();
+    engine.controller.data?.save();
   });
   
 };

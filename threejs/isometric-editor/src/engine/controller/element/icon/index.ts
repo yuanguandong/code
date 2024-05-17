@@ -2,6 +2,7 @@ import { Render } from "@/engine/render";
 import * as THREE from "three";
 import { Line2, LineGeometry, LineMaterial, SVGLoader } from "three/addons";
 import { Base3DObject } from "../base";
+import { Utils } from "@/engine/utils";
 
 export interface IconOptions {
   x: number,
@@ -11,21 +12,20 @@ export interface IconOptions {
 
 }
 
-
 export class Icon extends Base3DObject {
   lineWdith = 0.03;
   groundGap = 0.01;
-  outlinePadding = 0;
+  outlinePadding = 0.1;
 
   icon: any;
 
   matLine?: LineMaterial = new LineMaterial({
-    color: 0x000000,
+    color: this.activeOutlineColor,
     linewidth: this.lineWdith,
     worldUnits: true,
     dashed: false,
     alphaToCoverage: true,
-    vertexColors: true,
+    vertexColors: false,
   });
 
   line?: Line2;
@@ -47,7 +47,7 @@ export class Icon extends Base3DObject {
       const paths = data.paths;
       const icon = new THREE.Group();
       icon.scale.multiplyScalar(size / 1024);
-      // group.scale.y *= - 1;
+      icon.scale.y *= - 1;
 
       let renderOrder = 0;
 
@@ -74,22 +74,26 @@ export class Icon extends Base3DObject {
 
       me.icon = icon;
       me.position.y = me.groundGap;
-      me.rotation.x = Math.PI / 2;
+      me.rotation.x = -Math.PI / 2;
     });
   }
 
 
   addLine() {
     const me = this;
-    const width = this.icon.geometry.parameters.width;
-    const length = this.icon.geometry.parameters.height;
+    const boundingBox = Utils.getBoundingBox(this);
+    const { z: length } = Utils.getGroupSize(this);
+
+    const { max, min } = boundingBox
     const padding = this.outlinePadding;
+    const position = this.position
+    const lineHeight = 1.55
     const positions = [
-      width / 2 + padding, -length / 2 - padding, 0,
-      width / 2 + padding, length / 2 + padding, 0,
-      -width / 2 - padding, length / 2 + padding, 0,
-      -width / 2 - padding, -length / 2 - padding, 0,
-      width / 2 + padding, -length / 2 - padding, 0,
+      max.x + padding - position.x, min.z - position.z - lineHeight * length - padding, 0,
+      min.x - padding - position.x, min.z - position.z - lineHeight * length - padding, 0,
+      min.x - padding - position.x, max.z - position.z - lineHeight * length + padding, 0,
+      max.x + padding - position.x, max.z - position.z - lineHeight * length + padding, 0,
+      max.x + padding - position.x, min.z - position.z - lineHeight * length - padding, 0,
     ]
     const lineGeometry = new LineGeometry();
     lineGeometry.setPositions(positions);
@@ -99,9 +103,8 @@ export class Icon extends Base3DObject {
     this.line = line
     this.add(line);
   }
-
   active() {
-    // this.addLine();
+    this.addLine();
   }
 
   disActive() {

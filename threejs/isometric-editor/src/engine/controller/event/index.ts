@@ -5,11 +5,13 @@ import * as THREE from "three";
 import { RenderPass, EffectComposer, OutlinePass } from "three/addons";
 
 export class Events {
-
+  // 拖拽偏移量
   dragDelta = new THREE.Vector3();
 
+  // 拖拽物体
   dragObject?: Element3D;
 
+  // 当前选中的物体
   activeObject?: Element3D;
 
   constructor(private engine: Render) {

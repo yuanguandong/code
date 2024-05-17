@@ -15,19 +15,21 @@ export interface CubeOptions {
 export class Cube extends Base3DObject {
   groundGap = 0.01;
 
-  lineWdith = 0.03;
-  lineWdithActive = 0.05;
+  lineWdith = 0.02;
+  lineWdithActive = 0.03;
 
   cube?: THREE.Mesh<THREE.BoxGeometry, THREE.MeshBasicMaterial[], THREE.Object3DEventMap>
 
-  matLine?: LineMaterial = new LineMaterial({
-    color: 0x000000,
+  matLineOptions = {
+    color: this.defaultOutlineColor,
     linewidth: this.lineWdith,
     worldUnits: true,
     dashed: false,
     alphaToCoverage: true,
-    vertexColors: true,
-  });
+    vertexColors: false,
+  }
+
+  matLine?: LineMaterial = new LineMaterial(this.matLineOptions);
 
   constructor(engine: Render, private options: CubeOptions) {
     super(engine);
@@ -130,12 +132,14 @@ export class Cube extends Base3DObject {
   active() {
     if (this.matLine) {
       this.matLine.linewidth = this.lineWdithActive
+      this.matLine.color.set(this.activeOutlineColor)
     }
   }
 
   disActive() {
     if (this.matLine) {
       this.matLine.linewidth = this.lineWdith;
+      this.matLine.color.set(this.defaultOutlineColor)
     }
   }
 
