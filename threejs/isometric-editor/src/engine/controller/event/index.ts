@@ -15,15 +15,12 @@ export class Events {
   activeObject?: Element3D;
 
   constructor(private engine: Render) {
-
     this.initEvents();
   }
 
-  // 鼠标按下
-  pointdown(event: MouseEvent) {
+  // 选中物体
+  selectObject(event: MouseEvent) {
     const me = this;
-    event.preventDefault();
-    if (!me.engine.pickController) { return }
     const allIntersects = me.engine.pickController?.pick(event);
     const allObjects = allIntersects?.filter((item) => item.object.userData.pickable);
 
@@ -47,17 +44,34 @@ export class Events {
     }
   }
 
-  // 鼠标移动
-  pointerMove(event: MouseEvent) {
-    const me = this;
+  // 显示连线面板
+  showLinePanel(event: MouseEvent) {
+    
+  }
 
-    if (me.dragObject && me.engine.pickController) {
+  // 移动物体
+  moveObject(event: MouseEvent) {
+    const me = this;
+    if (me.dragObject) {
       var intersectPoint = me.engine.pickController.intersectPlane(event);
       if (!intersectPoint) { return }
       me.dragObject.position.x = intersectPoint.x - me.dragDelta.x;
       me.dragObject.position.z = intersectPoint.z - me.dragDelta.z;
       me.dragObject.position.y = me.dragObject?.groundGap || 0;
     }
+  }
+
+  // 鼠标按下
+  pointdown(event: MouseEvent) {
+    const me = this;
+    event.preventDefault();
+    me.selectObject(event);
+  }
+
+  // 鼠标移动
+  pointerMove(event: MouseEvent) {
+    const me = this;
+    me.moveObject(event);
   }
 
   // 鼠标松开

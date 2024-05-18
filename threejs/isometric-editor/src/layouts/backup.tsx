@@ -11,7 +11,6 @@ export default function Layout() {
   
   const handleSave = useCallback(() => {
     engine.controller?.data?.save();
-
   }, []);
 
   return (
