@@ -4,6 +4,7 @@ import styles from "./index.less";
 import { useEngine } from "@/engine";
 import { useStore } from "@/components/store/useStore";
 import { isEmpty } from "lodash";
+import { useCallback } from "react";
 
 export const EditBar = () => {
   const engine = useEngine();
@@ -12,6 +13,11 @@ export const EditBar = () => {
     "editbarPosition",
   ]);
 
+
+  // 箭头连接
+  const handleArrowConnect = useCallback(()=>{
+    engine.controller.action.line.startAddArrowConnect()
+  },[])
 
   if (isEmpty(activeElementKeys)) {
     return null;
@@ -26,21 +32,22 @@ export const EditBar = () => {
         left: editbarPosition.x,
       }}
     >
-      <Tooltip title='search'>
+      <Tooltip title='箭头连接' placement="left">
         <Button
           type='primary'
           shape='circle'
           icon={<RiseOutlined />}
+          onClick={handleArrowConnect}
         />
       </Tooltip>
-      <Tooltip title='search'>
+      <Tooltip title='线条连接' placement="left">
         <Button
           type='primary'
           shape='circle'
           icon={<StockOutlined />}
         />
       </Tooltip>
-      <Tooltip title='search'>
+      <Tooltip title='添加文字' placement="left">
         <Button
           type='primary'
           shape='circle'

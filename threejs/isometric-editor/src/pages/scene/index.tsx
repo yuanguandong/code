@@ -15,13 +15,13 @@ export default function Scene() {
 
   const [elementsData, setElementsData] = useLocalStorageState<ElementData[]>("elements", {
     defaultValue: [
-      {
-        type: "cube",
-        options: {
-          x: 0,
-          z: 0,
-        },
-      },
+      // {
+      //   type: "cube",
+      //   options: {
+      //     x: 0,
+      //     z: 0,
+      //   },
+      // },
     ],
   });
 

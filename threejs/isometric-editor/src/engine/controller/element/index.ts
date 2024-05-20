@@ -6,9 +6,10 @@ import { Cube, CubeOptions } from "./cube";
 import { Cylinder, CylinderOptions } from "./cylinder";
 import { Icon, IconOptions } from "./icon";
 import { Text, TextOptions } from "./text";
+import { Line, LineOptions } from "./line";
 
 export class Elements extends THREE.Group {
-  
+
 
   // 元素集合
   elementMap: Map<string, Element3D> = new Map();
@@ -25,6 +26,12 @@ export class Elements extends THREE.Group {
 
     let data = { type: key, options: { x, z } } as ElementData;
     switch (key) {
+      case "line":
+        data.options = {
+          ...data.options,
+          points: [0, 0, 0, 0, 0, 2.1, 2.2, 0, 3.3],
+        };
+        break;
       case "cube":
         break;
       case "cylinder":
@@ -76,6 +83,9 @@ export class Elements extends THREE.Group {
         break;
       case 'icon':
         element = new Icon(this.engine, options as IconOptions)
+        break;
+      case 'line':
+        element = new Line(this.engine, options as LineOptions)
         break;
     }
     if (element) {

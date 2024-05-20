@@ -1,4 +1,4 @@
-import { Element3D } from "@/engine/interface";
+import { Element3D, LineActionStatus } from "@/engine/interface";
 import { Render } from "@/engine/render";
 import { MeshElement, Utils } from "@/engine/utils";
 import * as THREE from "three";
@@ -70,14 +70,12 @@ export class Events {
   // 移动物体
   moveObject(event: MouseEvent) {
     const me = this;
-    if (me.dragObject) {
-      var intersectPoint = me.engine.pickController.intersectPlane(event);
-      if (!intersectPoint) { return }
-      me.dragObject.position.x = intersectPoint.x - me.dragDelta.x;
-      me.dragObject.position.z = intersectPoint.z - me.dragDelta.z;
-      me.dragObject.position.y = me.dragObject?.groundGap || 0;
-      this.engine.controller.setting.updateEditBarPosition();
-    }
+    var intersectPoint = me.engine.pickController.intersectPlane(event);
+    if (!intersectPoint || !me.dragObject) { return }
+    me.dragObject.position.x = intersectPoint.x - me.dragDelta.x;
+    me.dragObject.position.z = intersectPoint.z - me.dragDelta.z;
+    me.dragObject.position.y = me.dragObject?.groundGap || 0;
+    this.engine.controller.setting.updateEditBarPosition();
   }
 
   // 鼠标按下
@@ -90,7 +88,13 @@ export class Events {
   // 鼠标移动
   pointerMove(event: MouseEvent) {
     const me = this;
-    me.moveObject(event);
+    if (me.dragObject) {
+      me.moveObject(event);
+    }
+    if (me.engine.controller.action.line.status === LineActionStatus.add) {
+      me.engine.controller.action.line.addingArrowPositionUpdate(event);
+    }
+
   }
 
   // 鼠标松开

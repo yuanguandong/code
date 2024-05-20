@@ -12,11 +12,15 @@ const useKeyPressEffect = () => {
     engine.controller.element?.removeElement(activeElementKey);
   });
 
-  useKeyPress(['meta.s'], (event) => {
+  useKeyPress(["meta.s"], (event) => {
     event.preventDefault();
     engine.controller.data?.save();
   });
-  
+
+  useKeyPress(["esc"], (event) => {
+    event.preventDefault();
+    engine.controller.action.line.cancelAction();
+  });
 };
 
 export default useKeyPressEffect;
