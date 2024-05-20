@@ -12,10 +12,28 @@ export class Events {
   dragObject?: Element3D;
 
   // 当前选中的物体
-  activeObject?: Element3D;
+  _activeObject?: Element3D;
 
   constructor(private engine: Render) {
     this.initEvents();
+  }
+
+  set activeObject(value) {
+    this._activeObject = value
+    let activeElementKeys = []
+    if (value) {
+      activeElementKeys.push(value.key)
+      this.engine.controller.setting.updateEditBarPosition();
+    } else {
+      activeElementKeys = []
+    }
+    this.engine.controller.setting?.store.setState({
+      activeElementKeys,
+    })
+  }
+
+  get activeObject() {
+    return this._activeObject;
   }
 
   // 选中物体
@@ -46,7 +64,7 @@ export class Events {
 
   // 显示连线面板
   showLinePanel(event: MouseEvent) {
-    
+
   }
 
   // 移动物体
@@ -58,6 +76,7 @@ export class Events {
       me.dragObject.position.x = intersectPoint.x - me.dragDelta.x;
       me.dragObject.position.z = intersectPoint.z - me.dragDelta.z;
       me.dragObject.position.y = me.dragObject?.groundGap || 0;
+      this.engine.controller.setting.updateEditBarPosition();
     }
   }
 
@@ -140,7 +159,7 @@ export class Events {
 //     //   composer.removePass(outlinePass);
 //     // }
 
-//     // const elements = me.engine.controller.elements
+//     // const elements = me.engine.controller.element
 //     // elements?.traverse(function (node) {
 //     //   if (node instanceof THREE.Mesh) {
 //     //     node.userData.hasOutline = false;

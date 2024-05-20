@@ -3,16 +3,12 @@ import * as THREE from "three";
 
 export class Camera {
   // 相机实例
-  camera?: THREE.OrthographicCamera;
+  camera: THREE.OrthographicCamera;
 
   // 是否为轴测视图
   isIsometricView: boolean = true;
 
   constructor(private engine: Render) {
-    this.init();
-  }
-
-  init() {
     const me = this;
 
     const rect = this.engine.domContainer?.getBoundingClientRect();

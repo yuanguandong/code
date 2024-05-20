@@ -8,6 +8,7 @@ import { Icon, IconOptions } from "./icon";
 import { Text, TextOptions } from "./text";
 
 export class Elements extends THREE.Group {
+  
 
   // 元素集合
   elementMap: Map<string, Element3D> = new Map();
@@ -99,7 +100,7 @@ export class Elements extends THREE.Group {
   }
 
   destroy() {
-    
+
   }
 
 }

@@ -6,6 +6,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { useLocalStorageState } from "ahooks";
 import { ElementData } from "@/engine/interface";
 import ToolBar from "./toolbar";
+import { EditBar } from "./editBar";
 
 export default function Scene() {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,6 +25,7 @@ export default function Scene() {
     ],
   });
 
+  // 初始化3D场景
   useLayoutEffect(() => {
     const container = ref.current;
     if (container && !ready) {
@@ -42,6 +44,7 @@ export default function Scene() {
       ref={ref}
     >
       <ToolBar />
+      <EditBar />
     </div>
   );
 }

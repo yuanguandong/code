@@ -9,7 +9,7 @@ const useKeyPressEffect = () => {
     if (!activeElementKey) {
       return;
     }
-    engine.controller.elements?.removeElement(activeElementKey);
+    engine.controller.element?.removeElement(activeElementKey);
   });
 
   useKeyPress(['meta.s'], (event) => {

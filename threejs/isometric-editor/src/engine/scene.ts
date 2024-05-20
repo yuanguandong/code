@@ -16,7 +16,7 @@ export class Scene {
 
   constructor(private engine: Render) {
     // this.scene.background = new THREE.Color(0x000000);
-    
+
     this.initGridHelper();
     this.initGround();
     this.initControls();
@@ -91,6 +91,13 @@ export class Scene {
     }
     this.controls = new OrbitControls(camera, this.engine.renderer.domElement);
     this.controls.enableRotate = false;
+
+    // 初始化控制器状态监听
+    this.controls.addEventListener('change', () => {
+      this.engine.controller.setting.updateEditBarPosition();
+    });
+
+
     this.engine.registerUpdate("updateControls", () => {
       this.controls?.update();
     });

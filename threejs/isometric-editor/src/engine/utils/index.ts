@@ -2,12 +2,17 @@ import { Mesh, Object3D, Object3DEventMap } from "three";
 import { TOP_COLOR } from "../constant";
 import { Element3D } from "../interface";
 import * as THREE from "three";
+import { Math } from './math'
 export interface MeshElement extends Mesh {
   isElement: boolean;
   parent: MeshElement;
 }
 
 export class Utils {
+
+  // 数学工具类
+  static Math = Math;
+
   // 生成文字canvas
   static getTextCanvas({ text, height, width }: { text: string, height: number, width: number }) {
     var canvas = document.createElement("canvas");

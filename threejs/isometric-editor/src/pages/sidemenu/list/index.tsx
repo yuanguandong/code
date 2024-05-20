@@ -13,7 +13,7 @@ export default function ElementList(props: ElementListProps) {
   const engine = useEngine();
 
   const handleItemClick = useCallback((key: string) => {
-    engine.controller.elements?.createElement(key);
+    engine.controller.element?.createElement(key);
   }, []);
 
   return (
