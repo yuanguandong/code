@@ -1,3 +1,7 @@
+/*
+ * @Descripttion: 
+ * @MainAuthor: 
+ */
 import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -58,7 +62,7 @@ const initScene = () => {
     "textures/pisa/nz.png",
   ];
   const textureCube = new THREE.CubeTextureLoader().load(urls);
-  scene.background = textureCube;
+  // scene.background = textureCube;
   return { textureCube };
 };
 
@@ -67,6 +71,8 @@ const initMeshes = () => {
   const material = new THREE.MeshBasicMaterial({
     color: 0xffffff,
     envMap: textureCube,
+    reflectivity: 0.7,  // 设置反射强度为 50%
+    // envMapIntensity:0.1
   });
   for (let i = 0; i < 500; i++) {
     const mesh = new THREE.Mesh(geometry, material);
