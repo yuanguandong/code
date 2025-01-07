@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@icraft/player-react": "^0.0.6",
+    "@icraft/player-react": "^0.0.8",
     "antd": "^5.17.2",
     "antd-style": "^3.6.2",
     "classnames": "^2.5.1",

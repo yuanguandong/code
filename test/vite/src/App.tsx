@@ -1,4 +1,3 @@
-
 "use client";
 
 import type { ClickParams, ICraftPlayerInstance } from "@icraft/player-react";
@@ -7,12 +6,10 @@ import { useCallback, useRef } from "react";
 
 export default function CraftPlayer() {
   const instanceRef = useRef<ICraftPlayerInstance>();
-  // const [ setActiveKey] = useState<string>("");
 
   const onClick = useCallback((params: ClickParams) => {
-    const { instance } = params;
-    instance?.setDisabled(!instance.isDisabled);
-    // setActiveKey(instance?.key || "");
+    console.log("onClick", params);
+
     const allSceneElements = instanceRef.current?.getAllSceneElementsData();
     const currentSceneElements = instanceRef.current?.getCurrentSceneElements();
     console.log("allSceneElements", allSceneElements);
@@ -25,9 +22,9 @@ export default function CraftPlayer() {
   };
 
   return (
-    <div style={{ width: "100vw",height:'100vh' }}>
+    <div style={{ width: "100vw", height: "100vh" }}>
       <ICraftPlayer
-        src='/ArgoCD1.iplayer'
+        src='/AWSCloud.iplayer'
         onClick={onClick}
         ref={instanceRef}
         onReady={onReady}
