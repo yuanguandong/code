@@ -23,6 +23,7 @@
     "github-download": "^0.5.0"
   },
   "dependencies": {
+    "draco3dgltf": "^1.5.7",
     "lodash": "^4.17.21",
     "xterm": "^4.19.0"
   }

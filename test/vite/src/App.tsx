@@ -1,3 +1,7 @@
+/*
+ * @Descripttion: 
+ * @MainAuthor: 
+ */
 "use client";
 
 import type { ClickParams, ICraftPlayerInstance } from "@icraft/player-react";
@@ -24,7 +28,7 @@ export default function CraftPlayer() {
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <ICraftPlayer
-        src='/AWSCloud.iplayer'
+        src='/E-commerce-copy.iplayer'
         onClick={onClick}
         ref={instanceRef}
         onReady={onReady}
