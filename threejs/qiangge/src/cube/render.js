@@ -23,11 +23,23 @@ export class Render {
 
   // 初始化渲染器
   initRenderer() {
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      toneMapping: THREE.ACESFilmicToneMapping,
+      toneMappingExposure: 1.0,
+      alpha: true,
+    });
     this.renderer = renderer;
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.outputEncoding = THREE.sRGBEncoding;
+
+    renderer.toneMapping = THREE.LinearToneMapping;
+    renderer.toneMappingExposure = 1;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.VSMShadowMap;
+    // 设置透明背景
+    // renderer.setClearColor(0x000000, 0);
     document.body.appendChild(renderer.domElement);
     return renderer;
   }
@@ -60,7 +72,11 @@ export class Render {
   render() {
     const delta = this.clock.getDelta();
     const time = this.clock.getElapsedTime() * 10;
-    this.renderer.render(this.sceneController.scene, this.sceneController.camera);
+    if (this.sceneController.demo && this.sceneController.demo.composer) {
+      this.sceneController.demo.composer.render();
+    } else {
+      this.renderer.render(this.sceneController.scene, this.sceneController.camera);
+    }
   }
 
   registerUpdate(key, fn) {

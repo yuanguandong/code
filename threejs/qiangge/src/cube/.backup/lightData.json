@@ -1,0 +1,60 @@
+{
+    "mainLight": {
+        "x": 228,
+        "y": 150,
+        "z": 200,
+        "intensity": 2.4000000000000004,
+        "distance": 1200,
+        "decay": 5,
+        "color": "#0059ff"
+    },
+    "warmLight": {
+        "x": -272,
+        "y": 755,
+        "z": -150,
+        "intensity": 2.2,
+        "distance": 2000,
+        "decay": 5.1,
+        "color": "#ffffff",
+        "angle": 18,
+        "penumbra": 0.5700000000000001
+    },
+    "warmLight2": {
+        "x": 98,
+        "y": 87,
+        "z": 87,
+        "intensity": 2.4,
+        "distance": 110,
+        "decay": 1,
+        "color": "#ffba00"
+    },
+    "spotLight": {
+        "x": 65,
+        "y": 450,
+        "z": 337,
+        "intensity": 5.5,
+        "distance": 500,
+        "decay": 1,
+        "color": "#ffffff",
+        "angle": 29.999999999999996,
+        "penumbra": 0.1
+    },
+    "spotLight2": {
+        "x": 217,
+        "y": 420,
+        "z": 109,
+        "intensity": 2.0999999999999996,
+        "distance": 350,
+        "decay": 1.2,
+        "color": "#afffff",
+        "angle": 45,
+        "penumbra": 0.2
+    },
+    "helperSettings": {
+        "showHelpers": false
+    },
+    "ambient": {
+        "intensity": 0.08000000000000002,
+        "color": "#ffffff"
+    }
+}

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "deploy": "vercel --prod",
-    "postbuild":"node scripts/postbuild.mjs"
+    "postbuild": "node scripts/postbuild.mjs"
   },
   "devDependencies": {
     "fs-extra": "^11.1.1",
@@ -16,8 +16,11 @@
     "vite": "^4.0.4"
   },
   "dependencies": {
+    "@react-three/drei": "^10.0.6",
     "@tweenjs/tween.js": "^21.0.0",
     "lil-gui": "^0.17.0",
-    "three": "^0.148.0"
+    "postprocessing": "^6.37.2",
+    "three": "0.149.0",
+    "tweakpane": "^4.0.5"
   }
 }

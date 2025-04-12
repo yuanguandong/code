@@ -16,11 +16,14 @@ export class Scene {
 
   constructor(render) {
     this.render = render;
+    // 开启渲染器阴影
+    this.render.renderer.shadowMap.enabled = true;
+    this.render.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // 使用PCFSoft阴影算法
     this.initScene((scene) => {
       this.DemoController = new Demo(render, scene);
     });
     this.initCamera();
-    this.initAxesHelper();
+    // this.initAxesHelper();
     // this.initGridHelper();
     // this.initGround();
     // this.initLight();
@@ -30,7 +33,7 @@ export class Scene {
   initScene(cb) {
     const scene = new THREE.Scene();
     this.scene = scene;
-    scene.background = new THREE.Color(0x000000);
+    // scene.background = new THREE.Color(0x000000);
     // scene.fog = new THREE.Fog(0xe0e0e0, 10, 1000);
     if (cb) {
       cb(scene);
@@ -62,15 +65,20 @@ export class Scene {
   }
 
   initCamera() {
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.25,
-      10000
+    const aspectRatio = window.innerWidth / window.innerHeight;
+    const cameraSize = 200; // 将相机视口大小从400减小到200
+    const camera = new THREE.OrthographicCamera(
+      -cameraSize * aspectRatio,
+      cameraSize * aspectRatio,
+      cameraSize,
+      -cameraSize,
+      0.1,
+      100000
     );
     this.camera = camera;
-    camera.position.set(5, 5, 5);
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    // 减小相机位置坐标，使其更靠近模型
+    camera.position.set(300, 300, 300);
+    camera.lookAt(0, 0, 0);
   }
 
   initLight() {
@@ -89,6 +97,10 @@ export class Scene {
 
   initControls() {
     this.controls = new OrbitControls(this.camera, this.render.renderer.domElement);
-    // this.controls.maxPolarAngle = Math.PI / 2.5;
+    // 调整相机距离限制
+    // this.controls.maxDistance = 600;
+    // this.controls.minDistance = 50;
+    // this.controls.enableDamping = true;
+    // this.controls.dampingFactor = 0.05;
   }
 }
