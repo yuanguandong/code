@@ -1,0 +1,43 @@
+{
+  "name": "threejs-journey-exercise",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "deploy": "vercel --prod",
+    "postbuild": "node scripts/postbuild.mjs"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.16",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.1",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "fs-extra": "^11.1.1",
+    "request": "^2.88.2",
+    "typescript": "^5.8.3",
+    "vercel": "^28.18.5",
+    "vite": "^4.0.4"
+  },
+  "dependencies": {
+    "@pmndrs/assets": "^1.7.0",
+    "@pmndrs/vanilla": "^1.20.4",
+    "@react-three/drei": "9.77.1",
+    "@react-three/fiber": "8.13.3",
+    "@tweenjs/tween.js": "^21.0.0",
+    "@types/three": "0.159.0",
+    "@use-gesture/react": "^10.3.1",
+    "axios": "^1.8.4",
+    "file-saver": "^2.0.5",
+    "lil-gui": "^0.17.0",
+    "lodash": "^4.17.21",
+    "postprocessing": "^6.37.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "three": "0.159.0",
+    "three-stdlib": "^2.35.16",
+    "tweakpane": "^4.0.5"
+  }
+}

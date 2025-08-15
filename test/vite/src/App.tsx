@@ -1,7 +1,3 @@
-/*
- * @Descripttion: 
- * @MainAuthor: 
- */
 "use client";
 
 import type { ClickParams, ICraftPlayerInstance } from "@icraft/player-react";

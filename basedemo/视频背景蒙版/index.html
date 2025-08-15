@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1"
+    />
+    <title>单视频 + 四个圆角窗口（SVG mask）</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: #000;
+        overflow: hidden;
+      }
+      
+      .video-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+      
+      #bgVideo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* 暂时注释掉遮罩，先确保视频能显示 */
+        /* mask: url(#fourRectMask);
+        -webkit-mask: url(#fourRectMask); */
+      }
+      
+      /* 当确认视频可以正常播放后，取消下面的注释 */
+      .with-mask #bgVideo {
+        mask: url(#fourRectMask);
+        -webkit-mask: url(#fourRectMask);
+      }
+      
+      /* Fallback for browsers that don't support mask */
+      .no-mask #bgVideo {
+        mask: none;
+        -webkit-mask: none;
+        clip-path: polygon(
+          10% 15%, 45% 15%, 45% 45%, 10% 45%, 10% 15%,
+          55% 15%, 90% 15%, 90% 45%, 55% 45%, 55% 15%,
+          10% 55%, 45% 55%, 45% 85%, 10% 85%, 10% 55%,
+          55% 55%, 90% 55%, 90% 85%, 55% 85%, 55% 55%
+        );
+      }
+      
+      .mask-svg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      
+      /* 可选：添加一些动画效果 */
+      .video-container:hover #bgVideo {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SVG 遮罩定义 -->
+    <svg class="mask-svg">
+      <defs>
+        <mask id="fourRectMask">
+          <!-- 四个白色矩形，表示视频可见区域 -->
+          <!-- 左上角矩形 -->
+          <rect x="10%" y="15%" width="35%" height="30%" rx="15" ry="15" fill="white"/>
+          
+          <!-- 右上角矩形 -->
+          <rect x="55%" y="15%" width="35%" height="30%" rx="15" ry="15" fill="white"/>
+          
+          <!-- 左下角矩形 -->
+          <rect x="10%" y="55%" width="35%" height="30%" rx="15" ry="15" fill="white"/>
+          
+          <!-- 右下角矩形 -->
+          <rect x="55%" y="55%" width="35%" height="30%" rx="15" ry="15" fill="white"/>
+        </mask>
+      </defs>
+    </svg>
+
+    <div class="video-container">
+      <video
+        id="bgVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+      >
+        <source
+          src="https://lf3-lv-buz.vlabstatic.com/obj/image-lvweb-buz/ies/lvweb/dreamina_cn/static/media/record-loading-animation.4d733588.mp4"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+  </body>
+</html>
