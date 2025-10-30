@@ -1,3 +1,7 @@
+<!--
+ * @Descripttion: 
+ * @MainAuthor: 
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,16 +28,27 @@
     <div id="container"></div>
   </body>
   <script>
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
     const player = new ICraftPlayer({
-      src: "demo.iplayer",
+      src: "Unnamed.iplayer",
       container: document.getElementById("container"),
-      onReady: (player) => {
-        const user = player.getElementsByName("User")?.[0];
+      onReady: async (player) => {
+        await sleep(5000);
+        const user = player.getElementsByName("Cache")?.[0];
+
         if (user) {
-          player.playAnimationByElementKey(user.key, {
-            animationDuration: 100,
-            animationType: ICraftPlayer.AnimationType.Rotate,
+          debugger;
+          console.log("user", user);
+          await player.playAnimationByElementKey(user.key, {
+            animationDuration: 1000,
+            animationType: ICraftPlayer.AnimationType.EnterSubScene,
           });
+          debugger;
+          await sleep(1000);
+          const interaction = player.getElementsByName("interaction")?.[0];
+          debugger;
+          console.log("interaction", interaction);
         }
       },
       onClick: (e) => {
@@ -57,6 +72,10 @@
             tipContent: "Hello",
           });
         }
+      },
+      onMouseMove: (e) => {
+        const { instance: Element } = e;
+        console.log("Element--->", Element);
       },
     });
   </script>
